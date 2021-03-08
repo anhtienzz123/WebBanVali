@@ -1,0 +1,35 @@
+html {
+    font-size: 16px;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.header,
+.footer,
+.main {
+    font-size: 1rem;
+}
+
+.header {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.header .gio-hang {
+    background-image: url("https://cdn0.fahasa.com/skin/frontend/base/default/images/ico_shopping_cart_orange.svg");
+    background-repeat: no-repeat;
+    text-align: center;
+    border: 1px solid black;
+    background-size: 30%;
+}
+
+.header .gio-hang span {
+    border-radius: 5px;
+    padding: 1px 1px;
+    background-color: #27d956;
+}

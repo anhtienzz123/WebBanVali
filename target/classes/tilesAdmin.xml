@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+
+    <!-- admin layout -->
+	<definition name="adminLayout"
+		template="/WEB-INF/views/layouts/admin/adminLayout.jsp">
+
+		<put-attribute name="header"
+			value="/WEB-INF/views/layouts/admin/header.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/layouts/admin/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layouts/admin/footer.jsp" />
+	</definition>
+
+	<definition name="trangChuAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/trangChu.jsp" />
+	</definition>
+	
+	<definition name="trangChuNguoiDungAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nguoidung/trangChuNguoiDung.jsp" />
+	</definition>
+	
+	
+
+
+	<!-- layout cho login -->
+	<definition name="loginLayout"
+		template="/WEB-INF/views/layouts/admin/loginLayout.jsp">
+		
+		<put-attribute name="body" value="" />
+		
+	</definition>
+
+	<definition name="loginForm" extends="loginLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/login/loginForm.jsp" />
+	</definition>
+	
+	<definition name="quenMatKhau" extends="loginLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/login/quenMatKhau.jsp" />
+	</definition>
+	
+	<definition name="xacNhanMatKhau" extends="loginLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/login/xacNhanMatKhau.jsp" />
+	</definition>
+	
+	<definition name="dangKi" extends="loginLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/login/dangKi.jsp" />
+	</definition>
+	
+	
+
+
+</tiles-definitions>

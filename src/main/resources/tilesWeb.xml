@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+
+<tiles-definitions>
+
+  <definition name="webLayout" template="/WEB-INF/views/layouts/web/webLayout.jsp">
+    <put-attribute name="header" value="/WEB-INF/views/layouts/web/header.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/views/layouts/web/footer.jsp" />
+  </definition>
+  
+  <definition name="trangChu" extends="webLayout">
+    <put-attribute name="body" value="/WEB-INF/views/web/trangChu.jsp" />
+  </definition>
+  
+  
+  <!--  quản lí người dùng -->
+  <definition name="thongTinNguoiDung" extends="webLayout">
+    <put-attribute name="body" value="/WEB-INF/views/web/nguoiDung/thongTin.jsp" />
+  </definition>
+  
+  
+   <definition name="error" extends="webLayout">
+    <put-attribute name="header" value="" />
+    <put-attribute name="body" value="/WEB-INF/views/common/error.jsp" />
+     <put-attribute name="footer" value="" />
+  </definition>
+  
+   <definition name="error403" extends="webLayout">
+    <put-attribute name="header" value="" />
+    <put-attribute name="body" value="/WEB-INF/views/common/error403.jsp" />
+     <put-attribute name="footer" value="" />
+  </definition>
+
+ 
+</tiles-definitions>
