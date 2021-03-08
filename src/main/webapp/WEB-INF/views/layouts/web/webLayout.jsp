@@ -26,7 +26,7 @@
 
 
 	
-    <script src="${styleUrl }bootstrap/bootstrap.bundle.min.js"></script>
+   <script src="${styleUrl }bootstrap/bootstrap.bundle.min.js"> </script>
     <script src="https://kit.fontawesome.com/c44a1ab3b1.js" crossorigin="anonymous"></script>
 </body>
 </html>

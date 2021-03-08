@@ -8,7 +8,7 @@ import webbanvali.entity.NguoiDung;
 @Component
 public class NguoiDungConverter {
 
-	public NguoiDung toNguoiDung(NguoiDungDTO nguoiDungDTO) {
+	public NguoiDung toNguoiDung(NguoiDungDTO nguoiDungDTO, NguoiDung nguoiDungOld) {
 
 		if (nguoiDungDTO == null)
 			return null;
@@ -20,16 +20,18 @@ public class NguoiDungConverter {
 		String soDienThoai = nguoiDungDTO.getSoDienThoai();
 
 		// xử lí địa chỉ
-		StringBuffer diaChi = new StringBuffer(nguoiDungDTO.getDiaChi());
-		diaChi.append("," + nguoiDungDTO.getPhuongXa());
-		diaChi.append("," + nguoiDungDTO.getQuanHuyen());
-		diaChi.append("," + nguoiDungDTO.getTinhThanhPho());
+		StringBuffer diaChiBuf = new StringBuffer(nguoiDungDTO.getDiaChi());
+		diaChiBuf.append("," + nguoiDungDTO.getPhuongXa());
+		diaChiBuf.append("," + nguoiDungDTO.getQuanHuyen());
+		diaChiBuf.append("," + nguoiDungDTO.getTinhThanhPho());
+		String diaChi = diaChiBuf.toString();
+		
+		String vaiTro = nguoiDungDTO.getVaiTro() == null ? nguoiDungOld.getVaiTro() : nguoiDungDTO.getVaiTro() ;
+		String matKhau = nguoiDungOld.getMatKhau();
+		boolean trangThai = nguoiDungOld.isTrangThai();
+		String maXacNhan = nguoiDungOld.getMaXacNhan();
 
-		String vaiTro = nguoiDungDTO.getVaiTro();
-		boolean trangThai = nguoiDungDTO.isTrangThai();
-
-		NguoiDung nguoiDung = new NguoiDung(maNguoiDung, email, hoTen, gioiTinh, soDienThoai, diaChi.toString(), vaiTro,
-				trangThai);
+		NguoiDung nguoiDung = new NguoiDung(maNguoiDung, hoTen, gioiTinh, soDienThoai, diaChi, email, matKhau, vaiTro, maXacNhan, trangThai);
 
 		return nguoiDung;
 	}

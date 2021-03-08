@@ -13,7 +13,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${styleUrl }css/nguoiDung/nguoiDung.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="main bg-light">
@@ -46,7 +45,7 @@
 
 					<div class="form-thong-tin mt-3">
 
-						<form:form action="" modelAttribute="nguoiDung" method="post" >
+						<form:form id="myForm" name="myForm" modelAttribute="nguoiDung" method="post"   onsubmit="return(validate());" >
 						    <form:hidden path="maNguoiDung" />
 
 							<div class="form-group row">
@@ -55,6 +54,8 @@
 									
 								<div class="col-sm-9">
 								    <form:input path="hoTen" cssClass="form-control" id="hoTen" />
+								    <form:errors path="hoTen" cssClass="error" />
+								    <label id="hoTenError" class="error"  ></label>
 									
 								</div>
 							</div>
@@ -65,6 +66,8 @@
 									
 								<div class="col-sm-9">
 									<form:input path="soDienThoai" cssClass="form-control" id="soDienThoai" />
+									<form:errors path="soDienThoai"  cssClass="error"  />
+									 <label id="soDienThoaiError" class="error"  ></label>
 								</div>
 							</div>
 
@@ -73,6 +76,8 @@
 								
 								<div class="col-sm-9">
 									<form:input path="email" cssClass="form-control" id="email"  readonly="true" />
+									<form:errors path="email" cssClass="error"   />
+									<label id="emailError" class="error"  ></label>
 								</div>
 								
 								
@@ -91,8 +96,8 @@
 										
 										<label class="form-check-label" for="nu"> Nữ </label>
 									</div>
-
 								</div>
+								
 							</fieldset>
 
 							<div class="form-group row ">
@@ -103,7 +108,6 @@
 								<div class="col-sm-9">
 								
 									<form:select path="tinhThanhPho" cssClass="form-control"    >
-
 										<c:forEach items="${thanhPhos}" var="tp">
 
 											<c:choose>
@@ -117,8 +121,9 @@
 											</c:choose>
 
 										</c:forEach>
-
 									</form:select>
+									
+									
 								</div>
 							</div>
 
@@ -144,6 +149,9 @@
 										</c:forEach>
 
 									</form:select>
+									
+									<form:errors path="quanHuyen"  cssClass="error"  />
+									<label id="quanHuyenError" class="error"  ></label>
 								</div>
 							</div>
 
@@ -170,6 +178,9 @@
 										</c:forEach>
 
 									</form:select>
+									
+									<form:errors path="phuongXa"  cssClass="error"  />
+									<label id="phuongXaError" class="error"  ></label>
 								</div>
 							</div>
 
@@ -180,6 +191,8 @@
 								<div class="col-sm-9">
 									 
 									<form:textarea path="diaChi" cssClass="txtDiaChi" cssStyle="width: 100%; padding: 10px; border: 1px solid lightgray; border-radius: 5px" rows="5"  />
+									<form:errors path="diaChi" cssClass="error"  />
+									<label id="diaChiError" class="error"  ></label>
 								</div>
 							</div>
 

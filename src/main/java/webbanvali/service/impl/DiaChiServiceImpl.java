@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,47 @@ public class DiaChiServiceImpl implements DiaChiService {
 		}
 
 		return phuongXas;
+	}
+
+	@Override
+	public String getTenPhuongXaTheoMa(String maPhuongXa) {
+
+		String tenPhuongXa = null;
+
+		Optional<PhuongXa> tempt = phuongXaRepository.findById(maPhuongXa);
+
+		if (tempt.isPresent()) {
+			tenPhuongXa = tempt.get().getTen();
+		}
+
+		return tenPhuongXa;
+
+	}
+
+	@Override
+	public String getTenQuanHuyenTheoMa(String maQuanHuyen) {
+		String tenQuanHuyen = null;
+
+		Optional<QuanHuyen> tempt = quanHuyenRepository.findById(maQuanHuyen);
+
+		if (tempt.isPresent()) {
+			tenQuanHuyen = tempt.get().getTen();
+		}
+
+		return tenQuanHuyen;
+	}
+
+	@Override
+	public String getTenTinhThanhPhoTheoMa(String maThanhPho) {
+		
+		String tenThanhPho = null;
+		Optional<TinhThanhPho> tempt = tinhThanhPhoRepository.findById(maThanhPho);
+
+		if (tempt.isPresent()) {
+			tenThanhPho = tempt.get().getTen();
+		}
+
+		return tenThanhPho;
 	}
 
 }

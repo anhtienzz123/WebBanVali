@@ -58,6 +58,25 @@ public class NguoiDung implements Serializable {
 		this.vaiTro = vaiTro;
 		this.trangThai = trangThai;
 	}
+
+	public NguoiDung(String maNguoiDung, String hoTen, boolean gioiTinh, String soDienThoai, String diaChi,
+			String email, String matKhau, String vaiTro, String maXacNhan, boolean trangThai) {
+		super();
+		this.maNguoiDung = maNguoiDung;
+		this.hoTen = hoTen;
+		this.gioiTinh = gioiTinh;
+		this.soDienThoai = soDienThoai;
+		this.diaChi = diaChi;
+		this.email = email;
+		this.matKhau = matKhau;
+		this.vaiTro = vaiTro;
+		this.maXacNhan = maXacNhan;
+		this.trangThai = trangThai;
+	}
+
+	
+	
+	
 	
 	
 	

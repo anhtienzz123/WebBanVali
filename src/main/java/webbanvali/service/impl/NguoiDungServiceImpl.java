@@ -44,11 +44,11 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 			// lưu xuống
 			String maNguoiDung = save(nguoiDungDTO).getMaNguoiDung();
-			
+
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();
 			nguoiDungDaLuu.setMaXacNhan(maXacNhan);
-			
+
 			nguoiDungRepository.save(nguoiDungDaLuu);
 
 			// gởi email
@@ -87,7 +87,13 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	@Override
 	public NguoiDungDTO save(NguoiDungDTO nguoiDungDTO) {
 
-		NguoiDung nguoiDungResult = nguoiDungRepository.save(nguoiDungConverter.toNguoiDung(nguoiDungDTO));
+		if (nguoiDungDTO == null)
+			return null;
+
+		NguoiDung nguoiDungOld = nguoiDungRepository.findById(nguoiDungDTO.getMaNguoiDung()).get();
+
+		NguoiDung nguoiDungResult = nguoiDungRepository
+				.save(nguoiDungConverter.toNguoiDung(nguoiDungDTO, nguoiDungOld));
 
 		NguoiDungDTO nguoiDungDTOResult = nguoiDungConverter.toNguoiDungDTO(nguoiDungResult);
 
@@ -133,50 +139,49 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	}
 
 	@Override
-	public List<NguoiDungDTO> getDanhSachNguoiDungTheoEmailVaSoDienThoai(String email, String soDienThoai, int page, int size) {
-		
+	public List<NguoiDungDTO> getDanhSachNguoiDungTheoEmailVaSoDienThoai(String email, String soDienThoai, int page,
+			int size) {
+
 		List<NguoiDungDTO> nguoiDungDTOs = new ArrayList<NguoiDungDTO>();
-		
-		List<NguoiDung> nguoiDungs = nguoiDungRepository.findAllByEmailContainingAndSoDienThoaiContainingAllIgnoreCase(email, soDienThoai, PageRequest.of(page, size));
-		
+
+		List<NguoiDung> nguoiDungs = nguoiDungRepository.findAllByEmailContainingAndSoDienThoaiContainingAllIgnoreCase(
+				email, soDienThoai, PageRequest.of(page, size));
+
 		for (NguoiDung nguoiDung : nguoiDungs) {
-			
+
 			nguoiDungDTOs.add(nguoiDungConverter.toNguoiDungDTO(nguoiDung));
 		}
-		
+
 		return nguoiDungDTOs;
 	}
-	
+
 	@Override
 	public Optional<NguoiDungDTO> getTheoMaNguoiDung(String maNguoiDung) {
-		
+
 		NguoiDung nguoiDung = nguoiDungRepository.findById(maNguoiDung).orElse(null);
-		
-		Optional<NguoiDungDTO> nguoiDungOptional = Optional.ofNullable( nguoiDungConverter.toNguoiDungDTO(nguoiDung)  );
-		
+
+		Optional<NguoiDungDTO> nguoiDungOptional = Optional.ofNullable(nguoiDungConverter.toNguoiDungDTO(nguoiDung));
+
 		return nguoiDungOptional;
 	}
-	
+
 	@Override
 	public boolean xoaNguoiDungTheoMaNguoiDung(String maNguoiDung) {
-		
-		if(nguoiDungRepository.existsById(maNguoiDung)) {
+
+		if (nguoiDungRepository.existsById(maNguoiDung)) {
 			nguoiDungRepository.delete(nguoiDungRepository.findById(maNguoiDung).get());
-		
-			
+
 			return true;
 		}
-		
-		
-		
+
 		return false;
 	}
 
 	@Override
 	public NguoiDungDTO getTheoEmail(String email) {
-		
+
 		NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
-		
+
 		return nguoiDungConverter.toNguoiDungDTO(nguoiDung);
 	}
 }
