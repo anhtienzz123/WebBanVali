@@ -1,7 +1,5 @@
 package webbanvali.controller;
 
-import java.time.LocalDate;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import webbanvali.dto.NguoiDungDTO;
 import webbanvali.service.NguoiDungService;
-import webbanvali.utils.XuLiNgay;
 import webbanvali.validator.NguoiDungValidator;
 
 @Controller
@@ -37,9 +34,9 @@ public class LoginController {
 	@GetMapping(value = "/dang-ki")
 	public String dangKi(Model model) {
 
-		String maNguoiDung = XuLiNgay.formatDate(LocalDate.now()) + RandomStringUtils.randomAlphanumeric(4);
+		Integer nguoiDungId = Integer.valueOf(RandomStringUtils.randomNumeric(6));
 
-		NguoiDungDTO nguoiDung = new NguoiDungDTO(maNguoiDung);
+		NguoiDungDTO nguoiDung = new NguoiDungDTO(nguoiDungId);
 
 		model.addAttribute("nguoiDung", nguoiDung);
 

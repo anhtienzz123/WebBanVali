@@ -25,7 +25,7 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		return Collections.singleton(new SimpleGrantedAuthority(nguoiDung.getVaiTro()));
+		return Collections.singleton(new SimpleGrantedAuthority(nguoiDung.getVaiTro().name()));
 	}
 
 	@Override

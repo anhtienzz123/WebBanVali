@@ -99,13 +99,13 @@ function renderDuLieu(data) {
 	$("#tableBody").html("");
 	
 	$.each(data, (index, nguoiDung) => {
-		const {maNguoiDung, hoten, email, soDienThoai, diaChi, trangThai} = nguoiDung;
+		const {id, hoTen, email, soDienThoai, diaChi, trangThai} = nguoiDung;
 		
 		const ketQuaRenderTrangThai = trangThai ? '<span class="badge badge-success">Hoạt động</span>' : '<span class="badge badge-warning">Chưa xác thực</span>';
 		
 	    $("<tr>").appendTo($("#tableBody"))
-			.append($("<td>").text(maNguoiDung))
-			.append($("<td>").text(hoten))
+			.append($("<td>").text(id))
+			.append($("<td>").text(hoTen))
 			.append($("<td>").text(email))
 			.append($("<td>").text(soDienThoai))
 			.append($("<td>").text(diaChi))
@@ -135,14 +135,14 @@ function xemChiTietNguoiDung(maNguoiDung){
 	
 	$.get(url, function(data, status){
 		
-		const {maNguoiDung, hoTen, gioiTinh, soDienThoai, email, diaChi, trangThai} = data;
+		const {id, hoTen, gioiTinh, soDienThoai, email, diaChi, trangThai} = data;
 		
 		const gioiTinhResult = gioiTinh ? 'Nam' : 'Nữ';
 		const trangThaiResult = trangThai ? 'Hoạt động' : 'Chưa xác nhận';  
 		
 		if(status === 'success'){
 			
-			$("#xem-modal .maNguoiDung").html(`<span class="font-weight-bold">${maNguoiDung}</span>`);
+			$("#xem-modal .maNguoiDung").html(`<span class="font-weight-bold">${id}</span>`);
 			$("#xem-modal .hoTen").html(`<span class="font-weight-bold">${hoTen}</span>`);
 			$("#xem-modal .gioiTinh").html(`<span class="font-weight-bold">${gioiTinhResult}</span>`);
 			$("#xem-modal .soDienThoai").html(`<span class="font-weight-bold">${soDienThoai}</span>`);

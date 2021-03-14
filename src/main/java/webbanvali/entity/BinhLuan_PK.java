@@ -16,7 +16,7 @@ public class BinhLuan_PK  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String nguoiDung;
-	private String vali;
+	private Integer nguoiDung;
+	private Integer vali;
 	
 }

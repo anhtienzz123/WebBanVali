@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChiTietValiDTO {
+public class KichThuocDTO {
 
-    private int maChiTietVali;
-	private String tenChiTiet;
-	private String moTaChiTiet;
-	private String tenAnh;
-	
+	private Integer id;
+	private String tenKichThuoc;
+	private String code;
 }

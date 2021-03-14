@@ -46,7 +46,7 @@
 					<div class="form-thong-tin mt-3">
 
 						<form:form id="myForm" name="myForm" modelAttribute="nguoiDung" method="post"   onsubmit="return(validate());" >
-						    <form:hidden path="maNguoiDung" />
+						    <form:hidden path="id" />
 
 							<div class="form-group row">
 								<label for="hoTen" class="col-sm-3 col-form-label">Họ

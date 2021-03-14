@@ -16,9 +16,8 @@ public class ChiTietHoaDon_PK implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String vali;
-	private String hoaDon;
-	
+	private BienTheVali_PK bienTheVali;
+	private Integer hoaDon;
 	
 	
 }

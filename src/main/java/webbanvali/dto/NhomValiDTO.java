@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class NhomValiDTO {
 
-	private String maNhomVali;
+	private Integer id;
 	private String tenNhomVali;
-	private String slug;
+	private String code;
 }

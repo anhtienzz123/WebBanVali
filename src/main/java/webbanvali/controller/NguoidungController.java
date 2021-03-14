@@ -94,16 +94,13 @@ public class NguoidungController {
 		// kiểm tra tính hợp lệ 
 		nguoiDungValidator.validate(nguoiDungDTO, bindingResult);
 	
-		// nếu không hợp lệ
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("nguoiDung", nguoiDungDTO);
-			return "thongTinNguoiDung";
-		}
-		
-		
-		if(nguoiDungService.save(nguoiDungDTO) != null) {
-			model.addAttribute("nguoiDung", nguoiDungDTO);
+		// nếu không lỗi
+		if(!bindingResult.hasErrors()) {
 			
+			if(nguoiDungService.save(nguoiDungDTO) != null) {
+				model.addAttribute("nguoiDung", nguoiDungDTO);
+				
+			}
 		}
 		
 		return "redirect:/user/thong-tin";

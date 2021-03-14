@@ -14,9 +14,9 @@ public interface NguoiDungService {
 	boolean xacThucMatKhau(String email, String token, String matKhau);
 	
 	List<NguoiDungDTO> getDanhSachNguoiDungTheoEmailVaSoDienThoai(String email, String soDienThoai, int page, int size);
-	Optional<NguoiDungDTO> getTheoMaNguoiDung(String maNguoiDung);
+	Optional<NguoiDungDTO> getTheoMaNguoiDung(int maNguoiDung);
 	
-	boolean xoaNguoiDungTheoMaNguoiDung(String maNguoiDung);
+	boolean xoaNguoiDungTheoMaNguoiDung(int maNguoiDung);
 	
 	NguoiDungDTO getTheoEmail(String email);
 }

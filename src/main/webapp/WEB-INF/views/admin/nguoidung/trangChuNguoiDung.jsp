@@ -69,7 +69,7 @@
 				
 											<tr>
 
-												<td>${nguoiDung.maNguoiDung }</td>
+												<td>${nguoiDung.id }</td>
 
 												<td>${nguoiDung.hoTen }</td>
 
@@ -87,7 +87,7 @@
 														</c:otherwise>
 													</c:choose></td>
 
-												<td><a   onClick="xemChiTietNguoiDung('${nguoiDung.maNguoiDung}')" 
+												<td><a   onClick="xemChiTietNguoiDung('${nguoiDung.id}')" 
 													class="btn btn-primary btn-sm xem" data-toggle="modal"
 													data-target="#xem-modal"> <i class="fas fa-folder">
 													</i> Xem
@@ -95,7 +95,7 @@
 													class="btn btn-info btn-sm sua" data-toggle="modal"
 													data-target="#sua-modal"> <i class="fas fa-pencil-alt">
 													</i> Sửa
-												</a> <a onClick="xoaNguoiDung('${nguoiDung.maNguoiDung}')" 
+												</a> <a onClick="xoaNguoiDung('${nguoiDung.id}')" 
 													class="btn btn-danger btn-sm xoa"> <i
 														class="fas fa-trash"> </i> Xóa
 												</a></td>

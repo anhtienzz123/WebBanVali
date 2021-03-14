@@ -6,19 +6,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import webbanvali.dto.BienTheValiDTO;
 import webbanvali.dto.HoaDonDTO;
-import webbanvali.dto.ValiDTO;
-import webbanvali.service.ValiService;
+import webbanvali.service.BienTheValiService;
 
 @Controller
 @RequestMapping(value = "/gio-hang")
 public class GioHangController {
 
 	@Autowired
-	private ValiService valiService;
+	private BienTheValiService bienTheValiService;
 
 	@GetMapping(value = "/xem-gio-hang")
 	public String xemGioHang(HttpServletRequest request, HttpSession session) {
@@ -32,35 +32,39 @@ public class GioHangController {
 		return "product/xemgiohang";
 	}
 
-	@GetMapping(value = "/them-gio-hang/{maVali}")
-	public String themGioHang(HttpServletRequest request, HttpSession session, @PathVariable("maVali") String maVali) {
+	@GetMapping(value = "/them-gio-hang")
+	public String themGioHang(HttpServletRequest request, HttpSession session,
+			@RequestParam(name = "valiId", required = true) int valiId,
+			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
+			@RequestParam(name = "mauSacId", required = true) int mauSacId) {
 
-		ValiDTO valiDTO = valiService.getValiTheoMaVali(maVali);
+		BienTheValiDTO bienTheValiDTO = bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId);
 
 		HoaDonDTO hoaDonDTO;
 
 		if (session.getAttribute("gioHang") == null) {
 			hoaDonDTO = new HoaDonDTO();
-
 		} else {
 			hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
 		}
 
-		hoaDonDTO.themChiTietHoaDon(valiDTO);
+		hoaDonDTO.themChiTietHoaDon(bienTheValiDTO);
 		session.setAttribute("gioHang", hoaDonDTO);
 
 		return "redirect:/xem-gio-hang";
 	}
 
-	@GetMapping(value = "/giam-gio-hang/{maVali}")
+	@GetMapping(value = "/giam-gio-hang")
 	public String giamSachGioHang(HttpServletRequest request, HttpSession session,
-			@PathVariable("maVali") String maVali) {
+			@RequestParam(name = "valiId", required = true) int valiId,
+			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
+			@RequestParam(name = "mauSacId", required = true) int mauSacId) {
 
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
 
 		if (hoaDonDTO != null) {
 
-			hoaDonDTO.giamChiTietHoaDon(maVali);
+			hoaDonDTO.giamChiTietHoaDon(bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId));
 
 			if (hoaDonDTO.getChiTietHoaDons().isEmpty()) {
 				session.removeAttribute("gioHang");
@@ -73,13 +77,17 @@ public class GioHangController {
 	}
 
 	@GetMapping(value = "/xoa-gio-hang/{maVali}")
-	public String xoaGioHang(HttpServletRequest request, HttpSession session, @PathVariable("maVali") String maVali) {
+	public String xoaGioHang(HttpServletRequest request, HttpSession session, 
+			@RequestParam(name = "valiId", required = true) int valiId,
+			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
+			@RequestParam(name = "mauSacId", required = true) int mauSacId
+	) {
 
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
 
 		if (hoaDonDTO != null) {
 
-			hoaDonDTO.xoaChiTietHoaDon(maVali);
+			hoaDonDTO.xoaChiTietHoaDon(bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId));
 
 			if (hoaDonDTO.getChiTietHoaDons().isEmpty()) {
 				session.removeAttribute("gioHang");

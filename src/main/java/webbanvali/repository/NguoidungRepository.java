@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import webbanvali.entity.NguoiDung;
 
-public interface NguoidungRepository extends JpaRepository<NguoiDung, String> {
+public interface NguoidungRepository extends JpaRepository<NguoiDung, Integer> {
 
 	NguoiDung findByEmailAndTrangThai(String email, boolean trangThai);
 

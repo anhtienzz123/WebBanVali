@@ -1,12 +1,16 @@
 package webbanvali.converter;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import webbanvali.dto.ChiTietValiDTO;
+import webbanvali.dto.ChatLieuDTO;
+import webbanvali.dto.MoTaValiDTO;
 import webbanvali.dto.NhomValiDTO;
+import webbanvali.dto.ThuongHieuDTO;
+import webbanvali.dto.TinhNangDacBietDTO;
 import webbanvali.dto.ValiDTO;
 import webbanvali.entity.Vali;
 
@@ -15,39 +19,36 @@ public class ValiConverter {
 
 	public ValiDTO toDTO(Vali vali) {
 
-		String maVali = vali.getMaVali();
-
+		Integer id = vali.getId();
 		String tenVali = vali.getTenVali();
-		String size = vali.getSize();
-		String mau = vali.getMau();
 		String slug = vali.getSlug();
-		double gia = vali.getGia();
-		int khuyenMai = vali.getKhuyenMai();
-		long soLuong = vali.getSoLuong();
-		String thuongHieu = vali.getThuongHieu();
-		String chatLieu = vali.getChatLieu();
-		double trongLuong = vali.getTrongLuong();
-		String kichThuoc = vali.getKichThuoc();
-		int theTich = vali.getTheTich();
 		String banhXe = vali.getBanhXe();
 		String dayKeo = vali.getDayKeo();
 		String khoa = vali.getKhoa();
 		String thoiGianBaoHanh = vali.getThoiGianBaoHanh();
 
-		List<ChiTietValiDTO> chiTietValis = vali.getChiTietValis().stream().map(s -> {
+		List<MoTaValiDTO> moTaValis = vali.getMoTaValis().stream().map(s -> {
+			return new MoTaValiDTO(s.getId(), s.getTenMoTa(), s.getNoiDung(), s.getTenAnh());
+		}).collect(Collectors.toList());
+		
 
-			int maChiTietVali = s.getMaChiTietVali();
-			String tenChiTiet = s.getTenChiTiet();
-			String moTaChiTiet = s.getMoTaChiTiet();
-			String tenAnh = s.getTenAnh();
-
-			return new ChiTietValiDTO(maChiTietVali, tenChiTiet, moTaChiTiet, tenAnh);
+		List<TinhNangDacBietDTO> tinhNangDacBiets = vali.getTinhNangDacBiets().stream().map(s -> {
+			return new TinhNangDacBietDTO(s.getId(), s.getTenTinhNang(),s.getCode());
 		}).collect(Collectors.toList());
 
-		NhomValiDTO nhomVali = new NhomValiDTO(vali.getNhomVali().getMaNhomVali(), vali.getNhomVali().getTenNhomVali(),
-				vali.getNhomVali().getSlug());
+		ChatLieuDTO chatLieuDTO = Optional.ofNullable(vali.getChatLieu()).map(s -> {
+			return new ChatLieuDTO(s.getId(), s.getTenChatLieu(), s.getCode());
+		}).orElse(null);
+		
+		
+		ThuongHieuDTO thuongHieuDTO = Optional.ofNullable(vali.getThuongHieu()).map(s -> {
+			return new ThuongHieuDTO(s.getId(), s.getTenThuongHieu(), s.getCode());
+		}).orElse(null);
+		
+		NhomValiDTO nhomVali = Optional.ofNullable(vali.getNhomVali()).map(s -> {
+			return new NhomValiDTO(s.getId(), s.getTenNhomVali(), s.getCode());
+		}).orElse(null);;
 
-		return new ValiDTO(maVali, tenVali, size, mau, slug, gia, khuyenMai, soLuong, thuongHieu, chatLieu, trongLuong,
-				kichThuoc, theTich, banhXe, dayKeo, khoa, thoiGianBaoHanh, chiTietValis, nhomVali);
+		return new ValiDTO(id, tenVali, slug, banhXe, dayKeo, khoa, thoiGianBaoHanh, moTaValis, tinhNangDacBiets, chatLieuDTO, thuongHieuDTO, nhomVali);
 	}
 }

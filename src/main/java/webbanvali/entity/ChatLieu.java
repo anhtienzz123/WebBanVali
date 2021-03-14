@@ -1,14 +1,15 @@
 package webbanvali.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,21 +19,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ChiTietVali implements Serializable{
+@Table(name = "chat_lieu")
+public class ChatLieu implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int maChiTietVali;
+	private Integer id;
 	
-	private String tenChiTiet;
-	@Lob
-	private String moTaChiTiet;
-	private String tenAnh;
+	@Column(name = "ten_chat_lieu")
+	private String tenChatLieu;
+	private String code;
 	
-	@ManyToOne
-	@JoinColumn(name = "maVali")
-	private Vali vali;
+	@OneToMany(mappedBy = "chatLieu")
+	private List<Vali> valis;
 	
 }

@@ -16,6 +16,7 @@ import webbanvali.entity.NguoiDung;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.service.NguoiDungService;
 import webbanvali.utils.EmailSender;
+import webbanvali.utils.ROLE;
 
 @Service
 public class NguoiDungServiceImpl implements NguoiDungService {
@@ -40,11 +41,11 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		try {
 
 			String maXacNhan = RandomStringUtils.randomAlphanumeric(20);
-			nguoiDungDTO.setVaiTro("ROLE_USER");
+			nguoiDungDTO.setVaiTro(ROLE.ROLE_USER);
 
 			// lưu xuống
-			String maNguoiDung = save(nguoiDungDTO).getMaNguoiDung();
-
+			int maNguoiDung = save(nguoiDungDTO).getId();
+			
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();
 			nguoiDungDaLuu.setMaXacNhan(maXacNhan);
@@ -90,7 +91,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		if (nguoiDungDTO == null)
 			return null;
 
-		NguoiDung nguoiDungOld = nguoiDungRepository.findById(nguoiDungDTO.getMaNguoiDung()).get();
+		NguoiDung nguoiDungOld = nguoiDungRepository.findById(nguoiDungDTO.getId()).get();
 
 		NguoiDung nguoiDungResult = nguoiDungRepository
 				.save(nguoiDungConverter.toNguoiDung(nguoiDungDTO, nguoiDungOld));
@@ -156,7 +157,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	}
 
 	@Override
-	public Optional<NguoiDungDTO> getTheoMaNguoiDung(String maNguoiDung) {
+	public Optional<NguoiDungDTO> getTheoMaNguoiDung(int maNguoiDung) {
 
 		NguoiDung nguoiDung = nguoiDungRepository.findById(maNguoiDung).orElse(null);
 
@@ -166,7 +167,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	}
 
 	@Override
-	public boolean xoaNguoiDungTheoMaNguoiDung(String maNguoiDung) {
+	public boolean xoaNguoiDungTheoMaNguoiDung(int maNguoiDung) {
 
 		if (nguoiDungRepository.existsById(maNguoiDung)) {
 			nguoiDungRepository.delete(nguoiDungRepository.findById(maNguoiDung).get());

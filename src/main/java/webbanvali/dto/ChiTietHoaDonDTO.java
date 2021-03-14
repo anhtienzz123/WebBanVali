@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChiTietHoaDonDTO {
 
-	private String maHoaDon;
-	private ValiDTO vali;
+	private int hoaDonId;
+	private BienTheValiDTO bienTheVali;
 	private double gia;
+	private double khuyenMai;
 	private int soLuong;
+	
 }

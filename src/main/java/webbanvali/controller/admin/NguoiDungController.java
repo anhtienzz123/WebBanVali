@@ -68,11 +68,11 @@ public class NguoiDungController {
 		return nguoiDungDTOs;
 	}
 
-	@GetMapping(value = "/trang-chu/v1/nguoi-dungs/{maNguoiDung}")
+	@GetMapping(value = "/trang-chu/v1/nguoi-dungs/{nguoiDungId}")
 	public ResponseEntity<NguoiDungDTO> getNguoiDungTheoMaNguoiDung(
-			@PathVariable(name = "maNguoiDung", required = true) String maNguoiDung) {
+			@PathVariable(name = "nguoiDungId", required = true) int nguoiDungId) {
 
-		Optional<NguoiDungDTO> ketQuaNguoiDungDTO = nguoiDungService.getTheoMaNguoiDung(maNguoiDung);
+		Optional<NguoiDungDTO> ketQuaNguoiDungDTO = nguoiDungService.getTheoMaNguoiDung(nguoiDungId);
 
 		if (ketQuaNguoiDungDTO.isPresent())
 			return new ResponseEntity<>(ketQuaNguoiDungDTO.get(), HttpStatus.OK);
@@ -81,10 +81,10 @@ public class NguoiDungController {
 
 	}
 	
-	@DeleteMapping(value = "/trang-chu/v1/nguoi-dungs/{maNguoiDung}")
-	public ResponseEntity<?> xoaNguoiDungTheoMaNguoiDung(@PathVariable(name = "maNguoiDung", required = true) String maNguoiDung){
+	@DeleteMapping(value = "/trang-chu/v1/nguoi-dungs/{nguoiDungId}")
+	public ResponseEntity<?> xoaNguoiDungTheoMaNguoiDung(@PathVariable(name = "nguoiDungId", required = true) int nguoiDungId){
 		
-		boolean ketQuaXoa = nguoiDungService.xoaNguoiDungTheoMaNguoiDung(maNguoiDung);
+		boolean ketQuaXoa = nguoiDungService.xoaNguoiDungTheoMaNguoiDung(nguoiDungId);
 		
 		if(ketQuaXoa)
 			return new ResponseEntity<>(true,HttpStatus.OK);

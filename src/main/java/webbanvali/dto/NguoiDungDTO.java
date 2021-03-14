@@ -1,18 +1,16 @@
 package webbanvali.dto;
 
-import javax.persistence.Entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import webbanvali.utils.ROLE;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class NguoiDungDTO {
 
-	private String maNguoiDung;
+	private Integer id;
 
 	private String hoTen;
 	private boolean gioiTinh;
@@ -22,12 +20,12 @@ public class NguoiDungDTO {
 	private String quanHuyen;
 	private String tinhThanhPho;
 	private String email;
-	private String vaiTro;
+	private ROLE vaiTro;
 	private boolean trangThai;
 	
-	public NguoiDungDTO(String maNguoiDung) {
+	public NguoiDungDTO(int id) {
 		super();
-		this.maNguoiDung = maNguoiDung;
+		this.id = id;
 	}
 	
 	

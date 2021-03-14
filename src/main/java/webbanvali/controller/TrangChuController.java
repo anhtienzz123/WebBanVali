@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import webbanvali.entity.NguoiDung;
 import webbanvali.repository.NguoidungRepository;
+import webbanvali.utils.ROLE;
 
 @Controller
 public class TrangChuController {
@@ -29,11 +30,11 @@ public class TrangChuController {
 	public String themTaiKhoan() {
 		
 		NguoiDung nguoiDung = new NguoiDung();
-		nguoiDung.setMaNguoiDung("123");
+		nguoiDung.setId(111111);
 		
 		nguoiDung.setEmail("admin@gmail.com");
 		nguoiDung.setMatKhau(passwordEncoder.encode("admin"));
-		nguoiDung.setVaiTro("ROLE_ADMIN");
+		nguoiDung.setVaiTro(ROLE.ROLE_ADMIN);
 		nguoiDung.setTrangThai(true);
 		nguoiDung.setHoTen("Tiên Huỳnh");
 		nguoiDung.setSoDienThoai("0935050211");
@@ -42,10 +43,10 @@ public class TrangChuController {
 		
 		
 		NguoiDung nguoiDung1 = new NguoiDung();
-		nguoiDung1.setMaNguoiDung("456");
+		nguoiDung1.setId(222222);
 		nguoiDung1.setEmail("user@gmail.com");
 		nguoiDung1.setMatKhau(passwordEncoder.encode("user"));
-		nguoiDung1.setVaiTro("ROLE_USER");
+		nguoiDung1.setVaiTro(ROLE.ROLE_USER);
 		nguoiDung1.setTrangThai(true);
 		nguoiDung1.setHoTen("Tuấn Nguyễn");
 		nguoiDung1.setSoDienThoai("0935320219");

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import webbanvali.dto.NguoiDungDTO;
 import webbanvali.entity.NguoiDung;
+import webbanvali.utils.ROLE;
 
 @Component
 public class NguoiDungConverter {
@@ -13,7 +14,7 @@ public class NguoiDungConverter {
 		if (nguoiDungDTO == null)
 			return null;
 
-		String maNguoiDung = nguoiDungDTO.getMaNguoiDung();
+		int id = nguoiDungDTO.getId();
 		String email = nguoiDungDTO.getEmail();
 		String hoTen = nguoiDungDTO.getHoTen();
 		boolean gioiTinh = nguoiDungDTO.isGioiTinh();
@@ -25,13 +26,14 @@ public class NguoiDungConverter {
 		diaChiBuf.append("," + nguoiDungDTO.getQuanHuyen());
 		diaChiBuf.append("," + nguoiDungDTO.getTinhThanhPho());
 		String diaChi = diaChiBuf.toString();
-		
-		String vaiTro = nguoiDungDTO.getVaiTro() == null ? nguoiDungOld.getVaiTro() : nguoiDungDTO.getVaiTro() ;
+
+		ROLE vaiTro = nguoiDungDTO.getVaiTro() == null ? nguoiDungOld.getVaiTro() : nguoiDungDTO.getVaiTro();
 		String matKhau = nguoiDungOld.getMatKhau();
 		boolean trangThai = nguoiDungOld.isTrangThai();
 		String maXacNhan = nguoiDungOld.getMaXacNhan();
 
-		NguoiDung nguoiDung = new NguoiDung(maNguoiDung, hoTen, gioiTinh, soDienThoai, diaChi, email, matKhau, vaiTro, maXacNhan, trangThai);
+		NguoiDung nguoiDung = new NguoiDung(id, hoTen, gioiTinh, soDienThoai, diaChi, email, matKhau, vaiTro, maXacNhan,
+				trangThai);
 
 		return nguoiDung;
 	}
@@ -41,7 +43,7 @@ public class NguoiDungConverter {
 		if (nguoiDung == null)
 			return null;
 
-		String maNguoiDung = nguoiDung.getMaNguoiDung();
+		int maNguoiDung = nguoiDung.getId();
 		String email = nguoiDung.getEmail();
 		String hoTen = nguoiDung.getHoTen();
 		boolean gioiTinh = nguoiDung.isGioiTinh();
@@ -60,7 +62,7 @@ public class NguoiDungConverter {
 			quanHuyen = diaChiTempt[2];
 			tinhThanhPho = diaChiTempt[3];
 		}
-		String vaiTro = nguoiDung.getVaiTro();
+		ROLE vaiTro = nguoiDung.getVaiTro();
 		boolean trangThai = nguoiDung.isTrangThai();
 		NguoiDungDTO NguoiDungDTO = new NguoiDungDTO(maNguoiDung, hoTen, gioiTinh, soDienThoai, diaChi, phuongXa,
 				quanHuyen, tinhThanhPho, email, vaiTro, trangThai);
