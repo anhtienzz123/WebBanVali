@@ -223,11 +223,60 @@
             </a>
           </li>
           
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý nhóm thương hiệu
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý chất liệu
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý màu sắc
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý tính năng đặc biệt
+                 
+              </p>
+            </a>
+          </li>
+          
             <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý hóa đơn
+              </p>
+            </a>
+          </li>
+          
+           <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý banner
                  
               </p>
             </a>
@@ -243,15 +292,7 @@
             </a>
           </li>
           
-            <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Quản lý banner
-                 
-              </p>
-            </a>
-          </li>
+           
           
           
           <%-- 
