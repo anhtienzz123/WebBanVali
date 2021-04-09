@@ -19,9 +19,5 @@ public class BienTheVali_PK implements Serializable {
 	private Integer vali;
 	private Integer kichThuoc;
 	private Integer mauSac;
-	
 
-	
-	
-	
 }

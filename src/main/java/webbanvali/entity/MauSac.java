@@ -34,4 +34,19 @@ public class MauSac implements Serializable {
 	
 	@OneToMany(mappedBy = "mauSac")
 	private List<BienTheVali> bienTheValis;
+
+	public MauSac(Integer id, String tenMau, String code) {
+		super();
+		this.id = id;
+		this.tenMau = tenMau;
+		this.code = code;
+	}
+
+	public MauSac(String tenMau, String code) {
+		super();
+		this.tenMau = tenMau;
+		this.code = code;
+	}
+	
+	
 }

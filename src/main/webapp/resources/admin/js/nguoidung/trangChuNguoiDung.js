@@ -111,7 +111,7 @@ function renderDuLieu(data) {
 			.append($("<td>").text(diaChi))
 			.append($("<td>").html(ketQuaRenderTrangThai))
 			.append(
-				$("<td>").html(`<a  onClick="xemChiTietNguoiDung('${maNguoiDung}')"
+				$("<td>").html(`<a  onClick="xemChiTietNguoiDung('${id}')"
 													class="btn btn-primary btn-sm xem" data-toggle="modal"
 													data-target="#xem-modal"> <i class="fas fa-folder">
 													</i> Xem
@@ -119,7 +119,7 @@ function renderDuLieu(data) {
 													class="btn btn-info btn-sm sua" data-toggle="modal"
 													data-target="#sua-modal"> <i class="fas fa-pencil-alt">
 													</i> Sửa
-												</a> <a onClick="xoaNguoiDung('${maNguoiDung}')"
+												</a> <a onClick="xoaNguoiDung('${id}')"
 													class="btn btn-danger btn-sm xoa"> <i
 														class="fas fa-trash"> </i> Xóa
 									</a>`) );

@@ -64,6 +64,7 @@ public class NguoiDungController {
 				soDienThoai, page, size);
 		System.out.println("email: " + email);
 		System.out.println("size: " + nguoiDungDTOs.size());
+		nguoiDungDTOs.forEach(s -> System.out.println(s));
 
 		return nguoiDungDTOs;
 	}

@@ -17,21 +17,8 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/layouts/admin/footer.jsp" />
 	</definition>
-
-	<definition name="trangChuAdmin" extends="adminLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/admin/trangChu.jsp" />
-	</definition>
 	
-	<definition name="trangChuNguoiDungAdmin" extends="adminLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/admin/nguoidung/trangChuNguoiDung.jsp" />
-	</definition>
-	
-	
-
-
-	<!-- layout cho login -->
+		<!-- layout cho login -->
 	<definition name="loginLayout"
 		template="/WEB-INF/views/layouts/admin/loginLayout.jsp">
 		
@@ -58,8 +45,27 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/login/dangKi.jsp" />
 	</definition>
-	
-	
 
+	<definition name="trangChuAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/trangChu.jsp" />
+	</definition>
+	
+	
+	
+	<!-- Quản lý người dùng -->
+	<definition name="trangChuNguoiDungAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nguoidung/trangChuNguoiDung.jsp" />
+	</definition>
+	
+	
+	<!-- Quản lý màu sắc -->
+	<definition name="trangChuMauSacAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/mausac/trangChuMauSac.jsp" />
+	</definition>
+	
+	
 
 </tiles-definitions>
