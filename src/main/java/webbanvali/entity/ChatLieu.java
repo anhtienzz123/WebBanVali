@@ -34,5 +34,18 @@ public class ChatLieu implements Serializable {
 	
 	@OneToMany(mappedBy = "chatLieu")
 	private List<Vali> valis;
+
+	public ChatLieu(Integer id, String tenChatLieu, String code) {
+		super();
+		this.id = id;
+		this.tenChatLieu = tenChatLieu;
+		this.code = code;
+	}
+
+	public ChatLieu(String tenChatLieu, String code) {
+		super();
+		this.tenChatLieu = tenChatLieu;
+		this.code = code;
+	}
 	
 }

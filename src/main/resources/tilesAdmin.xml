@@ -66,6 +66,18 @@
 			value="/WEB-INF/views/admin/mausac/trangChuMauSac.jsp" />
 	</definition>
 	
+	<!-- Quản lý chất liệu -->
+	<definition name="trangChuChatLieuAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/chatlieu/TrangChuChatLieu.jsp" />
+	</definition>
+	
+	<!-- Quản lý nhóm vali -->
+	<definition name="trangChuNhomValiAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nhomvali/trangChuNhomVali.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>
