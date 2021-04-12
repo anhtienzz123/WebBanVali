@@ -21,6 +21,7 @@ public class MauSacServiceImpl implements MauSacService {
 	@Override
 	public List<MauSacDTO> getMauSacs() {
 		List<MauSac> mauSacs = mauSacRepository.findAll();
+
 		return mauSacs.stream().map(s -> new MauSacDTO(s.getId(), s.getTenMau(), s.getCode()))
 				.collect(Collectors.toList());
 	}

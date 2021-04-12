@@ -214,7 +214,7 @@
           </li>
           
            <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<c:url value="/admin/nhom-vali/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý nhóm vali
@@ -224,7 +224,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý nhóm thương hiệu
@@ -234,7 +234,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<c:url value="/admin/chat-lieu/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý chất liệu
