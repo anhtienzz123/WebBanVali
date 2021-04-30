@@ -48,8 +48,9 @@ public class MauSacController {
 		MauSacDTO mauSacDTO =  mauSacService.getMauSacTheoId(id);
 		
 		if(mauSacDTO == null)
+			// status: 404
 			return new ResponseEntity<MauSacDTO>(HttpStatus.NOT_FOUND);
-		
+		// status: 200 success
 		return ResponseEntity.ok(mauSacDTO);
 		
 	}

@@ -18,13 +18,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+		// lấy người dùng có user là có username
 		NguoiDung nguoiDung = nguoidungRepository.findByEmailAndTrangThai(username, true);
 
 		if (nguoiDung == null)
 			throw new UsernameNotFoundException("Tài khoản email không tồn tại");
 
 		CustomUserDetails customUserDetails = new CustomUserDetails(nguoiDung);
-
+		
 		return customUserDetails;
 	}
 

@@ -2,6 +2,7 @@ package webbanvali.utils;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +23,7 @@ public class CustomUserDetails implements UserDetails {
 	
 	private NguoiDung nguoiDung;
 	
+	// cung caaps quyen gif
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		

@@ -16,8 +16,8 @@ import webbanvali.utils.ROLE;
 @Controller
 public class TrangChuController {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private NguoidungRepository nguoiDungRepository;
@@ -34,6 +34,9 @@ public class TrangChuController {
 		return "trangChu";
 	}
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value = "/them-tai-khoan")
 	public String themTaiKhoan() {
 
