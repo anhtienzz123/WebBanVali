@@ -4,7 +4,7 @@ import webbanvali.dto.ValiDTO;
 
 public interface ValiService {
 
-	ValiDTO getValiTheoMaVali(String maVali);
+	ValiDTO getValiTheoMaVali(Integer maVali);
 	
 	
 }

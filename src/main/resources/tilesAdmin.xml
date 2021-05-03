@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd"
+
+>
 
 <tiles-definitions>
 
@@ -25,6 +28,7 @@
 		<put-attribute name="body" value="" />
 		
 	</definition>
+
 
 	<definition name="loginForm" extends="loginLayout">
 		<put-attribute name="body"
@@ -64,6 +68,18 @@
 	<definition name="trangChuMauSacAdmin" extends="adminLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/mausac/trangChuMauSac.jsp" />
+	</definition>
+	
+	<!-- Quản lý chất liệu -->
+	<definition name="trangChuChatLieuAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/chatlieu/TrangChuChatLieu.jsp" />
+	</definition>
+	
+	<!-- Quản lý nhóm vali -->
+	<definition name="trangChuNhomValiAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nhomvali/trangChuNhomVali.jsp" />
 	</definition>
 	
 	

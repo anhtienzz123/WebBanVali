@@ -1,5 +1,6 @@
 package webbanvali.converter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,9 +28,11 @@ public class ValiConverter {
 		String khoa = vali.getKhoa();
 		String thoiGianBaoHanh = vali.getThoiGianBaoHanh();
 
-		List<MoTaValiDTO> moTaValis = vali.getMoTaValis().stream().map(s -> {
-			return new MoTaValiDTO(s.getId(), s.getTenMoTa(), s.getNoiDung(), s.getTenAnh());
-		}).collect(Collectors.toList());
+//		List<MoTaValiDTO> moTaValis = vali.getMoTaValis().stream().map(s -> {
+//			return new MoTaValiDTO(s.getId(), s.getTenMoTa(), s.getNoiDung(), s.getTenAnh());
+//		}).collect(Collectors.toList());
+		
+		List<MoTaValiDTO> moTaValis= new ArrayList<MoTaValiDTO>();
 		
 
 		List<TinhNangDacBietDTO> tinhNangDacBiets = vali.getTinhNangDacBiets().stream().map(s -> {

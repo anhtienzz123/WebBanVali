@@ -2,6 +2,7 @@ package webbanvali.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +46,7 @@ public class BinhLuan implements Serializable{
 	@Column(name = "danh_gia")
 	private int danhGia;
 	@Column(name = "thoi_gian_binh_luan")
-	private LocalDate thoiGianBinhLuan;
+	private LocalDateTime thoiGianBinhLuan;
 	
 	
 }

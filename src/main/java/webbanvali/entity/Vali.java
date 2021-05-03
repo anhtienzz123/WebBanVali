@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,10 +42,11 @@ public class Vali  implements Serializable {
 	private String khoa;
 	@Column(name = "thoi_gian_bao_hanh")
 	private String thoiGianBaoHanh;
+	private String moTa;
 	
 	
-	@OneToMany(mappedBy = "vali", fetch = FetchType.EAGER)
-	private List<MoTaVali> moTaValis;
+//	@OneToMany(mappedBy = "vali", fetch = FetchType.EAGER)
+//	private List<MoTaVali> moTaValis;
 	
 	@ManyToMany(mappedBy = "valis")
 	private List<TinhNangDacBiet> tinhNangDacBiets;

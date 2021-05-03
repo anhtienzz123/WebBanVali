@@ -1,0 +1,65 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.main{
+    /* border: 1px solid black; */
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 10px;
+    
+    
+}
+
+/* common*/
+.color-and-bold{
+    color: #e11b1e;
+    font-weight: bold;
+}
+
+.info{
+   
+}
+
+
+
+.info__middle__price{
+
+    font-size: 22px;
+    color: #e11b1e;
+    font-weight: bold;
+}
+
+
+
+.info-detail{
+   
+}
+
+.button-custom{
+    background-color: white;
+   padding: 5px 15px;
+   border-radius: 5px;
+   border: 1px solid #cdcfd4;
+  
+   
+}
+
+.button-custom:hover{
+    border: 1px solid #d70018;
+}
+
+.active{
+
+    border: 1px solid #d70018;
+}
+
+.comment__info{
+
+    border: 1px solid black;
+}

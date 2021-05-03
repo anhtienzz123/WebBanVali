@@ -19,4 +19,6 @@ public interface NguoiDungService {
 	boolean xoaNguoiDungTheoMaNguoiDung(int maNguoiDung);
 	
 	NguoiDungDTO getTheoEmail(String email);
+	
+	
 }

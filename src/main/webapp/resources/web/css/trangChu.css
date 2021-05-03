@@ -1,0 +1,114 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.main{
+  
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+
+    
+}
+
+.category__menu{
+
+    border-radius: 10px;
+    
+}
+
+
+.category__banner{
+    /* padding-right: 0px; */
+
+}
+
+.thuong-hieu{
+    margin-top: 20px;
+    padding: 10px;
+   
+
+    background: white;
+  
+    text-align: center;
+
+
+
+}
+
+.thuong-hieu img{
+    border: 1px solid #e6e6e6;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.flash-sale{
+   
+    margin-top: 20px;
+    background: white;
+  
+   
+}
+
+.flash-sale__header{
+    background: #FFF1D6;
+    padding: 10px;
+}
+
+.flash-sale__header__time{
+
+    background: white;
+
+    padding: 1px 5px;
+    border-radius: 5px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+.flash-sale__san-pham__item{
+    width: 25%;
+    display: inline;
+    float: left;
+  
+   
+}
+
+.flash-sale__san-pham__item:hover{
+
+    border: 1px solid lightgray;
+   
+}
+
+.card-san-pham{
+    position: relative;
+    border: 1px solid white;
+}
+
+
+.card-san-pham__khuyen-mai{
+
+    background:#f7941e ;
+    display: inline;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+
+    padding: 10px;
+
+    border-radius:50%;
+    
+}

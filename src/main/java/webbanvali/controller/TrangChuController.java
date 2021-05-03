@@ -3,13 +3,15 @@ package webbanvali.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import webbanvali.entity.NguoiDung;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.repository.ValiRepository;
+import webbanvali.service.BienTheValiService;
+import webbanvali.service.NhomValiService;
 import webbanvali.utils.BienTheValiSpecification;
 import webbanvali.utils.ROLE;
 
@@ -27,17 +29,32 @@ public class TrangChuController {
 	
 	@Autowired
 	private BienTheValiRepository bienTheValiRepository;
-
-	@RequestMapping(value = "/trang-chu")
-	public String trangChu() {
-
-		return "trangChu";
-	}
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@RequestMapping(value = "/them-tai-khoan")
+	@Autowired
+	private NhomValiService nhomValiService;
+	
+	@Autowired
+	private BienTheValiService bienTheValiService;
+	
+	private static final int SIZE = 4;
+	
+	@GetMapping(value = "/")
+	public String trangChu(Model model) {
+		
+		model.addAttribute("nhomValis", nhomValiService.getNhomValis());
+		model.addAttribute("valisBanChay", bienTheValiService.getValisBanChay(SIZE));
+		model.addAttribute("valisNoiBat", bienTheValiService.getValisNoiBat(SIZE));
+		model.addAttribute("valisKhuyenMai", bienTheValiService.getValisKhuyenMai(SIZE*2));
+		
+		return "trangChu";
+	}
+	
+	
+	
+	
+	@GetMapping(value = "/them-tai-khoan")
 	public String themTaiKhoan() {
 
 		NguoiDung nguoiDung = new NguoiDung();

@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import webbanvali.converter.BienTheValiConverter;
 import webbanvali.dto.BienTheValiDTO;
+import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
 import webbanvali.repository.BienTheValiRepository;
@@ -17,6 +21,7 @@ import webbanvali.service.BienTheValiService;
 import webbanvali.utils.BienTheValiSpecification;
 
 @Service
+@Transactional
 public class BienTheValiServiceImpl implements BienTheValiService {
 
 	@Autowired
@@ -63,11 +68,39 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 
 		if (codeTinhNangDacBiets != null && codeTinhNangDacBiets.size() > 0)
 			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeTinhNangDacBiets(codeTinhNangDacBiets));
-		
-
 
 		return bienTheValiRepository.findAll(dieuKien).stream().map(s -> bienTheValiConverter.toDTO(s))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public ChiTietValiDTO getChiTietValiDTO(String valiSlug, String kichThuocCode, String mauSacCode) {
+
+		BienTheVali bienTheVali = bienTheValiRepository.findByValiSlugAndKichThuocCodeAndMauSacCode(valiSlug,
+				kichThuocCode, mauSacCode);
+
+		return bienTheValiConverter.toChiTietValiDTO(bienTheVali);
+	}
+
+	@Override
+	public List<BienTheValiDTO> getValisBanChay(int limit) {
+
+		return bienTheValiRepository.getValisBanChay(limit).stream().map(s -> bienTheValiConverter.toBienTheValiDTO(s))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<BienTheValiDTO> getValisNoiBat(int limit) {
+
+		return bienTheValiRepository.findAllByNoiBatTrue(PageRequest.of(0, limit)).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<BienTheValiDTO> getValisKhuyenMai(int size) {
+	
+		return bienTheValiRepository.findAllByOrderByKhuyenMaiDesc(PageRequest.of(0, size)).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}
 
 }

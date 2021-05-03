@@ -59,7 +59,13 @@ public class BienTheVali implements Serializable {
 	private double khuyenMai;
 	@Column(name = "so_luong")
 	private long soLuong;
+	
+	@Column(name = "ten_anh")
+	private String tenAnh;
 
+	@Column(name = "noi_bat")
+	private boolean noiBat;
+	
 	@ElementCollection
 	@CollectionTable(name = "anh_vali", joinColumns = { @JoinColumn(name = "vali_id"),
 			@JoinColumn(name = "kich_thuoc_id"), @JoinColumn(name = "mau_sac_id") })

@@ -19,7 +19,7 @@ public class ValiServiceImpl implements ValiService{
 	private ValiConverter valiConverter;
 	
 	@Override
-	public ValiDTO getValiTheoMaVali(String maVali) {
+	public ValiDTO getValiTheoMaVali(Integer maVali) {
 		
 		Vali vali = valiRepository.findById(maVali).get();
 		

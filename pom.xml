@@ -23,7 +23,7 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
@@ -106,6 +106,9 @@
 		</dependency>
 
 
+
+
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -170,7 +173,13 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen -->
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>5.4.31.Final</version>
+		</dependency>
 
 
 	</dependencies>
@@ -188,6 +197,10 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+
+
+
 		</plugins>
 	</build>
 </project>

@@ -3,6 +3,7 @@ package webbanvali.service;
 import java.util.List;
 
 import webbanvali.dto.BienTheValiDTO;
+import webbanvali.dto.ChiTietValiDTO;
 
 public interface BienTheValiService {
 
@@ -12,5 +13,10 @@ public interface BienTheValiService {
 			List<String> codeThuongHieus, List<String> codeChatLieus, List<String> codeKichThuocs,
 			List<String> codeMauSacs, List<String> codeTinhNangDacBiets);
 	
+	ChiTietValiDTO getChiTietValiDTO(String valiSlug, String kichThuocCode, String mauSacCode );
+	
+	List<BienTheValiDTO> getValisBanChay(int limit);
+	List<BienTheValiDTO> getValisNoiBat(int limit);
+	List<BienTheValiDTO> getValisKhuyenMai(int limit);
 	
 }

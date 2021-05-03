@@ -1,4 +1,4 @@
-package webbanvali.controller;
+package webbanvali.controller.user;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -18,8 +18,8 @@ import webbanvali.service.NguoiDungService;
 import webbanvali.validator.NguoiDungValidator;
 
 @Controller
-@RequestMapping(value = "/user")
-public class NguoidungController {
+@RequestMapping("/user")
+public class ViewNguoiDungController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;

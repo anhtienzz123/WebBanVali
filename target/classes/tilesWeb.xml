@@ -12,6 +12,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/layouts/web/footer.jsp" />
   </definition>
   
+  <!--  trang chủ -->
   <definition name="trangChu" extends="webLayout">
     <put-attribute name="body" value="/WEB-INF/views/web/trangChu.jsp" />
   </definition>
@@ -20,6 +21,17 @@
   <!--  quản lí người dùng -->
   <definition name="thongTinNguoiDung" extends="webLayout">
     <put-attribute name="body" value="/WEB-INF/views/web/nguoiDung/thongTin.jsp" />
+  </definition>
+  
+  <!-- chi tiết vali -->
+   
+  <definition name="chiTietVali" extends="webLayout">
+    <put-attribute name="body" value="/WEB-INF/views/web/chiTietVali/chiTietVali.jsp" />
+  </definition>
+  
+  <!-- giỏ hàng -->
+  <definition name="gioHang" extends="webLayout">
+    <put-attribute name="body" value="/WEB-INF/views/web/gioHang/gioHang.jsp" />
   </definition>
   
   

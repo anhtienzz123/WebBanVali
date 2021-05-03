@@ -4,98 +4,106 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import webbanvali.dto.BienTheValiDTO;
-import webbanvali.dto.HoaDonDTO;
-import webbanvali.service.BienTheValiService;
+import webbanvali.dto.CartDTO;
+import webbanvali.dto.NguoiDungDTO;
+import webbanvali.service.GioHangService;
+import webbanvali.service.NguoiDungService;
 
 @Controller
 @RequestMapping(value = "/gio-hang")
 public class GioHangController {
 
 	@Autowired
-	private BienTheValiService bienTheValiService;
+	private GioHangService gioHangService;
+	@Autowired
+	private NguoiDungService nguoiDungService;
 
-	@GetMapping(value = "/xem-gio-hang")
-	public String xemGioHang(HttpServletRequest request, HttpSession session) {
+	@GetMapping(value = "")
+	public String xemGioHang(Model model, HttpSession session) {
 
-		HoaDonDTO hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
+		CartDTO cartDTO = (CartDTO) session.getAttribute("gioHang");
 
-		if (hoaDonDTO != null) {
-			request.setAttribute("chiTietHoaDons", hoaDonDTO.getChiTietHoaDons());
+		if (cartDTO != null) {
+			model.addAttribute("cart", gioHangService.convertCartDTOToCartBienTheValiDTO(cartDTO));
 		}
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		model.addAttribute("nguoiDung", nguoiDungService.getTheoEmail(username));
 
-		return "product/xemgiohang";
+		return "gioHang";
 	}
 
 	@GetMapping(value = "/them-gio-hang")
-	public String themGioHang(HttpServletRequest request, HttpSession session,
-			@RequestParam(name = "valiId", required = true) int valiId,
-			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
-			@RequestParam(name = "mauSacId", required = true) int mauSacId) {
+	public String themGioHang(HttpSession session, @RequestParam(name = "valiSlug") String valiSlug,
+			@RequestParam(name = "kichThuocCode") String kichThuocCode,
+			@RequestParam(name = "mauSacCode") String mauSacCode) {
 
-		BienTheValiDTO bienTheValiDTO = bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId);
-
-		HoaDonDTO hoaDonDTO;
+		System.out.println("valiSlug: " + valiSlug + " KichThuocCode: " + kichThuocCode + " mauSacCode: " + mauSacCode);
+		
+		CartDTO cartDTO;
 
 		if (session.getAttribute("gioHang") == null) {
-			hoaDonDTO = new HoaDonDTO();
+			cartDTO = new CartDTO();
 		} else {
-			hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
+			cartDTO = (CartDTO) session.getAttribute("gioHang");
 		}
 
-		hoaDonDTO.themChiTietHoaDon(bienTheValiDTO);
-		session.setAttribute("gioHang", hoaDonDTO);
+		cartDTO.them(valiSlug, kichThuocCode, mauSacCode);
+		session.setAttribute("gioHang", cartDTO);
+		System.out.println("=====gioHang: " + cartDTO);
 
-		return "redirect:/xem-gio-hang";
+		return "redirect:/gio-hang";
 	}
 
 	@GetMapping(value = "/giam-gio-hang")
-	public String giamSachGioHang(HttpServletRequest request, HttpSession session,
-			@RequestParam(name = "valiId", required = true) int valiId,
-			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
-			@RequestParam(name = "mauSacId", required = true) int mauSacId) {
+	public String giamSachGioHang(HttpSession session, @RequestParam(name = "valiSlug") String valiSlug,
+			@RequestParam(name = "kichThuocCode") String kichThuocCode,
+			@RequestParam(name = "mauSacCode") String mauSacCode) {
 
-		HoaDonDTO hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
+		CartDTO cartDTO = (CartDTO) session.getAttribute("gioHang");
 
-		if (hoaDonDTO != null) {
+		if (cartDTO != null) {
 
-			hoaDonDTO.giamChiTietHoaDon(bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId));
+			cartDTO.giam(valiSlug, kichThuocCode, mauSacCode);
 
-			if (hoaDonDTO.getChiTietHoaDons().isEmpty()) {
+			if (cartDTO.getCartItemDTOs().isEmpty()) {
 				session.removeAttribute("gioHang");
+
 			} else {
-				session.setAttribute("gioHang", hoaDonDTO);
+				session.setAttribute("gioHang", cartDTO);
 			}
 		}
 
-		return "redirect:/xem-gio-hang";
+		return "redirect:/gio-hang";
 	}
 
 	@GetMapping(value = "/xoa-gio-hang/{maVali}")
-	public String xoaGioHang(HttpServletRequest request, HttpSession session, 
-			@RequestParam(name = "valiId", required = true) int valiId,
-			@RequestParam(name = "kichThuocId", required = true) int kichThuocId,
-			@RequestParam(name = "mauSacId", required = true) int mauSacId
-	) {
+	public String xoaGioHang(HttpServletRequest request, HttpSession session,
+			@RequestParam(name = "valiSlug") String valiSlug,
+			@RequestParam(name = "kichThuocCode") String kichThuocCode,
+			@RequestParam(name = "mauSacCode") String mauSacCode) {
 
-		HoaDonDTO hoaDonDTO = (HoaDonDTO) session.getAttribute("gioHang");
+		CartDTO cartDTO = (CartDTO) session.getAttribute("gioHang");
 
-		if (hoaDonDTO != null) {
+		if (cartDTO != null) {
 
-			hoaDonDTO.xoaChiTietHoaDon(bienTheValiService.getTheoId(valiId, kichThuocId, mauSacId));
+			cartDTO.xoa(valiSlug, kichThuocCode, mauSacCode);
 
-			if (hoaDonDTO.getChiTietHoaDons().isEmpty()) {
+			if (cartDTO.getCartItemDTOs().isEmpty()) {
 				session.removeAttribute("gioHang");
 			} else {
-				session.setAttribute("gioHang", hoaDonDTO);
+				session.setAttribute("gioHang", cartDTO);
 			}
 		}
 
-		return "redirect:/xem-gio-hang";
+		return "redirect:/gio-hang";
 	}
 }
