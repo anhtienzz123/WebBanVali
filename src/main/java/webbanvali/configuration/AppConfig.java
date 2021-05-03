@@ -54,9 +54,11 @@ public class AppConfig implements WebMvcConfigurer {
 	// cấu hình dùng tiles 3
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
-        
+
 		TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml");
+		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml", "classpath:Khai_tilesAdmin.xml",
+				"classpath:Khai_tilesWeb.xml", "classpath:Trong_tilesAdmin.xml",
+				"classpath:Trong_tilesWeb.xml");
 		configurer.setCheckRefresh(true);
 		return configurer;
 	}
@@ -142,8 +144,7 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public JavaMailSender getMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	
-		
+
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 		mailSender.setUsername("testlaptrinhzz123@gmail.com");
@@ -154,14 +155,13 @@ public class AppConfig implements WebMvcConfigurer {
 		javaMailProperties.put("mail.smpt.auth", "true");
 		javaMailProperties.put("mail.transport.protocol", "smtp");
 		javaMailProperties.put("mail.debug", "true");
-		
-		javaMailProperties.put("mail.smtp.socketFactory.port", "465");  
-		javaMailProperties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");  
-		javaMailProperties.put("mail.smtp.socketFactory.fallback", "false");  
-		
+
+		javaMailProperties.put("mail.smtp.socketFactory.port", "465");
+		javaMailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		javaMailProperties.put("mail.smtp.socketFactory.fallback", "false");
 
 		mailSender.setJavaMailProperties(javaMailProperties);
-		
+
 		return mailSender;
 	}
 

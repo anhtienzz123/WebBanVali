@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/admin")
 public class TrangChuAdmin {
 
-	@GetMapping(value = "/TrangChu")
+	@GetMapping(value = "/trang-chu")
 	public String index() {
 		
 		return "trangChuAdmin";

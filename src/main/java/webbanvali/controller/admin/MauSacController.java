@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,10 +57,24 @@ public class MauSacController {
 		
 	}
 	
+	// thêm
 	@PostMapping(value = "/api")
-	public @ResponseBody ResponseEntity<MauSacDTO> them(MauSacDTO mauSacDTO1){
+	public @ResponseBody ResponseEntity<MauSacDTO> them(@RequestBody MauSacDTO mauSacDTO1){
 		
 		MauSacDTO mauSacDTO =  mauSacService.themMauSac(mauSacDTO1.getTenMau());
+		if(mauSacDTO == null)
+			return new ResponseEntity<MauSacDTO>(HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(mauSacDTO);
+		
+	}
+	
+	// cập nhật
+	@PutMapping(value = "/api")
+	public @ResponseBody ResponseEntity<MauSacDTO> capNhat(@RequestBody MauSacDTO mauSacDTO1){
+		
+		
+		MauSacDTO mauSacDTO =  mauSacService.capNhatMauSac(mauSacDTO1.getId(),mauSacDTO1.getTenMau());
 		if(mauSacDTO == null)
 			return new ResponseEntity<MauSacDTO>(HttpStatus.BAD_REQUEST);
 		

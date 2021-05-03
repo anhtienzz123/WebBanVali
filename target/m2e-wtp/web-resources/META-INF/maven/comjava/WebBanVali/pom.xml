@@ -175,11 +175,7 @@
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen -->
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>5.4.31.Final</version>
-		</dependency>
+
 
 
 	</dependencies>

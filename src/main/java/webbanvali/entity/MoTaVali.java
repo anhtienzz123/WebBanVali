@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "mo_ta_vali")
+@Table(name = "anh_mo_ta_vali")
 public class MoTaVali implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -30,12 +29,6 @@ public class MoTaVali implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "ten_mo_ta")
-	private String tenMoTa;
-	
-	@Lob
-	@Column(name = "noi_dung")
-	private String noiDung;
 	@Column(name = "ten_anh")
 	private String tenAnh;
 	

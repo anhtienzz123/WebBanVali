@@ -39,6 +39,7 @@ public class NhomValiController {
 	public ResponseEntity<List<NhomValiDTO>> getListTheoTen(@RequestParam("tenNhomVali") String tenNhomVali , Model model){
 		
 		List<NhomValiDTO> nhomValiDTOs = nhomValiService.getNhomValisTheoTenNhomVali(tenNhomVali);
+		System.out.println("du lieu lay ve: " + nhomValiDTOs);
 		
 		return ResponseEntity.ok(nhomValiDTOs);
 		

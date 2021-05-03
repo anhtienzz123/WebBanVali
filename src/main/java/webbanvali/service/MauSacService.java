@@ -13,6 +13,7 @@ public interface MauSacService {
 	MauSacDTO getMauSacTheoId(int id);
 
 	MauSacDTO themMauSac(String tenMauSac);
+	MauSacDTO capNhatMauSac(Integer id, String tenMauSac);
 
 	boolean xoaMauSacTheoId(int id);
 	

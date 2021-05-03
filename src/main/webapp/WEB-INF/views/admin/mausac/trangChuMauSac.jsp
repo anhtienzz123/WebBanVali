@@ -25,12 +25,17 @@
 
 					<div class="col-12">
 						<div class="card">
+						
+						
+						    <!-- Thêm + tìm kiếm -->
 							<div class="card-header">
 
 								<div class="form-group row"  >
 								
 									<label for="tenMauSac" class="col-sm-1 col-form-label">Tên màu sắc</label>
 									<div class="col-sm-3">
+									    
+									    <!-- Tìm kiếm -->
 										<input type="text" class="form-control" id="timKiemTenMauSac"
 											placeholder="Nhập tên màu sắc">
 									</div>
@@ -43,13 +48,12 @@
 									     Thêm màu sắc</button>
 									</div>
 									
-									
 								</div>
 								
-								
 							</div>
-							<!-- /.card-header -->
+							<!-- End thêm + tìm kiếm -->
 
+							<!-- Table hiển thị dữ liệu -->
 							<div id="tableData" class="card-body">
 								<table class="table table-bordered table-hover">
 									<thead>
@@ -74,18 +78,24 @@
 												<td>${x.code }</td>
 
 							
-												<td><a   onClick="xemChiTiet('${x.id}')" 
-													class="btn btn-primary btn-sm xem" data-toggle="modal"
-													data-target="#xem-modal"> <i class="fas fa-folder">
-													</i> Xem
-												</a> <a 
-													class="btn btn-info btn-sm sua" data-toggle="modal"
-													data-target="#sua-modal"> <i class="fas fa-pencil-alt">
-													</i> Sửa
-												</a> <a onClick="xoa('${x.id}')" 
-													class="btn btn-danger btn-sm xoa"> <i
-														class="fas fa-trash"> </i> Xóa
-												</a></td>
+												<td>
+													<a   onClick="xemChiTiet(${x.id})" 
+														 class="btn btn-primary btn-sm xem" data-toggle="modal"
+														 data-target="#xem-modal">
+														  <i class="fas fa-folder"></i> Xem
+													</a> 
+													
+													<a onClick="sua(${x.id})"
+														class="btn btn-info btn-sm sua" data-toggle="modal"
+														data-target="#sua-modal">
+														  	<i class="fas fa-pencil-alt"></i> Sửa
+													</a> 
+													
+													<a onClick="xoa(${x.id})" 
+														class="btn btn-danger btn-sm xoa">
+														 	<i class="fas fa-trash"> </i> Xóa
+													</a>
+												</td>
 
 											</tr>
 
@@ -95,7 +105,8 @@
 									</tbody>
 								</table>
 							</div>
-							<!-- /.card-body -->
+							<!--End Table hiển thị dữ liệu -->
+							
 							
 						</div>
 					</div>
@@ -152,6 +163,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- End modal xem -->
 	
 	<!-- Modal thêm -->
 	<div class="modal fade" id="them-modal" tabindex='-1'>
@@ -191,6 +203,49 @@
 			</div>
 		</div>
 	</div>
+	<!-- End modal thêm -->
+	
+	
+	<!--  Modal Cập nhật -->
+	<div class="modal fade" id="sua-modal" tabindex='-1'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Cập nhật màu sắc</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<div class="form-group">
+						<input type="hidden" id="id" />
+						<label>Tên màu sắc</label>
+						<input
+							type="text" class="form-control" id="tenMau"
+							placeholder="Nhập tên màu sắc"
+						>
+							
+						<span
+							id="errThem"  style="color: red;">
+							
+						</span>
+						
+						
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-primary" id="btnCapNhat">Cập nhật</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Modal cập nhật -->
 	
 	
 	

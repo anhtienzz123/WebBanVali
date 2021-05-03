@@ -39,6 +39,19 @@ public class MauSacServiceImpl implements MauSacService {
 	}
 
 	@Override
+	public MauSacDTO capNhatMauSac(Integer id, String tenMauSac) {
+
+		if (mauSacRepository.existsByTenMauAndIdNot(tenMauSac, id)) {
+			return null;
+		}
+
+		String code = HamDungChung.toSlug(tenMauSac);
+		MauSac mauSacResult = mauSacRepository.save(new MauSac(id, tenMauSac, code));
+		return new MauSacDTO(mauSacResult.getId(), mauSacResult.getTenMau(), mauSacResult.getCode());
+
+	}
+
+	@Override
 	public MauSacDTO getMauSacTheoId(int id) {
 
 		MauSacDTO mauSacDTO = mauSacRepository.findById(id)
