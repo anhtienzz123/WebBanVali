@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/admin/hoadon/trangChu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/mausac/trangChuMauSac.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/web/chiTietVali/chiTietVali.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/web/chiTietVali/danhSachVali.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/web/gioHang/gioHang.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/web/gioHang/ketQuaDatHang.jsp=UTF-8

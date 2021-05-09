@@ -1,13 +1,12 @@
 package webbanvali.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,7 +17,6 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import webbanvali.utils.TrangThaiDonHang;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +28,7 @@ public class HoaDon implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer id;
+	private String id;
 
 	@Column(name = "ho_ten_khach_hang")
 	private String hoTenKhachHang;
@@ -42,10 +40,9 @@ public class HoaDon implements Serializable {
 	@Column(name = "ghi_chu")
 	private String ghiChu;
 	@Column(name = "thoi_gian_dat")
-	private LocalDate thoiGianDat;
+	private LocalDateTime thoiGianDat;
 	@Column(name = "trang_thai_don_hang")
-	@Enumerated(EnumType.STRING)
-	private TrangThaiDonHang trangThaiDonHang;
+	private String trangThaiDonHang;
 
 	@ManyToOne
 	@JoinColumn(name = "nguoi_dung_id", referencedColumnName = "id",
@@ -53,6 +50,19 @@ public class HoaDon implements Serializable {
 			   )
 	private NguoiDung nguoiDung;
 
-	@OneToMany(mappedBy = "hoaDon")
+	@OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL)
 	private List<ChiTietHoaDon> chiTietHoaDons;
+	
+	public double tinhThanhTien() {
+		
+		double tongTien = 0;
+		
+		for (ChiTietHoaDon chiTietHoaDon : chiTietHoaDons) {
+		
+			tongTien += chiTietHoaDon.tinhThanhTien();
+		}
+		
+		return tongTien;
+		
+	}
 }

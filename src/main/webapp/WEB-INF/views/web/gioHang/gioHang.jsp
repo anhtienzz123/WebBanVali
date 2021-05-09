@@ -123,10 +123,12 @@
 								</div>
 
 
-								<button
-									class="btn btn-outline-danger btn-block mt-2 btn-dat-hang">
-									<span> Đặt hàng</span>
-								</button>
+								<a href='<c:url value="/gio-hang/dat-hang" />'>
+									<button
+										class="btn btn-outline-danger btn-block mt-2 btn-dat-hang">
+										<span> Đặt hàng</span>
+									</button>
+								</a>
 
 
 								<!-- 
