@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import webbanvali.dto.ChatLieuDTO;
-
+import webbanvali.dto.MauSacDTO;
 import webbanvali.entity.ChatLieu;
-
+import webbanvali.entity.MauSac;
 import webbanvali.repository.ChatLieuRepository;
 
 import webbanvali.service.ChatLieuService;
@@ -73,6 +73,18 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
 		return true;
 
+	}
+
+	@Override
+	public ChatLieuDTO capNhatChatLieu(Integer id, String tenChatLieu) {
+		// TODO Auto-generated method stub
+		if (chatLieuRepository.existsByTenChatLieuAndIdNot(tenChatLieu, id)) {
+			return null;
+		}
+
+		String code = HamDungChung.toSlug(tenChatLieu);
+		ChatLieu chatLieuResult = chatLieuRepository.save(new ChatLieu(id, tenChatLieu, code));
+		return new ChatLieuDTO(chatLieuResult.getId(),chatLieuResult.getTenChatLieu(),chatLieuResult.getCode());
 	}
 
 }

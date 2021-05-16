@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import webbanvali.dto.NhomValiDTO;
+
+
 
 import webbanvali.service.NhomValiService;
 
@@ -39,7 +42,6 @@ public class NhomValiController {
 	public ResponseEntity<List<NhomValiDTO>> getListTheoTen(@RequestParam("tenNhomVali") String tenNhomVali , Model model){
 		
 		List<NhomValiDTO> nhomValiDTOs = nhomValiService.getNhomValisTheoTenNhomVali(tenNhomVali);
-		System.out.println("du lieu lay ve: " + nhomValiDTOs);
 		
 		return ResponseEntity.ok(nhomValiDTOs);
 		
@@ -49,12 +51,12 @@ public class NhomValiController {
 	@GetMapping(value = "/api/{nhomValiId}")
 	public @ResponseBody ResponseEntity<NhomValiDTO> getTheoId(@PathVariable("nhomValiId") int id){
 		
-		NhomValiDTO chatLieuDTO =  nhomValiService.getNhomValiTheoId(id);
+		NhomValiDTO nhomValiDTO = nhomValiService.getNhomValiTheoId(id);
 		
-		if(chatLieuDTO == null)
+		if(nhomValiDTO == null)
 			return new ResponseEntity<NhomValiDTO>(HttpStatus.NOT_FOUND);
 		
-		return ResponseEntity.ok(chatLieuDTO);
+		return ResponseEntity.ok(nhomValiDTO);
 		
 	}
 	
@@ -69,7 +71,7 @@ public class NhomValiController {
 		
 	}
 	
-	@DeleteMapping(value = "/api/{chatLieuId}")
+	@DeleteMapping(value = "/api/{nhomValiId}")
 	public @ResponseBody ResponseEntity<?> xoa(@PathVariable("nhomValiId") int nhomValiId){
 		
 		if(nhomValiService.xoaNhomValiTheoId(nhomValiId))
@@ -79,5 +81,17 @@ public class NhomValiController {
 		
 	}
 	
-
+	// cập nhật
+	@PutMapping(value = "/api")
+	public @ResponseBody ResponseEntity<NhomValiDTO> capNhat(@RequestBody NhomValiDTO nhomValiDTO1){
+		
+		
+		NhomValiDTO nhomValiDTO =  nhomValiService.capNhatNhomVali(nhomValiDTO1.getId(),nhomValiDTO1.getTenNhomVali());
+		if(nhomValiDTO == null)
+			return new ResponseEntity<NhomValiDTO>(HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(nhomValiDTO);
+		
+	}
+	
 }

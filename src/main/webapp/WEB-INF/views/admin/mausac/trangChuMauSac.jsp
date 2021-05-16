@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/static/admin/" var="styleUrl"   />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url value="/static/admin/" var="styleUrl" />
 
 <!DOCTYPE html>
 <html>
@@ -11,12 +11,12 @@
 <meta charset="UTF-8">
 <title>Quản lý màu sắc</title>
 
- <!-- Toastr -->
-  <link rel="stylesheet" href="${styleUrl }plugins/toastr/toastr.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="${styleUrl }plugins/toastr/toastr.min.css">
 </head>
 <body>
 
-    <div class="content-wrapper">
+	<div class="content-wrapper">
 		<section class="content">
 
 			<div class="container-fluid">
@@ -25,31 +25,29 @@
 
 					<div class="col-12">
 						<div class="card">
-						
-						
-						    <!-- Thêm + tìm kiếm -->
+
+
+							<!-- Thêm + tìm kiếm -->
 							<div class="card-header">
 
-								<div class="form-group row"  >
-								
-									<label for="tenMauSac" class="col-sm-1 col-form-label">Tên màu sắc</label>
+								<div class="form-group row">
+
+									<label for="tenMauSac" class="col-sm-1 col-form-label">Tên
+										màu sắc</label>
 									<div class="col-sm-3">
-									    
-									    <!-- Tìm kiếm -->
+
+										<!-- Tìm kiếm -->
 										<input type="text" class="form-control" id="timKiemTenMauSac"
 											placeholder="Nhập tên màu sắc">
 									</div>
-									
+
 									<div class="col-sm-3">
-									     <button class="btn btn-info"
-									     	data-toggle="modal"
-											data-target="#them-modal">
-									 
-									     Thêm màu sắc</button>
+										<button class="btn btn-info" data-toggle="modal"
+											data-target="#them-modal">Thêm màu sắc</button>
 									</div>
-									
+
 								</div>
-								
+
 							</div>
 							<!-- End thêm + tìm kiếm -->
 
@@ -68,7 +66,7 @@
 									<tbody id="tableBody">
 
 										<c:forEach items="${mauSacs}" var="x">
-				
+
 											<tr>
 
 												<td>${x.id }</td>
@@ -77,25 +75,17 @@
 
 												<td>${x.code }</td>
 
-							
-												<td>
-													<a   onClick="xemChiTiet(${x.id})" 
-														 class="btn btn-primary btn-sm xem" data-toggle="modal"
-														 data-target="#xem-modal">
-														  <i class="fas fa-folder"></i> Xem
-													</a> 
-													
-													<a onClick="sua(${x.id})"
-														class="btn btn-info btn-sm sua" data-toggle="modal"
-														data-target="#sua-modal">
-														  	<i class="fas fa-pencil-alt"></i> Sửa
-													</a> 
-													
-													<a onClick="xoa(${x.id})" 
-														class="btn btn-danger btn-sm xoa">
-														 	<i class="fas fa-trash"> </i> Xóa
-													</a>
-												</td>
+
+												<td><a onClick="xemChiTiet(${x.id})"
+													class="btn btn-primary btn-sm xem" data-toggle="modal"
+													data-target="#xem-modal"> <i class="fas fa-folder"></i>
+														Xem
+												</a> <a onClick="sua(${x.id})" class="btn btn-info btn-sm sua"
+													data-toggle="modal" data-target="#sua-modal"> <i
+														class="fas fa-pencil-alt"></i> Sửa
+												</a> <a onClick="xoa(${x.id})" class="btn btn-danger btn-sm xoa">
+														<i class="fas fa-trash"> </i> Xóa
+												</a></td>
 
 											</tr>
 
@@ -106,8 +96,8 @@
 								</table>
 							</div>
 							<!--End Table hiển thị dữ liệu -->
-							
-							
+
+
 						</div>
 					</div>
 
@@ -119,7 +109,7 @@
 		</section>
 
 	</div>
-	
+
 	<!-- Xem Modal -->
 	<div class="modal fade" id="xem-modal" tabindex='-1'>
 		<div class="modal-dialog">
@@ -151,8 +141,8 @@
 						<div class="col-8 code"></div>
 
 					</div>
-					
-					
+
+
 				</div>
 
 				<!-- Modal footer -->
@@ -164,7 +154,7 @@
 		</div>
 	</div>
 	<!-- End modal xem -->
-	
+
 	<!-- Modal thêm -->
 	<div class="modal fade" id="them-modal" tabindex='-1'>
 		<div class="modal-dialog">
@@ -178,24 +168,18 @@
 				<div class="modal-body">
 
 					<div class="form-group">
-						<label>Tên màu sắc</label>
-						<input
-							type="text" class="form-control" id="tenMauSacThem"
-							placeholder="Nhập tên màu sắc"
-						>
-							
-						<span
-							id="errThem"  style="color: red;">
-							
-						</span>
-						
-						
+						<label>Tên màu sắc</label> <input type="text" class="form-control"
+							id="tenMauSacThem" placeholder="Nhập tên màu sắc">
+
+						<span id="errThem" style="color: red;"> </span>
+
+
 					</div>
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					
+
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 					<button type="button" class="btn btn-primary" id="btnThem">Thêm</button>
 				</div>
@@ -204,8 +188,8 @@
 		</div>
 	</div>
 	<!-- End modal thêm -->
-	
-	
+
+
 	<!--  Modal Cập nhật -->
 	<div class="modal fade" id="sua-modal" tabindex='-1'>
 		<div class="modal-dialog">
@@ -219,41 +203,37 @@
 				<div class="modal-body">
 
 					<div class="form-group">
-						<input type="hidden" id="id" />
-						<label>Tên màu sắc</label>
-						<input
+						<input type="hidden" id="id" /> <label>Tên màu sắc</label> <input
 							type="text" class="form-control" id="tenMau"
-							placeholder="Nhập tên màu sắc"
-						>
-							
-						<span
-							id="errThem"  style="color: red;">
-							
-						</span>
-						
-						
+							placeholder="Nhập tên màu sắc"> <span
+							id="errThem" style="color: red;"> </span>
+
+
 					</div>
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					
+
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-					<button type="button" class="btn btn-primary" id="btnCapNhat">Cập nhật</button>
+					<button type="button" class="btn btn-primary" id="btnCapNhat">Cập
+						nhật</button>
 				</div>
 
 			</div>
 		</div>
 	</div>
 	<!-- End Modal cập nhật -->
-	
-	
-	
-	
-	<script type="text/javascript" src="${styleUrl}plugins/jquery/jquery.min.js"></script>
+
+
+
+
+	<script type="text/javascript"
+		src="${styleUrl}plugins/jquery/jquery.min.js"></script>
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
-	<script type="text/javascript" src="${styleUrl}js/mausac/trangChuMauSac.js" ></script>
-	
+	<script type="text/javascript"
+		src="${styleUrl}js/mausac/trangChuMauSac.js"></script>
+
 </body>
 </html>

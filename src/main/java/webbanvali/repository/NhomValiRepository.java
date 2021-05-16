@@ -11,4 +11,7 @@ import webbanvali.entity.NhomVali;
 public interface NhomValiRepository extends JpaRepository<NhomVali, Integer> {
 	boolean existsByTenNhomVali(String tenNhomVali);
 	List<NhomVali> findByTenNhomValiContainingIgnoreCase(String tenNhomVali);
+	
+	// nếu có thằng id khác trùng màu
+			boolean existsByTenNhomValiAndIdNot(String tenNhomVali, Integer id);
 }

@@ -5,9 +5,18 @@
 
 
 <tiles-definitions>
-  
-  <definition name="test1" extends="webLayout">
-    <put-attribute name="body" value="/WEB-INF/views/test1.jsp" />
-  </definition>
-   
+
+	<definition name="test1" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/test1.jsp" />
+	</definition>
+
+
+	<!-- đổi mật khẩu -->
+	<definition name="doiMK" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/nguoiDung/doiMatKhau.jsp" />
+	</definition>
+
+
 </tiles-definitions>

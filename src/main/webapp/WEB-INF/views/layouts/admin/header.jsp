@@ -224,7 +224,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="<c:url value="/admin/thuong-hieu/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý nhóm thương hiệu

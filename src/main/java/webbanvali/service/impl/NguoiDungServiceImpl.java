@@ -100,7 +100,21 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDungDTOResult;
 	}
+	@Override
+	public NguoiDungDTO save1(NguoiDungDTO nguoiDungDTO) {
 
+		if (nguoiDungDTO == null)
+			return null;
+
+		NguoiDung nguoiDungOld = nguoiDungRepository.findById(nguoiDungDTO.getId()).get();
+
+		NguoiDung nguoiDungResult = nguoiDungRepository
+				.save(nguoiDungConverter.toNguoiDung1(nguoiDungDTO, nguoiDungOld));
+
+		NguoiDungDTO nguoiDungDTOResult = nguoiDungConverter.toNguoiDungDTO(nguoiDungResult);
+
+		return nguoiDungDTOResult;
+	}
 	@Override
 	public boolean goiEmailQuenMatKhau(String email, String host) {
 

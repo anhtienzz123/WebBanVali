@@ -92,4 +92,9 @@ public class NguoiDung implements Serializable {
 		this.trangThai = trangThai;
 	}
 
+	public NguoiDung(Integer id) {
+		super();
+		this.id = id;
+	}
+
 }
