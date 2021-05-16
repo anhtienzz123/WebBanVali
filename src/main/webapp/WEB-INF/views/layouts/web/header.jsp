@@ -38,8 +38,11 @@
 				</div>
 
 
+				
+				<!--  nếu đã đăng nhập -->
 				<sec:authorize access="isAuthenticated()">
 
+					<!--  nếu có quyền user -->
 					<a style="color: black; text-decoration: none;"
 						href=' <c:url value="/user/thong-tin" />'> <img
 						src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_user.svg"
@@ -47,12 +50,15 @@
 
 					</a>
 					
+					<!--  nếu có quyền admin -->
 					 <sec:authorize access="hasRole('ADMIN')">
    						  <a href=' <c:url value="/admin/trang-chu" /> '  >|| Quản lí</a>
 					</sec:authorize>
 
 				</sec:authorize>
 
+
+  				<!-- chưa đăng nhập -->
 				<sec:authorize access="!isAuthenticated()">
 					<a style="color: black; text-decoration: none;"
 						href=' <c:url value="/login" />'> <img
