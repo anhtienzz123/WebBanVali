@@ -6,7 +6,7 @@
 
 <tiles-definitions>
 
-<<<<<<< HEAD
+
   <definition name="webLayout" template="/WEB-INF/views/layouts/web/webLayout.jsp">
     <put-attribute name="header" value="/WEB-INF/views/layouts/web/header.jsp" />
     <put-attribute name="body" value="" />
@@ -50,7 +50,7 @@
   </definition>
 
  
-=======
+
 	<definition name="webLayout"
 		template="/WEB-INF/views/layouts/web/webLayout.jsp">
 		<put-attribute name="header"
@@ -132,5 +132,5 @@
 
 
 
->>>>>>> 5dcf07a8e64c6818b9ff14e86b20d2d97e372870
+
 </tiles-definitions>
