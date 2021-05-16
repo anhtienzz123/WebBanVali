@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import webbanvali.dto.NhomValiDTO;
+import webbanvali.dto.ThuongHieuDTO;
 import webbanvali.entity.NhomVali;
+import webbanvali.entity.ThuongHieu;
 import webbanvali.repository.NhomValiRepository;
 import webbanvali.service.NhomValiService;
 import webbanvali.utils.HamDungChung;
@@ -70,5 +72,17 @@ public class NhomValiServiceImpl implements NhomValiService {
 		return true;
 
 	}
+
+	@Override
+	public NhomValiDTO capNhatNhomVali(Integer id, String tenNhomVali) {
+		if (nhomValiRepository.existsByTenNhomValiAndIdNot(tenNhomVali, id)) {
+			return null;
+		}
+
+		String code = HamDungChung.toSlug(tenNhomVali);
+		NhomVali nhomValiResult = nhomValiRepository.save(new NhomVali(id, tenNhomVali, code));
+		return new NhomValiDTO(nhomValiResult.getId(), nhomValiResult.getTenNhomVali(), nhomValiResult.getCode());
+	}
+
 
 }

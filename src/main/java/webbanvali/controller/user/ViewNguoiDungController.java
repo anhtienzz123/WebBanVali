@@ -100,6 +100,7 @@ public class ViewNguoiDungController {
 			if(nguoiDungService.save(nguoiDungDTO) != null) {
 				model.addAttribute("nguoiDung", nguoiDungDTO);
 				
+				
 			}
 		}
 		

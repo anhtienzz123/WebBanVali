@@ -10,4 +10,7 @@ import webbanvali.entity.ChatLieu;
 public interface ChatLieuRepository extends JpaRepository<ChatLieu, Integer> {
 	boolean existsByTenChatLieu(String tenChatLieu);
 	List<ChatLieu> findByTenChatLieuContainingIgnoreCase(String tenChatLieu);
+	
+	boolean existsByTenChatLieuAndIdNot(String tenChatLieu, Integer id);
+
 }

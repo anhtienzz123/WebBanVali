@@ -13,6 +13,13 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/test2.jsp" />
 	</definition>
-
+	
+	<!-- Quản lý nhóm thương hiệu -->
+	<definition name="trangChuNhomThuongHieuAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nhomthuonghieu/trangChuNhomThuongHieu.jsp" />
+	</definition>
+	
+	
 
 </tiles-definitions>

@@ -100,6 +100,66 @@ $("#timKiemTenChatLieu").on("keyup", function() {
 });
 
 
+
+// lấy dữ liệu và đưa lên form sửa
+function sua(chatLieuId) {
+
+
+	// url lấy dữ liệu từ api
+	const url = `api/${chatLieuId}`;
+
+
+	// gọi api lấy dữ liệu
+	$.get(url, function(data, status) {
+
+		// data là dữ liệu nhận được
+		const { id, tenChatLieu } = data;
+
+		if (status === 'success') {
+			// set dữ liệu vào modal
+			$("#sua-modal #id").val(id);
+			$("#sua-modal #tenChatLieu").val(tenChatLieu);
+
+		}
+	});
+}
+
+// khi nhấn nút cập nhật
+$('#btnCapNhat').click(function() {
+
+	// lấy dữ liệu từ modal
+	const id = $('#sua-modal #id').val();
+	const tenChatLieu = $('#sua-modal #tenChatLieu').val();
+
+	// kiểm tra không được bỏ trống
+	if (tenChatLieu.trim().length == 0) {
+		$('#sua-modal #errThem').text('Tên chất liệu không được bỏ trống');
+		return;
+	}
+
+	const url = "api";
+
+	$.ajax({
+		url: url,
+		type: 'PUT',
+		contentType: 'application/json',
+		data: JSON.stringif-y({ id, tenChatLieu }),
+		success: function() {
+
+			capNhatDuLieu("");
+			$('#sua-modal').modal('hide');
+			toastr.success('Cập nhật thành công')
+
+		},
+		error: function() {
+			toastr.error('Tên chất liệu đã bị trùng')
+		},
+
+	});
+
+});
+
+
 function capNhatDuLieu(tenChatLieu) {
 
 	const url = `api?tenChatLieu=${tenChatLieu}`;

@@ -1,17 +1,17 @@
 
-function xemChiTiet(nhomValiId) {
+function xemChiTiet(nhomThuongHieuId) {
 
-	const url = `api/${nhomValiId}`;
+	const url = `api/${nhomThuongHieuId}`;
 	console.log('url: ', url);
 
 	$.get(url, function(data, status) {
 
-		const { id, tenNhomVali, code } = data;
+		const { id, tenThuongHieu, code } = data;
 
 		if (status === 'success') {
 
 			$("#xem-modal .id").html(`<span class="font-weight-bold">${id}</span>`);
-			$("#xem-modal .tenNhomVali").html(`<span class="font-weight-bold">${tenNhomVali}</span>`);
+			$("#xem-modal .tenThuongHieu").html(`<span class="font-weight-bold">${tenThuongHieu}</span>`);
 			$("#xem-modal .code").html(`<span class="font-weight-bold">${code}</span>`);
 
 		}
@@ -19,12 +19,12 @@ function xemChiTiet(nhomValiId) {
 }
 
 
-function xoa(nhomValiId) {
+function xoa(nhomThuongHieuId) {
 
 	if (confirm("Bạn có chắc chắn xóa không ?")) {
 
 		$.ajax({
-			url: `api/${nhomValiId}`,
+			url: `api/${nhomThuongHieuId}`,
 			type: 'DELETE',
 			success: function() {
 				
@@ -43,27 +43,27 @@ function xoa(nhomValiId) {
 
 $('#btnThem').click(function() {
 
-	const giaTriDaNhap = $('#them-modal #tenNhomValiThem').val();
+	const giaTriDaNhap = $('#them-modal #tenThuongHieuThem').val();
 
 	if (giaTriDaNhap.trim().length == 0) {
-		$('#them-modal #errThem').text('Tên nhóm Vali không được bỏ trống');
+		$('#them-modal #errThem').text('Tên Thương hiệu không được bỏ trống');
 		return;
 	}
 
 	const url = "api";
 
-	$.post(url, { tenNhomVali: giaTriDaNhap }, function(data, status) {
+	$.post(url, { tenThuongHieu: giaTriDaNhap }, function(data, status) {
 
 		if (status === 'success') {
 
 			$('#them-modal').modal('hide');
 			toastr.success('Thêm thành công')
 
-			const { id, tenNhomVali, code } = data;
+			const { id, tenThuongHieu, code } = data;
 
 			$("<tr>").appendTo($("#tableBody"))
 				.append($("<td>").text(id))
-				.append($("<td>").text(tenNhomVali))
+				.append($("<td>").text(tenThuongHieu))
 				.append($("<td>").text(code))
 				.append(
 
@@ -85,7 +85,7 @@ $('#btnThem').click(function() {
 				);
 
 		} else {
-			$('#them-modal #errThem').text('Tên nhóm vali đã trùng');
+			$('#them-modal #errThem').text('Tên thương hiệu đã trùng');
 		}
 
 	});
@@ -93,16 +93,79 @@ $('#btnThem').click(function() {
 });
 
 
-$("#timKiemTenNhomVali").on("keyup", function() {
+$("#timKiemTenThuongHieu").on("keyup", function() {
 
 	capNhatDuLieu(this.value);
 
 });
 
 
-function capNhatDuLieu(tenNhomVali) {
 
-	const url = `api?tenNhomVali=${tenNhomVali}`;
+// lấy dữ liệu và đưa lên form sửa
+function sua(nhomThuongHieuId) {
+
+
+	// url lấy dữ liệu từ api
+	const url = `api/${nhomThuongHieuId}`;
+
+
+	// gọi api lấy dữ liệu
+	$.get(url, function(data, status) {
+
+		// data là dữ liệu nhận được
+		const { id, tenThuongHieu } = data;
+
+		if (status === 'success') {
+			// set dữ liệu vào modal
+			$("#sua-modal #id").val(id);
+			$("#sua-modal #tenThuongHieu").val(tenThuongHieu);
+
+		}
+	});
+}
+
+// khi nhấn nút cập nhật
+$('#btnCapNhat').click(function() {
+
+	// lấy dữ liệu từ modal
+	const id = $('#sua-modal #id').val();
+	const tenThuongHieu = $('#sua-modal #tenThuongHieu').val();
+
+	// kiểm tra không được bỏ trống
+	if (tenThuongHieu.trim().length == 0) {
+		$('#sua-modal #errThem').text('Tên thương hiệu không được bỏ trống');
+		return;
+	}
+
+	const url = "api";
+
+	$.ajax({
+		url: url,
+		type: 'PUT',
+		contentType: 'application/json',
+		data: JSON.stringify({ id, tenThuongHieu }),
+		success: function() {
+
+			capNhatDuLieu("");
+			$('#sua-modal').modal('hide');
+			toastr.success('Cập nhật thành công')
+
+		},
+		error: function() {
+			toastr.error('Tên thương hiệu đã bị trùng')
+		},
+
+	});
+
+});
+
+
+
+
+
+function capNhatDuLieu(tenThuongHieu) {
+
+	const url = `api?tenThuongHieu=${tenThuongHieu}`;
 	$.get(url, function(data, status) {
 
 		if (status === 'success') {
@@ -118,13 +181,13 @@ function renderDuLieu(data) {
 
 	$("#tableBody").html("");
 
-	$.each(data, (index, chatLieu) => {
+	$.each(data, (index, nhomThuongHieu) => {
 
-		const { id, tenNhomVali, code } = nhomVali;
+		const { id, tenThuongHieu, code } = nhomThuongHieu;
 
 		$("<tr>").appendTo($("#tableBody"))
 			.append($("<td>").text(id))
-			.append($("<td>").text(tenNhomVali))
+			.append($("<td>").text(tenThuongHieu))
 			.append($("<td>").text(code))
 			.append(
 

@@ -15,4 +15,6 @@ public interface NguoidungRepository extends JpaRepository<NguoiDung, Integer> {
 
 	List<NguoiDung> findAllByEmailContainingAndSoDienThoaiContainingAllIgnoreCase(String email, String soDienThoai,
 			Pageable pageable);
+	
+	
 }
