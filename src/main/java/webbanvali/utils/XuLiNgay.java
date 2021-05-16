@@ -23,10 +23,13 @@ public class XuLiNgay {
 
 		return localDate;
 	}
-	
-	public static String convertLocalDateTimeToString(LocalDateTime time) {
+
+	public static String toString(LocalDateTime time) {
+
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); mm:HH dd-MM-yyyy
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:HH dd-MM-yyyy");
 		
-		return "Ngày 2021-03-19 20:27:06";
-		
+		return time.format(formatter);
+
 	}
 }

@@ -7,4 +7,6 @@ public interface GioHangService {
 
 	
 	CartBienTheValiDTO convertCartDTOToCartBienTheValiDTO(CartDTO cartDTO);
+	
+	boolean datHang(CartDTO cartDTO);
 }

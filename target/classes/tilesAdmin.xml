@@ -82,6 +82,12 @@
 			value="/WEB-INF/views/admin/nhomvali/trangChuNhomVali.jsp" />
 	</definition>
 	
+	<!-- Quản lý hóa đơn -->
+	<definition name="hoaDonAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/hoadon/trangChu.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>

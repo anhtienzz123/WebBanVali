@@ -6,6 +6,7 @@
 
 <tiles-definitions>
 
+<<<<<<< HEAD
   <definition name="webLayout" template="/WEB-INF/views/layouts/web/webLayout.jsp">
     <put-attribute name="header" value="/WEB-INF/views/layouts/web/header.jsp" />
     <put-attribute name="body" value="" />
@@ -49,4 +50,87 @@
   </definition>
 
  
+=======
+	<definition name="webLayout"
+		template="/WEB-INF/views/layouts/web/webLayout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/layouts/web/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layouts/web/footer.jsp" />
+	</definition>
+
+	<!-- trang chủ -->
+	<definition name="trangChu" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/trangChu.jsp" />
+	</definition>
+
+
+	<!-- quản lí người dùng -->
+	<definition name="thongTinNguoiDung" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/nguoiDung/thongTin.jsp" />
+	</definition>
+
+	<!-- chi tiết vali -->
+
+	<definition name="chiTietVali" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/chiTietVali/chiTietVali.jsp" />
+	</definition>
+
+	<!-- giỏ hàng -->
+	<definition name="gioHang" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/gioHang/gioHang.jsp" />
+	</definition>
+	
+	<!-- trang đặt hàng thành công -->
+	
+	<definition name="ketQuaDatHang" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/gioHang/ketQuaDatHang.jsp" />
+	</definition>
+	
+	<!-- end giỏ hàng -->
+
+	<!-- danh sách sản phẩm -->
+	<definition name="danhSachVali" extends="webLayout">
+
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/chiTietVali/danhSachVali.jsp" />
+
+	</definition>
+	
+
+
+
+	<definition name="ketQuaDanhSach" extends="webLayout">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/chiTietVali/ketQuaDanhSach.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<!-- End danh sách sản phẩm -->
+
+	<definition name="error" extends="webLayout">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/common/error.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+	<definition name="error403" extends="webLayout">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/common/error403.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+
+
+
+>>>>>>> 5dcf07a8e64c6818b9ff14e86b20d2d97e372870
 </tiles-definitions>

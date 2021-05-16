@@ -1,5 +1,13 @@
 package webbanvali.service.impl;
 
+import static webbanvali.utils.BienTheValiSpecification.hasCodeChatLieus;
+import static webbanvali.utils.BienTheValiSpecification.hasCodeKichThuocs;
+import static webbanvali.utils.BienTheValiSpecification.hasCodeMauSacs;
+import static webbanvali.utils.BienTheValiSpecification.hasCodeNhomValis;
+import static webbanvali.utils.BienTheValiSpecification.hasCodeThuongHieus;
+import static webbanvali.utils.BienTheValiSpecification.hasCodeTinhNangDacBiets;
+import static webbanvali.utils.BienTheValiSpecification.hasKhoangGias;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +16,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +27,7 @@ import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.service.BienTheValiService;
-import webbanvali.utils.BienTheValiSpecification;
+import webbanvali.utils.ChuoiConstant;
 
 @Service
 @Transactional
@@ -43,34 +52,40 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 	}
 
 	@Override
-	public List<BienTheValiDTO> getBienTheValisTheoNhieuDieuKien(String codeNhomVali, double giaDau, double giaCuoi,
+	public List<BienTheValiDTO> getBienTheValisTheoNhieuDieuKien(List<String> codeNhomValis, List<String> gias,
 			List<String> codeThuongHieus, List<String> codeChatLieus, List<String> codeKichThuocs,
-			List<String> codeMauSacs, List<String> codeTinhNangDacBiets) {
+			List<String> codeMauSacs, List<String> codeTinhNangDacBiets, String loaiSapXep, int page, int size) {
 
-		Specification<BienTheVali> dieuKien = Specification
-				.where(BienTheValiSpecification.timKiemTheoCodeNhomVali(codeNhomVali));
+		Specification<BienTheVali> dieuKien = Specification.where(hasCodeNhomValis(codeNhomValis))
+				.and(hasKhoangGias(gias)).and(hasCodeThuongHieus(codeThuongHieus)).and(hasCodeChatLieus(codeChatLieus))
+				.and(hasCodeKichThuocs(codeKichThuocs)).and(hasCodeMauSacs(codeMauSacs))
+				.and(hasCodeTinhNangDacBiets(codeTinhNangDacBiets));
 
-		// nếu chọn giá
-		if (giaDau != 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoKhoangGia(giaDau, giaCuoi));
+		Sort sort = Sort.unsorted();
 
-		if (codeThuongHieus != null && codeThuongHieus.size() > 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeThuongHieus(codeThuongHieus));
+		if (loaiSapXep != null) {
 
-		if (codeChatLieus != null && codeChatLieus.size() > 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeChatLieus(codeChatLieus));
+			if (loaiSapXep.equals(ChuoiConstant.GIA_TANG_DAN)) {
 
-		if (codeKichThuocs != null && codeKichThuocs.size() > 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeKichThuocs(codeKichThuocs));
+				sort = Sort.by("gia").ascending();
+			}
 
-		if (codeMauSacs != null && codeMauSacs.size() > 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeMauSacs(codeMauSacs));
+			if (loaiSapXep.equals(ChuoiConstant.GIA_GIAM_DAN)) {
 
-		if (codeTinhNangDacBiets != null && codeTinhNangDacBiets.size() > 0)
-			dieuKien.and(BienTheValiSpecification.timKiemTheoCodeTinhNangDacBiets(codeTinhNangDacBiets));
+				sort = Sort.by("gia").descending();
+			}
 
-		return bienTheValiRepository.findAll(dieuKien).stream().map(s -> bienTheValiConverter.toDTO(s))
-				.collect(Collectors.toList());
+			if (loaiSapXep.equals(ChuoiConstant.KHUYEN_MAI)) {
+
+				sort = Sort.by("khuyenMai").ascending();
+			}
+
+		}
+
+	
+		
+		return bienTheValiRepository.findAll(dieuKien, PageRequest.of(page, size, sort)).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -98,7 +113,7 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 
 	@Override
 	public List<BienTheValiDTO> getValisKhuyenMai(int size) {
-	
+
 		return bienTheValiRepository.findAllByOrderByKhuyenMaiDesc(PageRequest.of(0, size)).stream()
 				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}

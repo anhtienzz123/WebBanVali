@@ -1,43 +1,93 @@
 package webbanvali.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import webbanvali.dto.BienTheValiDTO;
 import webbanvali.dto.ChiTietValiDTO;
+import webbanvali.dto.KeyValueDTO;
 import webbanvali.dto.ValiCommentDTO;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.BinhLuanService;
+import webbanvali.service.ValiService;
 
 @Controller
+@RequestMapping("/san-pham")
 public class ValiController {
+
+	private static final int SIZE = 12;
 
 	@Autowired
 	private BienTheValiService bienTheValiService;
 	@Autowired
 	private BinhLuanService binhLuanService;
-	
+	@Autowired
+	private ValiService valiService;
 
-	@GetMapping("/san-pham/{slug}")
+	@GetMapping("/{slug}")
 	public String chiTietVali(Model model, @PathVariable("slug") String slug,
 			@RequestParam("kichThuoc") String kichThuoc, @RequestParam("mauSac") String mauSac) {
 
 		ChiTietValiDTO result = bienTheValiService.getChiTietValiDTO(slug, kichThuoc, mauSac);
 		ValiCommentDTO valiCommentDTO = binhLuanService.getValiCommentTheoValiSlug(slug);
-		
+
 		model.addAttribute("valiComment", valiCommentDTO);
 		model.addAttribute("vali", result);
-	
 
 		return "chiTietVali";
 	}
-	
-	@GetMapping("/san-pham/danh-sach/{slug}")
-	public String danhSachVali() {
+
+	@GetMapping("/")
+	public String danhSachVali(Model model) {
+
+		Map<String, List<KeyValueDTO>> tieuChis = valiService.getTieuChiTimKiem();
+
+		model.addAttribute("nhomValis", tieuChis.get("nhomValis"));
+		model.addAttribute("gias", tieuChis.get("gias"));
+		model.addAttribute("thuongHieus", tieuChis.get("thuongHieus"));
+		model.addAttribute("chatLieus", tieuChis.get("chatLieus"));
+		model.addAttribute("kichThuocs", tieuChis.get("kichThuocs"));
+		model.addAttribute("mauSacs", tieuChis.get("mauSacs"));
+		model.addAttribute("tinhNangDacBiets", tieuChis.get("tinhNangDacBiets"));
 		
-		return "";
+		model.addAttribute("valis",bienTheValiService.getBienTheValisTheoNhieuDieuKien(null, null, null,
+				null, null, null, null, null, 0, 12));
+
+		return "danhSachVali";
+	}
+
+
+	
+	@GetMapping("/api")
+	public String danhSachValiApi(
+			Model model,
+			@RequestParam(value = "nhomValis", required = false) List<String> nhomValis,
+			@RequestParam(value = "gias", required = false) List<String> gias,
+			@RequestParam(value = "thuongHieus", required = false) List<String> thuongHieus,
+			@RequestParam(value = "chatLieus", required = false) List<String> chatLieus,
+			@RequestParam(value = "kichThuocs", required = false) List<String> kichThuocs,
+			@RequestParam(value = "mauSacs", required = false) List<String> mauSacs,
+			@RequestParam(value = "tinhNangs", required = false) List<String> tinhNangs,
+			@RequestParam(value = "loaiSapXep", required = false, defaultValue = "0") String loaiSapXep,
+			@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+			@RequestParam(value = "size", required = false, defaultValue = SIZE + "") int size
+
+	) {
+
+		
+		List<BienTheValiDTO> ketQua = bienTheValiService.getBienTheValisTheoNhieuDieuKien(nhomValis, gias, thuongHieus,
+				chatLieus, kichThuocs, mauSacs, tinhNangs, loaiSapXep, page, size);
+		
+		model.addAttribute("valis", ketQua);
+
+		return "ketQuaDanhSach";
 	}
 }

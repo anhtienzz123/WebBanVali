@@ -204,8 +204,8 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="<c:url value="/admin/vali/"  />" class="nav-link">
+              <i class="nav-icon fab fa-product-hunt"></i>
               <p>
                 Quản lý vali
                 <!-- <span class="right badge badge-danger">Quản lý val</span> -->
@@ -215,7 +215,7 @@
           
            <li class="nav-item">
             <a href="<c:url value="/admin/nhom-vali/trang-chu"  />" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                 Quản lý nhóm vali
                  
@@ -224,8 +224,13 @@
           </li>
           
           <li class="nav-item">
+<<<<<<< HEAD
             <a href="<c:url value="/admin/thuong-hieu/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
+=======
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+>>>>>>> 5dcf07a8e64c6818b9ff14e86b20d2d97e372870
               <p>
                 Quản lý nhóm thương hiệu
                  
@@ -235,7 +240,7 @@
           
           <li class="nav-item">
             <a href="<c:url value="/admin/chat-lieu/trang-chu"  />" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-palette"></i>
               <p>
                 Quản lý chất liệu
                  
@@ -245,7 +250,7 @@
           
           <li class="nav-item">
             <a href="<c:url value="/admin/mau-sac/trang-chu"  />" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tint"></i>
               <p>
                 Quản lý màu sắc
                  
@@ -264,8 +269,8 @@
           </li>
           
             <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="<c:url value="/admin/hoa-don/"  />" class="nav-link">
+              <i class="nav-icon fas fa-inbox"></i>
               <p>
                 Quản lý hóa đơn
               </p>
@@ -273,8 +278,8 @@
           </li>
           
            <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="" class="nav-link">
+              <i class="nav-icon far fa-images"></i>
               <p>
                 Quản lý banner
                  
@@ -283,8 +288,8 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="<c:url value="/admin/thong-ke/"  />" class="nav-link">
+              <i class="nav-icon far fa-chart-bar"></i>
               <p>
                 Thống kê
                  

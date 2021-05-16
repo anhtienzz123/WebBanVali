@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import webbanvali.entity.NguoiDung;
 import webbanvali.repository.BienTheValiRepository;
+import webbanvali.repository.HoaDonRepository;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.repository.ValiRepository;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.NhomValiService;
-import webbanvali.utils.BienTheValiSpecification;
 import webbanvali.utils.ROLE;
+import webbanvali.utils.TrangThaiDonHang;
 
 @Controller
 public class TrangChuController {
@@ -31,6 +32,8 @@ public class TrangChuController {
 	private BienTheValiRepository bienTheValiRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private HoaDonRepository hoaDonRepository;
 	
 	@Autowired
 	private NhomValiService nhomValiService;
@@ -89,29 +92,9 @@ public class TrangChuController {
 	@GetMapping(value = "/test")
 	public String test() {
 
-		// Test 1
-//		Specification<Vali> specification = Specification.where(ValiSpecification.timKiemTheoTenVali("vali 1"))
-//				.and(ValiSpecification.timKiemTheoSlug("slug"));
-//		valiRepository.findAll(specification, PageRequest.of(0, 1)).forEach(s -> System.out.println(s.getId()));
-
-		// Test 2
-
-//		List<String> tenThuongHieus = Arrays.asList("thuonghieu1", "thuonghieu2");
-//
-//		valiRepository.findAll(ValiSpecification.timKiemTheoThuongHieu(tenThuongHieus))
-//				.forEach(s -> System.out.println(s.getTenVali()));
-		
-//		List<String> tenTinhNangs = Arrays.asList("tinhnang1","tinhnang2" ,"tinhnang3");
-//		List<String> tenThuongHieus = Arrays.asList("thuonghieu1", "thuonghieu2");
+//		System.out.println("size: " + hoaDonRepository.findAllByIdAndSoDienThoaiGiaoHangAndTrangThaiDonHang("", TrangThaiDonHang.DANG_CHO_XU_LY).size());
 //		
-//		Specification<Vali> condition = Specification.where(ValiSpecification.timKiemTheoTenTinhNang(tenTinhNangs)).and(ValiSpecification.timKiemTheoThuongHieu(tenThuongHieus));
-//
-//		
-//		valiRepository.findAll(condition).forEach(s -> System.out.println(s.getTenVali()));
 		
-		// test bien the
-		
-		bienTheValiRepository.findAll(BienTheValiSpecification.timKiemTheoCodeNhomVali("nhom-vali-1")).forEach(s -> System.out.println(s.getVali().getTenVali()));
 		
 		return "redirect:/trang-chu";
 	}

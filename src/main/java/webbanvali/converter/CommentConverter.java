@@ -38,7 +38,7 @@ public class CommentConverter {
 
 			if (commentNumber < 10) {
 				BinhLuanDTO binhLuanDTO = new BinhLuanDTO(binhLuan.getNguoiDung().getHoTen(),
-						XuLiNgay.convertLocalDateTimeToString(binhLuan.getThoiGianBinhLuan()), binhLuan.getDanhGia(),
+						XuLiNgay.toString(binhLuan.getThoiGianBinhLuan()), binhLuan.getDanhGia(),
 						binhLuan.getNoiDung());
 
 				binhLuanDTOs.add(binhLuanDTO);

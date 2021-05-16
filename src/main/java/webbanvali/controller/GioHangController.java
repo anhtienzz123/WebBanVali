@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webbanvali.dto.CartDTO;
-import webbanvali.dto.NguoiDungDTO;
 import webbanvali.service.GioHangService;
 import webbanvali.service.NguoiDungService;
 
@@ -33,9 +32,9 @@ public class GioHangController {
 		if (cartDTO != null) {
 			model.addAttribute("cart", gioHangService.convertCartDTOToCartBienTheValiDTO(cartDTO));
 		}
-		
+
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		
+
 		model.addAttribute("nguoiDung", nguoiDungService.getTheoEmail(username));
 
 		return "gioHang";
@@ -46,8 +45,8 @@ public class GioHangController {
 			@RequestParam(name = "kichThuocCode") String kichThuocCode,
 			@RequestParam(name = "mauSacCode") String mauSacCode) {
 
-		System.out.println("valiSlug: " + valiSlug + " KichThuocCode: " + kichThuocCode + " mauSacCode: " + mauSacCode);
 		
+
 		CartDTO cartDTO;
 
 		if (session.getAttribute("gioHang") == null) {
@@ -105,5 +104,20 @@ public class GioHangController {
 		}
 
 		return "redirect:/gio-hang";
+	}
+
+	@GetMapping(value = "/dat-hang")
+	public String datHang(HttpSession session) {
+
+		CartDTO cartDTO = (CartDTO) session.getAttribute("gioHang");
+
+		if (gioHangService.datHang(cartDTO)) {
+
+			session.removeAttribute("gioHang");
+			return "ketQuaDatHang";
+		}
+
+		return "redirect:/gio-hang";
+
 	}
 }
