@@ -20,6 +20,7 @@ public class NguoiDungDTO {
 	private String quanHuyen;
 	private String tinhThanhPho;
 	private String email;
+	private String matKhau;
 	private ROLE vaiTro;
 	private boolean trangThai;
 	
