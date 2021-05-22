@@ -224,13 +224,10 @@
           </li>
           
           <li class="nav-item">
-<<<<<<< HEAD
+
             <a href="<c:url value="/admin/thuong-hieu/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-=======
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
->>>>>>> 5dcf07a8e64c6818b9ff14e86b20d2d97e372870
+
               <p>
                 Quản lý nhóm thương hiệu
                  
@@ -259,10 +256,19 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<c:url value="/admin/tinh-nang-dac-biet/trang-chu" />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý tính năng đặc biệt
+                 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<c:url value="/admin/kich-thuoc/trang-chu" />" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý kích thước
                  
               </p>
             </a>

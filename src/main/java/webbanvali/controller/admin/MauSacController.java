@@ -35,15 +35,15 @@ public class MauSacController {
 	}
 	
 	@GetMapping(value = "/api")
-	public ResponseEntity<List<MauSacDTO>> getListTheoTen(@RequestParam("tenMau") String tenMau , Model model){
+	public @ResponseBody List<MauSacDTO> getListTheoTen(@RequestParam("tenMau") String tenMau , Model model){
 		
 		List<MauSacDTO> mauSacDTOs = mauSacService.getMauSacsTheoTenMau(tenMau);
 		
-		return ResponseEntity.ok(mauSacDTOs);
+		return mauSacDTOs;
 		
 	}
 	
-	
+	// Xem Chi Tiet
 	@GetMapping(value = "/api/{mauSacId}")
 	public @ResponseBody ResponseEntity<MauSacDTO> getTheoId(@PathVariable("mauSacId") int id){
 		
@@ -53,6 +53,7 @@ public class MauSacController {
 			// status: 404
 			return new ResponseEntity<MauSacDTO>(HttpStatus.NOT_FOUND);
 		// status: 200 success
+		
 		return ResponseEntity.ok(mauSacDTO);
 		
 	}
