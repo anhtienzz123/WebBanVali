@@ -1,16 +1,16 @@
 
 // hàm lấy dữ liệu từ api và cập nhật vào view
-function xemChiTiet(mauSacId) {
+function xemChiTiet(kichThuocId) {
 
 	// url lấy dữ liệu từ api
-	const url = `api/${mauSacId}`;
+	const url = `api/${kichThuocId}`;
 
 
 	// gọi api lấy dữ liệu
 	$.get(url, function(data, status) {
 
 		// data là dữ liệu nhận được
-		const { id, tenMau, code } = data;
+		const { id, tenKichThuoc, code } = data;
 		
 
 		if (status === 'success') {
@@ -18,7 +18,7 @@ function xemChiTiet(mauSacId) {
 			
 			
 			$("#xem-modal .id").html(`<span class="font-weight-bold">${id}</span>`);
-			$("#xem-modal .tenMau").html(`<span class="font-weight-bold">${tenMau}</span>`);
+			$("#xem-modal .tenKichThuocCT").html(`<span class="font-weight-bold">${tenKichThuoc}</span>`);
 			$("#xem-modal .code").html(`<span class="font-weight-bold">${code}</span>`);
 
 		}
@@ -31,11 +31,11 @@ function xemChiTiet(mauSacId) {
 $('#btnThem').click(function() {
 
 	// lấy giá trị đã nhập
-	const tenMau = $('#them-modal #tenMauSacThem').val();
+	const tenKichThuoc = $('#them-modal #tenKichThuocThem').val();
 
 	// kiểm tra không được bỏ trống
-	if (tenMau.trim().length == 0) {
-		$('#them-modal #errThem').text('Tên màu không được bỏ trống');
+	if (tenKichThuoc.trim().length == 0) {
+		$('#them-modal #errThem').text('Tên kích thước không được bỏ trống');
 		return;
 	}
 
@@ -45,7 +45,7 @@ $('#btnThem').click(function() {
 		url: url,
 		type: 'POST',
 		contentType: 'application/json',
-		data: JSON.stringify({ tenMau }),
+		data: JSON.stringify({ tenKichThuoc }),
 		
 		success: function() {
 
@@ -55,7 +55,7 @@ $('#btnThem').click(function() {
 
 		},
 		error: function() {
-			toastr.error('Tên màu đã bị trùng')
+			toastr.error('Tên kích thước đã bị trùng')
 		},
 
 	});
@@ -65,23 +65,23 @@ $('#btnThem').click(function() {
 });
 
 // lấy dữ liệu và đưa lên form sửa
-function sua(mauSacId) {
+function sua(kichThuocId) {
 
 
 	// url lấy dữ liệu từ api
-	const url = `api/${mauSacId}`;
+	const url = `api/${kichThuocId}`;
 
 
 	// gọi api lấy dữ liệu
 	$.get(url, function(data, status) {
 
 		// data là dữ liệu nhận được
-		const { id, tenMau } = data;
+		const { id, tenKichThuoc } = data;
 
 		if (status === 'success') {
 			// set dữ liệu vào modal
 			$("#sua-modal #id").val(id);
-			$("#sua-modal #tenMau").val(tenMau);
+			$("#sua-modal #tenKichThuoc").val(tenKichThuoc);
 
 		}
 	});
@@ -92,11 +92,11 @@ $('#btnCapNhat').click(function() {
 
 	// lấy dữ liệu từ modal
 	const id = $('#sua-modal #id').val();
-	const tenMau = $('#sua-modal #tenMau').val();
+	const tenKichThuoc = $('#sua-modal #tenKichThuoc').val();
 
 	// kiểm tra không được bỏ trống
-	if (tenMau.trim().length == 0) {
-		$('#sua-modal #errThem').text('Tên màu không được bỏ trống');
+	if (tenKichThuoc.trim().length == 0) {
+		$('#sua-modal #errThem').text('Tên kích thước không được bỏ trống');
 		return;
 	}
 
@@ -106,7 +106,7 @@ $('#btnCapNhat').click(function() {
 		url: url,
 		type: 'PUT',
 		contentType: 'application/json',
-		data: JSON.stringify({ id, tenMau }),
+		data: JSON.stringify({ id, tenKichThuoc }),
 		success: function() {
 
 			capNhatDuLieu("");
@@ -115,7 +115,7 @@ $('#btnCapNhat').click(function() {
 
 		},
 		error: function() {
-			toastr.error('Tên màu đã bị trùng')
+			toastr.error('Tên kích thước đã bị trùng')
 		},
 
 	});
@@ -126,12 +126,12 @@ $('#btnCapNhat').click(function() {
 
 
 // hàm xóa sản phẩm
-function xoa(mauSacId) {
+function xoa(kichThuocId) {
 
 	if (confirm("Bạn có chắc chắn xóa không ?")) {
 
 		$.ajax({
-			url: `api/${mauSacId}`,
+			url: `api/${kichThuocId}`,
 			type: 'DELETE',
 			success: function() {
 
@@ -151,7 +151,7 @@ function xoa(mauSacId) {
 
 
 // khi nhập vào ô tìm kiếm
-$("#timKiemTenMauSac").on("keyup", function() {
+$("#timKiemTenKichThuoc").on("keyup", function() {
 
 
 	capNhatDuLieu(this.value);
@@ -167,15 +167,15 @@ function renderDuLieu(data) {
 	$("#tableBody").html("");
 
 	// lặp qua dữ liệu
-	$.each(data, (index, mauSac) => {
+	$.each(data, (index, kichThuoc) => {
 
-		const { id, tenMau, code } = mauSac;
+		const { id, tenKichThuoc, code } = kichThuoc;
 
 		// tạo tr trong #tableBody
 		$("<tr>").appendTo($("#tableBody"))
 			// thêm td vào tr
 			.append(  $("<td>").text(id)  )
-			.append( $("<td>").text(tenMau) )
+			.append( $("<td>").text(tenKichThuoc) )
 			.append( $("<td>").text(code) )
 			.append(
 				$("<td>").html(`
@@ -208,9 +208,9 @@ function renderDuLieu(data) {
 }
 
 // hàm tìm kiếm theo tên màu
-function capNhatDuLieu(tenMau) {
+function capNhatDuLieu(tenKichThuoc) {
 
-	const url = `api?tenMau=${tenMau}`;
+	const url = `api?tenKichThuoc=${tenKichThuoc}`;
 	$.get(url, function(data) {
 
 

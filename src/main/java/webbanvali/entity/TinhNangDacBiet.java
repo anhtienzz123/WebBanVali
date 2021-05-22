@@ -36,6 +36,19 @@ public class TinhNangDacBiet implements Serializable {
 	private String tenTinhNang;
 	private String code;
 
+	public TinhNangDacBiet(String tenTinhNang, String code) {
+		super();
+		this.tenTinhNang = tenTinhNang;
+		this.code = code;
+	}
+
+	public TinhNangDacBiet(Integer id, String tenTinhNang, String code) {
+		super();
+		this.id = id;
+		this.tenTinhNang = tenTinhNang;
+		this.code = code;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "vali_tinh_nang", // Tạo ra một join Table
 			joinColumns = @JoinColumn(name = "tinh_nang_id"), // Cột id class hiện tại

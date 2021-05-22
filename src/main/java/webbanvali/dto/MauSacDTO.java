@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MauSacDTO {
 
+	
 	private Integer id;
 	private String tenMau;
 	private String code;
