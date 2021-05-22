@@ -2,8 +2,8 @@ package webbanvali.utils;
 
 public enum TrangThaiDonHang {
 
-	DANG_CHO_XU_LY("Đang chờ xử lý"), DANG_XU_LY("Đang xử lý"), DANG_GIAO_HANG("Đang giao hàng"),
-	HUY_DON_HANG("Hủy đơn hàng");
+	TAT_CA("Tất cả"),DANG_CHO_XU_LY("Đang chờ xử lý"), DANG_XU_LY("Đang xử lý"), DANG_GIAO_HANG("Đang giao hàng"),
+	HUY_DON_HANG("Hủy đơn hàng"), ;
 
 	private String ten;
 

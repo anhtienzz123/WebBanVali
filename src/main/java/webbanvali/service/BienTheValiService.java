@@ -9,9 +9,9 @@ public interface BienTheValiService {
 
 	BienTheValiDTO getTheoId(int valiId, int kichThuocId, int mauSacId);
 
-	List<BienTheValiDTO> getBienTheValisTheoNhieuDieuKien(String codeNhomVali, double giaDau, double giaCuoi,
+	List<BienTheValiDTO> getBienTheValisTheoNhieuDieuKien(List<String> codeNhomValis, List<String> gias,
 			List<String> codeThuongHieus, List<String> codeChatLieus, List<String> codeKichThuocs,
-			List<String> codeMauSacs, List<String> codeTinhNangDacBiets);
+			List<String> codeMauSacs, List<String> codeTinhNangDacBiets, String loaiSapXep, int page, int size);
 	
 	ChiTietValiDTO getChiTietValiDTO(String valiSlug, String kichThuocCode, String mauSacCode );
 	

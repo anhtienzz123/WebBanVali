@@ -56,7 +56,7 @@ public class AppConfig implements WebMvcConfigurer {
 	public TilesConfigurer tilesConfigurer() {
 
 		TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml", "classpath:Khai_tilesAdmin.xml",
+		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml","classpath:tilesEmpty.xml" ,"classpath:Khai_tilesAdmin.xml",
 				"classpath:Khai_tilesWeb.xml", "classpath:Trong_tilesAdmin.xml",
 				"classpath:Trong_tilesWeb.xml");
 		configurer.setCheckRefresh(true);

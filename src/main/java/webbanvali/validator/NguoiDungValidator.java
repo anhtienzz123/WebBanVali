@@ -70,6 +70,10 @@ public class NguoiDungValidator implements Validator {
 		if(nguoiDungDTO.getTinhThanhPho() == null) {
 			errors.rejectValue("tinhThanhPho", null, "Tỉnh/Thành phố chưa chọn");
 		}
+		
+		
+
+		
 	}
 
 }

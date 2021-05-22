@@ -1,12 +1,10 @@
 package webbanvali.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
@@ -21,119 +19,123 @@ import webbanvali.entity.Vali;
 
 public final class BienTheValiSpecification {
 
-	public static Specification<BienTheVali> timKiemTheoCodeNhomVali(String codeNhomVali) {
+	public static Specification<BienTheVali> hasCodeNhomValis(List<String> codeNhomValis) {
 
-		return new Specification<BienTheVali>() {
+		return (root, query, cb) -> {
 
-			private static final long serialVersionUID = 1L;
+			if (codeNhomValis == null || codeNhomValis.size() == 0)
+				return null;
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Join<BienTheVali, Vali> valiJoin = root.join("vali");
-				Join<Vali, NhomVali> nhomValiJoin = valiJoin.join("nhomVali");
+			Join<BienTheVali, Vali> valiJoin = root.join("vali");
+			Join<Vali, NhomVali> nhomValiJoin = valiJoin.join("nhomVali");
 
-				// return cb.equal(nhomValiJoin.get(NhomVali_.code), nhomValiJoin);
-				return cb.equal(nhomValiJoin.get("code"), codeNhomVali);
+			return nhomValiJoin.get("code").in(codeNhomValis);
+		};
 
+	}
+
+	public static Specification<BienTheVali> hasKhoangGias(List<String> gias) {
+
+		return (root, query, cb) -> {
+
+			if (gias == null || gias.size() == 0)
+				return null;
+
+			List<Predicate> predicates = new ArrayList<>();
+
+			for (String s : gias) {
+
+				if (s.equals(ChuoiConstant.KEY_DUOI_1_TRIEU)) {
+					predicates.add(cb.lessThanOrEqualTo(root.get("gia"), 1000000));
+				}
+
+				if (s.equals(ChuoiConstant.KEY_TU_1_2_TRIEU)) {
+					predicates.add(cb.between(root.get("gia"), 1000000, 2000000));
+				}
+
+				if (s.equals(ChuoiConstant.KEY_TU_2_3_TRIEU)) {
+					predicates.add((cb.between(root.get("gia"), 2000000, 3000000)));
+				}
+
+				if (s.equals(ChuoiConstant.KEY_TREN_3_TRIEU)) {
+					predicates.add(cb.greaterThanOrEqualTo(root.get("gia"), 3000000));
+
+				}
 			}
+
+			Predicate[] predicateResults = new Predicate[predicates.size()];
+			predicates.toArray(predicateResults);
+
+			return cb.or(predicateResults);
 
 		};
 	}
 
-	public static Specification<BienTheVali> timKiemTheoKhoangGia(double giaDau, double giaCuoi) {
+	public static Specification<BienTheVali> hasCodeThuongHieus(List<String> codeThuongHieus) {
 
-		return new Specification<BienTheVali>() {
+		return (root, query, cb) -> {
 
-			private static final long serialVersionUID = 1L;
+			if (codeThuongHieus == null || codeThuongHieus.size() == 0)
+				return null;
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				return cb.between(root.get("gia"), giaDau, giaCuoi);
-			}
+			Join<BienTheVali, Vali> valiJoin = root.join("vali");
+			Join<Vali, ThuongHieu> thuongHieuJoin = valiJoin.join("thuongHieu");
 
+			return thuongHieuJoin.get("code").in(codeThuongHieus);
 		};
 	}
 
-	public static Specification<BienTheVali> timKiemTheoCodeThuongHieus(List<String> codeThuongHieus) {
+	public static Specification<BienTheVali> hasCodeChatLieus(List<String> codeChatLieus) {
 
-		return new Specification<BienTheVali>() {
-			private static final long serialVersionUID = 1L;
+		return (root, query, cb) -> {
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			if (codeChatLieus == null || codeChatLieus.size() == 0)
+				return null;
 
-				Join<BienTheVali, Vali> valiJoin = root.join("vali");
-				Join<Vali, ThuongHieu> thuongHieuJoin = valiJoin.join("thuongHieu");
+			Join<BienTheVali, Vali> valiJoin = root.join("vali");
+			Join<Vali, ChatLieu> chatLieuJoin = valiJoin.join("chatLieu");
 
-				return thuongHieuJoin.get("code").in(codeThuongHieus);
-			}
-
+			return chatLieuJoin.get("code").in(codeChatLieus);
 		};
 	}
 
-	public static Specification<BienTheVali> timKiemTheoCodeChatLieus(List<String> codeChatLieus) {
+	public static Specification<BienTheVali> hasCodeKichThuocs(List<String> codeKichThuocs) {
 
-		return new Specification<BienTheVali>() {
-			private static final long serialVersionUID = 1L;
+		return (root, query, cb) -> {
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			if (codeKichThuocs == null || codeKichThuocs.size() == 0)
+				return null;
 
-				Join<BienTheVali, Vali> valiJoin = root.join("vali");
-				Join<Vali, ChatLieu> chatLieuJoin = valiJoin.join("chatLieu");
+			Join<BienTheVali, KichThuoc> kichThuocJoin = root.join("kichThuoc");
 
-				return chatLieuJoin.get("code").in(codeChatLieus);
-			}
-
+			return kichThuocJoin.get("code").in(codeKichThuocs);
 		};
 	}
 
-	public static Specification<BienTheVali> timKiemTheoCodeKichThuocs(List<String> codeKichThuocs) {
+	public static Specification<BienTheVali> hasCodeMauSacs(List<String> codeMauSacs) {
 
-		return new Specification<BienTheVali>() {
-			private static final long serialVersionUID = 1L;
+		return (root, query, cb) -> {
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			if (codeMauSacs == null || codeMauSacs.size() == 0)
+				return null;
 
-				Join<BienTheVali, KichThuoc> kichThuocJoin = root.join("kichThuoc");
+			Join<BienTheVali, MauSac> mauSacJoin = root.join("mauSac");
 
-				return kichThuocJoin.get("code").in(codeKichThuocs);
-			}
-
+			return mauSacJoin.get("code").in(codeMauSacs);
 		};
 	}
 
-	public static Specification<BienTheVali> timKiemTheoCodeMauSacs(List<String> codeMauSacs) {
+	public static Specification<BienTheVali> hasCodeTinhNangDacBiets(List<String> codeTinhNangDacBiets) {
 
-		return new Specification<BienTheVali>() {
-			private static final long serialVersionUID = 1L;
+		return (root, query, cb) -> {
 
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			if (codeTinhNangDacBiets == null || codeTinhNangDacBiets.size() == 0)
+				return null;
 
-				Join<BienTheVali, MauSac> mauSacJoin = root.join("mauSac");
+			Join<BienTheVali, Vali> valiJoin = root.join("vali");
+			Join<Vali, TinhNangDacBiet> tinhNangDacBietJoin = valiJoin.join("tinhNangDacBiets");
 
-				return mauSacJoin.get("code").in(codeMauSacs);
-			}
-
-		};
-	}
-
-	public static Specification<BienTheVali> timKiemTheoCodeTinhNangDacBiets(List<String> codeTinhNangDacBiets) {
-
-		return new Specification<BienTheVali>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Predicate toPredicate(Root<BienTheVali> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-
-				Join<BienTheVali, Vali> valiJoin = root.join("vali");
-				Join<Vali, TinhNangDacBiet> tinhNangDacBietJoin = valiJoin.join("tinhNangDacBiets");
-
-				return tinhNangDacBietJoin.get("code").in(codeTinhNangDacBiets);
-			}
-
+			return tinhNangDacBietJoin.get("code").in(codeTinhNangDacBiets);
 		};
 	}
 
