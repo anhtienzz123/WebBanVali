@@ -286,10 +286,6 @@
             <a href="<c:url value="/admin/thuong-hieu/trang-chu"  />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ea6079a599289a5c4e53859a3ef4de8520503e38
               <p>
                 Quản lý nhóm thương hiệu
                  
