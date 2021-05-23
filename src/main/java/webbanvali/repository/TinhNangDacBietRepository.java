@@ -6,4 +6,6 @@ import webbanvali.entity.TinhNangDacBiet;
 
 public interface TinhNangDacBietRepository extends JpaRepository<TinhNangDacBiet, Integer>{
 
+	
+	TinhNangDacBiet findByTenTinhNang(String tenTinhNang);
 }

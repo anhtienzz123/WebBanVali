@@ -49,11 +49,11 @@ public class BienTheVali implements Serializable {
 	private MauSac mauSac;
 
 	@Column(name = "trong_luong")
-	private double trongLuong;
+	private String trongLuong;
 	@Column(name = "mo_ta_kich_thuoc")
 	private String moTaKichThuoc;
 	@Column(name = "the_tich")
-	private double theTich;
+	private String theTich;
 	private double gia;
 	@Column(name = "khuyen_mai")
 	private double khuyenMai;

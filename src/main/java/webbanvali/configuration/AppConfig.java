@@ -24,6 +24,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -56,8 +57,8 @@ public class AppConfig implements WebMvcConfigurer {
 	public TilesConfigurer tilesConfigurer() {
 
 		TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml","classpath:tilesEmpty.xml" ,"classpath:Khai_tilesAdmin.xml",
-				"classpath:Khai_tilesWeb.xml", "classpath:Trong_tilesAdmin.xml",
+		configurer.setDefinitions("classpath:tilesWeb.xml", "classpath:tilesAdmin.xml", "classpath:tilesEmpty.xml",
+				"classpath:Khai_tilesAdmin.xml", "classpath:Khai_tilesWeb.xml", "classpath:Trong_tilesAdmin.xml",
 				"classpath:Trong_tilesWeb.xml");
 		configurer.setCheckRefresh(true);
 		return configurer;
@@ -67,6 +68,13 @@ public class AppConfig implements WebMvcConfigurer {
 	public ViewResolver ViewResolver() {
 		TilesViewResolver viewResolver = new TilesViewResolver();
 		return viewResolver;
+	}
+
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSize(-1);
+		return multipartResolver;
 	}
 
 	// cấu hihf file tĩnh

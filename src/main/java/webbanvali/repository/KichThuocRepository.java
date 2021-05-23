@@ -6,4 +6,5 @@ import webbanvali.entity.KichThuoc;
 
 public interface KichThuocRepository  extends JpaRepository<KichThuoc, Integer>{
 
+	KichThuoc findByTenKichThuoc(String tenKichThuoc);
 }

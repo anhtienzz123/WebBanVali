@@ -88,6 +88,29 @@
 			value="/WEB-INF/views/admin/hoadon/trangChu.jsp" />
 	</definition>
 	
+	<!-- Quản lý vali -->
+	<definition name="valiAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/trangChu.jsp" />
+	</definition>
+	
+	<definition name="themVali" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/themVali.jsp" />
+	</definition>
+	
+	<definition name="bienTheValiAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/bienTheValis.jsp" />
+	</definition>
+	
+	<definition name="themBienTheVali" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/themBienTheVali.jsp" />
+	</definition>
+	
+	
+	
 	
 
 </tiles-definitions>

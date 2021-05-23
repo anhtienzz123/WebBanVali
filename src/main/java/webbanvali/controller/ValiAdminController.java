@@ -21,7 +21,7 @@ import webbanvali.service.ValiService;
 
 @Controller
 @RequestMapping("/san-pham")
-public class ValiController {
+public class ValiAdminController {
 
 	private static final int SIZE = 12;
 

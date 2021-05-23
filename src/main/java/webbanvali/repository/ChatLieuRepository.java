@@ -13,4 +13,5 @@ public interface ChatLieuRepository extends JpaRepository<ChatLieu, Integer> {
 	
 	boolean existsByTenChatLieuAndIdNot(String tenChatLieu, Integer id);
 
+	ChatLieu findByTenChatLieu(String tenChatLieu);
 }
