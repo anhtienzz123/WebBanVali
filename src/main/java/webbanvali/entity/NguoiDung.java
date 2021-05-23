@@ -1,6 +1,7 @@
 package webbanvali.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -39,6 +40,8 @@ public class NguoiDung implements Serializable {
 	private String email;
 	@Column(name = "mat_khau")
 	private String matKhau;
+	@Column(name = "ngay_tao")
+	private LocalDate ngayTao;
 	@Column(name = "vai_tro")
 	@Enumerated(EnumType.STRING)
 	private ROLE vaiTro;

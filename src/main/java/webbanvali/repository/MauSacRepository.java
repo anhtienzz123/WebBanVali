@@ -15,4 +15,6 @@ public interface MauSacRepository extends JpaRepository<MauSac, Integer> {
 	// nếu có thằng id khác trùng màu
 	boolean existsByTenMauAndIdNot(String tenMau, Integer id);
 	
+	MauSac findByTenMau(String tenMau);
+	
 }

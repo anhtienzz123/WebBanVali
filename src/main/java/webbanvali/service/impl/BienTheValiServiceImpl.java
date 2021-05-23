@@ -19,15 +19,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import webbanvali.converter.BienTheValiConverter;
+import webbanvali.dto.BienTheValiAddDTO;
 import webbanvali.dto.BienTheValiDTO;
+import webbanvali.dto.BienTheValiTableDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.service.BienTheValiService;
 import webbanvali.utils.ChuoiConstant;
+import webbanvali.utils.FileUploadProcessor;
 
 @Service
 @Transactional
@@ -38,6 +42,8 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 
 	@Autowired
 	private BienTheValiConverter bienTheValiConverter;
+	@Autowired
+	private FileUploadProcessor fileUploadProcessor;
 
 	@Override
 	public BienTheValiDTO getTheoId(int valiId, int kichThuocId, int mauSacId) {
@@ -82,8 +88,6 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 
 		}
 
-	
-		
 		return bienTheValiRepository.findAll(dieuKien, PageRequest.of(page, size, sort)).stream()
 				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}
@@ -118,4 +122,69 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}
 
+	@Override
+	public boolean themBienTheVali(BienTheValiAddDTO bienTheValiAddDTO, MultipartFile file) {
+
+		try {
+			String fileName = fileUploadProcessor.saveFile(file);
+			bienTheValiAddDTO.setTenAnh(fileName);
+			bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
+
+			return true;
+		} catch (Exception e) {
+
+		}
+		;
+
+		return false;
+
+	}
+
+	@Override
+	public List<BienTheValiTableDTO> getBienTheValiTableDTOs() {
+		return bienTheValiRepository.findAll().stream().map(s -> bienTheValiConverter.toBienTheValiTableDTO(s))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<BienTheValiTableDTO> getBienTheValiTableDTOs(String tenVali, String tenKichThuoc, String tenMauSac) {
+
+		return bienTheValiRepository
+				.findByValiTenValiContainingAndKichThuocTenKichThuocAndMauSacTenMau(tenVali, tenKichThuoc, tenMauSac)
+				.stream().map(s -> bienTheValiConverter.toBienTheValiTableDTO(s)).collect(Collectors.toList());
+	}
+
+	@Override
+	public BienTheValiAddDTO getBienTheValiAdd(Integer valiId, Integer kichThuocId, Integer mauSacId) {
+
+		BienTheVali bienTheVali = bienTheValiRepository.findById(new BienTheVali_PK(valiId, kichThuocId, mauSacId))
+				.get();
+
+		return bienTheValiConverter.toBienTheValiAddDTO(bienTheVali);
+	}
+
+	@Override
+	public boolean capNhatBienTheVali(BienTheValiAddDTO bienTheValiAddDTO, MultipartFile file) {
+
+		try {
+
+			if (file != null) {
+
+				fileUploadProcessor.deleteFile(bienTheValiAddDTO.getTenAnh());
+				String fileName = fileUploadProcessor.saveFile(file);
+				bienTheValiAddDTO.setTenAnh(fileName);
+				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
+
+			}else {
+				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
+			}
+
+			return true;
+		} catch (Exception e) {
+
+		};
+
+		return false;
+
+	}
 }

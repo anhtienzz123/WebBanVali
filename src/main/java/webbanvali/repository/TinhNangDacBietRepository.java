@@ -13,4 +13,6 @@ public interface TinhNangDacBietRepository extends JpaRepository<TinhNangDacBiet
 
 	boolean existsByTenTinhNangAndIdNot(String tenTinhNang, Integer id);
 
+	
+	TinhNangDacBiet findByTenTinhNang(String tenTinhNang);
 }

@@ -31,11 +31,12 @@ public interface BienTheValiRepository
 			+ "group by btv.vali_id, btv.kich_thuoc_id, btv.mau_sac_id\r\n" + "order by sum(cthd.so_luong) desc\r\n"
 			+ "limit ?1", nativeQuery = true)
 	List<BienTheVali> getValisBanChay(int limit);
-	
-	
+
 	List<BienTheVali> findAllByNoiBatTrue(Pageable page);
+
 	List<BienTheVali> findAllByOrderByKhuyenMaiDesc(Pageable page);
-	
-	
-	
+
+	List<BienTheVali> findByValiTenValiContainingAndKichThuocTenKichThuocAndMauSacTenMau(String tenVali,
+			String tenKichThuoc, String tenMau);
+
 }

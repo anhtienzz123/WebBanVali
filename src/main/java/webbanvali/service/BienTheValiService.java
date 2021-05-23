@@ -2,7 +2,11 @@ package webbanvali.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import webbanvali.dto.BienTheValiAddDTO;
 import webbanvali.dto.BienTheValiDTO;
+import webbanvali.dto.BienTheValiTableDTO;
 import webbanvali.dto.ChiTietValiDTO;
 
 public interface BienTheValiService {
@@ -18,5 +22,13 @@ public interface BienTheValiService {
 	List<BienTheValiDTO> getValisBanChay(int limit);
 	List<BienTheValiDTO> getValisNoiBat(int limit);
 	List<BienTheValiDTO> getValisKhuyenMai(int limit);
+	
+	boolean themBienTheVali(BienTheValiAddDTO bienTheValiAddDTO, MultipartFile file);
+	boolean capNhatBienTheVali(BienTheValiAddDTO bienTheValiAddDTO, MultipartFile file);
+	
+	List<BienTheValiTableDTO> getBienTheValiTableDTOs();
+	List<BienTheValiTableDTO> getBienTheValiTableDTOs(String tenVali, String tenKichThuoc, String tenMauSac);
+	
+	BienTheValiAddDTO getBienTheValiAdd(Integer valiId, Integer kichThuocId, Integer mauSacId);
 	
 }
