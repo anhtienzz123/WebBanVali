@@ -20,8 +20,8 @@ public class MauSacServiceImpl implements MauSacService {
 
 	@Override
 	public List<MauSacDTO> getMauSacs() {
+		
 		List<MauSac> mauSacs = mauSacRepository.findAll();
-
 		return mauSacs.stream().map(s -> new MauSacDTO(s.getId(), s.getTenMau(), s.getCode()))
 				.collect(Collectors.toList());
 	}
@@ -34,6 +34,7 @@ public class MauSacServiceImpl implements MauSacService {
 			return null;
 
 		String code = HamDungChung.toSlug(tenMauSac);
+		
 		MauSac mauSacResult = mauSacRepository.save(new MauSac(tenMauSac, code));
 		return new MauSacDTO(mauSacResult.getId(), mauSacResult.getTenMau(), mauSacResult.getCode());
 	}
@@ -41,6 +42,7 @@ public class MauSacServiceImpl implements MauSacService {
 	@Override
 	public MauSacDTO capNhatMauSac(Integer id, String tenMauSac) {
 
+		// kiểm tra thằng khác có màu giống
 		if (mauSacRepository.existsByTenMauAndIdNot(tenMauSac, id)) {
 			return null;
 		}
@@ -56,6 +58,8 @@ public class MauSacServiceImpl implements MauSacService {
 
 		MauSacDTO mauSacDTO = mauSacRepository.findById(id)
 				.map(s -> new MauSacDTO(s.getId(), s.getTenMau(), s.getCode())).orElse(null);
+		
+		
 
 		return mauSacDTO;
 	}
@@ -66,7 +70,8 @@ public class MauSacServiceImpl implements MauSacService {
 		if (!mauSacRepository.existsById(id))
 			return false;
 
-		mauSacRepository.delete(mauSacRepository.findById(id).get());
+//		mauSacRepository.delete(mauSacRepository.findById(id).get());
+		mauSacRepository.deleteById(id);
 
 		return true;
 	}

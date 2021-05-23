@@ -8,11 +8,17 @@
 
 <tiles-definitions>
 
-
-	<definition name="test4" extends="adminLayout">
+	
+	<definition name="kichThuocAdmin" extends="adminLayout">
 		<put-attribute name="body"
-			value="/WEB-INF/views/test4.jsp" />
+			value="/WEB-INF/views/admin/kichthuoc/trangChuKichThuoc.jsp" />
 	</definition>
+	
+	<definition name="trangChuTinhNangDacBietAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/tinhnangdacbiet/trangChuTinhNangDacBiet.jsp" />
+	</definition>
+	
 
 
 </tiles-definitions>
