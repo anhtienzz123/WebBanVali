@@ -49,10 +49,10 @@ public class NhomValiServiceImpl implements NhomValiService {
 	}
 
 	@Override
-	public NhomValiDTO themNhomVali(String tenNhomVali) {
+	public NhomValiDTO themNhomVali(Integer id,String tenNhomVali) {
 		// TODO Auto-generated method stub
 		// nếu như đã tồn tại rồi
-		if (nhomValiRepository.existsByTenNhomVali(tenNhomVali))
+		if (nhomValiRepository.existsByTenNhomValiAndIdNot(tenNhomVali,id))
 			return null;
 
 		String code = HamDungChung.toSlug(tenNhomVali);

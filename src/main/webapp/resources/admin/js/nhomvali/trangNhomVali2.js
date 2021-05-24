@@ -23,42 +23,61 @@ function xemChiTiet(nhomValiId) {
 
 
 }
-
 // khi nhấn nút thêm
+
 $('#btnThem').click(function() {
 
-	// lấy giá trị đã nhập
-	const tenNhomVali = $('#them-modal #tenNhomValiThem').val();
+	const giaTriDaNhap = $('#them-modal #tenNhomValiThem').val();
 
-	// kiểm tra không được bỏ trống
-	if (tenNhomVali.trim().length == 0) {
+	if (giaTriDaNhap.trim().length == 0) {
 		$('#them-modal #errThem').text('Tên nhóm vali không được bỏ trống');
 		return;
 	}
 
 	const url = "api";
 
-	$.ajax({
-		url: url,
-		type: 'POST',
-		contentType: 'application/json',
-		data: JSON.stringify({ tenNhomVali }),
-		success: function() {
+	$.post(url, { tenNhomVali: giaTriDaNhap }, function(data, status) {
 
-			capNhatDuLieu("");
+		if (status === 'error') {
+			toastr.error('Tên nhóm vali đã bị trùng');
+			$('#them-modal #errThem').text('Tên nhóm vali đã trùng');
+
+		} else {
 			$('#them-modal').modal('hide');
 			toastr.success('Thêm thành công')
 
-		},
-		error: function() {
-			toastr.error('Tên nhóm vali đã bị trùng')
-		},
+			const { id, tenNhomVali, code } = data;
+
+			$("<tr>").appendTo($("#tableBody"))
+				.append($("<td>").text(id))
+				.append($("<td>").text(tenNhomVali))
+				.append($("<td>").text(code))
+				.append(
+
+					$("<td>").html(`
+							<a   onClick="xemChiTiet('${id}')" 
+													class="btn btn-primary btn-sm xem" data-toggle="modal"
+													data-target="#xem-modal"> <i class="fas fa-folder">
+													</i> Xem
+												</a> <a 
+													class="btn btn-info btn-sm sua" data-toggle="modal"
+													data-target="#sua-modal"> <i class="fas fa-pencil-alt">
+													</i> Sửa
+												</a> <a onClick="xoa('${id}')" 
+													class="btn btn-danger btn-sm xoa"> <i
+														class="fas fa-trash"> </i> Xóa
+												</a>
+					
+			   `)
+				);
+
+		}
 
 	});
 
-	
-
 });
+
+
 // lấy dữ liệu và đưa lên form sửa
 function sua(nhomValiId) {
 

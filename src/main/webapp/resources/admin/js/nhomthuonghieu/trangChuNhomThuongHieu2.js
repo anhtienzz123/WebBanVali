@@ -1,17 +1,17 @@
 
-function xemChiTiet(chatLieuId) {
+function xemChiTiet(nhomThuongHieuId) {
 
-	const url = `api/${chatLieuId}`;
+	const url = `api/${nhomThuongHieuId}`;
 	console.log('url: ', url);
 
 	$.get(url, function(data, status) {
 
-		const { id, tenChatLieu, code } = data;
+		const { id, tenThuongHieu, code } = data;
 
 		if (status === 'success') {
 
 			$("#xem-modal .id").html(`<span class="font-weight-bold">${id}</span>`);
-			$("#xem-modal .tenChatLieu").html(`<span class="font-weight-bold">${tenChatLieu}</span>`);
+			$("#xem-modal .tenThuongHieu").html(`<span class="font-weight-bold">${tenThuongHieu}</span>`);
 			$("#xem-modal .code").html(`<span class="font-weight-bold">${code}</span>`);
 
 		}
@@ -19,18 +19,18 @@ function xemChiTiet(chatLieuId) {
 }
 
 
-function xoa(chatLieuId) {
+function xoa(nhomThuongHieuId) {
 
 	if (confirm("Bạn có chắc chắn xóa không ?")) {
 
 		$.ajax({
-			url: `api/${chatLieuId}`,
+			url: `api/${nhomThuongHieuId}`,
 			type: 'DELETE',
 			success: function() {
-				
+
 				capNhatDuLieu("");
 				toastr.success('Xóa thành công')
-				
+
 			},
 			error: function() {
 				toastr.error('Không xóa được, vì đã có sản phẩm dùng')
@@ -39,31 +39,35 @@ function xoa(chatLieuId) {
 		});
 
 	}
-}
+} 
+
 
 $('#btnThem').click(function() {
 
-	const giaTriDaNhap = $('#them-modal #tenChatLieuThem').val();
+	const giaTriDaNhap = $('#them-modal #tenThuongHieuThem').val();
 
 	if (giaTriDaNhap.trim().length == 0) {
-		$('#them-modal #errThem').text('Tên chất liệu không được bỏ trống');
+		$('#them-modal #errThem').text('Tên thương hiệu không được bỏ trống');
 		return;
 	}
 
 	const url = "api";
 
-	$.post(url, { tenChatLieu: giaTriDaNhap }, function(data, status) {
+	$.post(url, { tenThuongHieu: giaTriDaNhap }, function(data, status) {
 
-		if (status === 'success') {
+		if (status === 'error') {
+			toastr.error('Tên thương hiêu đã bị trùng');
+			$('#them-modal #errThem').text('Tên thương hiệu đã trùng');
 
+		} else {
 			$('#them-modal').modal('hide');
 			toastr.success('Thêm thành công')
 
-			const { id, tenChatLieu, code } = data;
+			const { id, tenThuongHieu, code } = data;
 
 			$("<tr>").appendTo($("#tableBody"))
 				.append($("<td>").text(id))
-				.append($("<td>").text(tenChatLieu))
+				.append($("<td>").text(tenThuongHieu))
 				.append($("<td>").text(code))
 				.append(
 
@@ -84,41 +88,30 @@ $('#btnThem').click(function() {
 			   `)
 				);
 
-		} else {
-			$('#them-modal #errThem').text('Tên chất liệu đã trùng');
 		}
 
 	});
 
 });
 
-
-$("#timKiemTenChatLieu").on("keyup", function() {
-
-	capNhatDuLieu(this.value);
-
-});
-
-
-
 // lấy dữ liệu và đưa lên form sửa
-function sua(chatLieuId) {
+function sua(nhomThuongHieuId) {
 
 
 	// url lấy dữ liệu từ api
-	const url = `api/${chatLieuId}`;
+	const url = `api/${nhomThuongHieuId}`;
 
 
 	// gọi api lấy dữ liệu
 	$.get(url, function(data, status) {
 
 		// data là dữ liệu nhận được
-		const { id, tenChatLieu } = data;
+		const { id, tenThuongHieu } = data;
 
 		if (status === 'success') {
 			// set dữ liệu vào modal
 			$("#sua-modal #id").val(id);
-			$("#sua-modal #tenChatLieu").val(tenChatLieu);
+			$("#sua-modal #tenThuongHieu").val(tenThuongHieu);
 
 		}
 	});
@@ -129,11 +122,11 @@ $('#btnCapNhat').click(function() {
 
 	// lấy dữ liệu từ modal
 	const id = $('#sua-modal #id').val();
-	const tenChatLieu = $('#sua-modal #tenChatLieu').val();
+	const tenThuongHieu = $('#sua-modal #tenThuongHieu').val();
 
 	// kiểm tra không được bỏ trống
-	if (tenChatLieu.trim().length == 0) {
-		$('#sua-modal #errThem').text('Tên chất liệu không được bỏ trống');
+	if (tenThuongHieu.trim().length == 0) {
+		$('#sua-modal #errThem').text('Tên thương hiệu không được bỏ trống');
 		return;
 	}
 
@@ -143,7 +136,7 @@ $('#btnCapNhat').click(function() {
 		url: url,
 		type: 'PUT',
 		contentType: 'application/json',
-		data: JSON.stringif-y({ id, tenChatLieu }),
+		data: JSON.stringify({ id, tenThuongHieu }),
 		success: function() {
 
 			capNhatDuLieu("");
@@ -152,7 +145,7 @@ $('#btnCapNhat').click(function() {
 
 		},
 		error: function() {
-			toastr.error('Tên chất liệu đã bị trùng')
+			toastr.error('Tên thương hiệu đã bị trùng')
 		},
 
 	});
@@ -160,9 +153,12 @@ $('#btnCapNhat').click(function() {
 });
 
 
-function capNhatDuLieu(tenChatLieu) {
 
-	const url = `api?tenChatLieu=${tenChatLieu}`;
+
+
+function capNhatDuLieu(tenThuongHieu) {
+
+	const url = `api?tenThuongHieu=${tenThuongHieu}`;
 	$.get(url, function(data, status) {
 
 		if (status === 'success') {
@@ -178,13 +174,13 @@ function renderDuLieu(data) {
 
 	$("#tableBody").html("");
 
-	$.each(data, (index, chatLieu) => {
+	$.each(data, (index, nhomThuongHieu) => {
 
-		const { id, tenChatLieu, code } = chatLieu;
+		const { id, tenThuongHieu, code } = nhomThuongHieu;
 
 		$("<tr>").appendTo($("#tableBody"))
 			.append($("<td>").text(id))
-			.append($("<td>").text(tenChatLieu))
+			.append($("<td>").text(tenThuongHieu))
 			.append($("<td>").text(code))
 			.append(
 

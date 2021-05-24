@@ -18,5 +18,14 @@
 			value="/WEB-INF/views/web/nguoiDung/doiMatKhau.jsp" />
 	</definition>
 
-
+	<!-- xem đơn hàng -->
+	<definition name="xemDonHang" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/nguoiDung/donHang.jsp" />
+	</definition>
+	<!-- xem bình luận -->
+	<definition name="xemBinhLuan" extends="webLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/web/nguoiDung/binhLuan.jsp" />
+	</definition>
 </tiles-definitions>

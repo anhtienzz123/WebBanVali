@@ -47,55 +47,37 @@
 
 				<div class="col-8 px-4 py-2 border bg-white rounded">
 
-					<span class="font-weight-bold">ĐỔI MẬT KHẨU</span>
+					<span class="font-weight-bold">ĐƠN HÀNG CỦA TÔI</span>
 
 					<div class="form-thong-tin mt-3">
 
-						<form:form id="myForm" name="myForm" modelAttribute="matKhau"
-							method="post" onsubmit="return(validate());">
-							<form:hidden path="id" />
-							<div class="form-group row">
-								<label for="matKhau" class="col-sm-3 col-form-label">Mật
-									Khẩu</label>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Mã Đơn</th>
+									<th>Ngày Đặt</th>
+									<th>Tên Vali</th>
+									<th>Tổng Tiền</th>
+									<th>Trạng Thái</th>
 
-								<div class="col-sm-9">
-									<form:input path="matKhau" cssClass="form-control" id="matKhau" />
-									<form:errors path="matKhau" cssClass="error" />
-									<label id="matKhauError" class="error"></label>
-								</div>
-							</div>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${donHangs }" var="o">
+									<tr>
+										<td>${o.id}</td>
+										<td>${o.thoiGianDat }</td>
+ 										<td>${o.tenVali}</td>
+ 										<td>${o.tongTien }</td>
+										<td>${o.trangThaiDonHang }</td>
+									</tr>
 
-							<div class="form-group row">
-								<label for="matKhauMoi" class="col-sm-3 col-form-label">Mật
-									Khẩu Mới</label>
+								</c:forEach>
+							</tbody>
 
-								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauMoi"
-										name="matKhauMoi" />
-									<form:errors path="" cssClass="error" />
-									<label id="matKhauMoiError" class="error"></label>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="matKhauXacNhan" class="col-sm-3 col-form-label">Xác
-									Nhận Mật Khẩu</label>
-
-								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauXacNhan"
-										name="matKhauXacNhan" />
-									<form:errors path="" cssClass="error" />
-									<label id="matKhauXacNhanError" class="error"></label>
-								</div>
-							</div>
+						</table>
 
 
-							<div class="form-group text-center">
-
-								<button type="submit" class="btn btn-primary">Cập nhật</button>
-
-							</div>
-
-						</form:form>
 
 					</div>
 

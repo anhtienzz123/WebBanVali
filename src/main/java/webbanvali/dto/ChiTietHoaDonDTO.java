@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 public class ChiTietHoaDonDTO {
 
 	private int hoaDonId;
-	private BienTheValiDTO bienTheVali;
+	private String valiId;
+	private String tenVali;
+	//private BienTheValiDTO bienTheVali;
 	private double gia;
 	private double khuyenMai;
 	private int soLuong;

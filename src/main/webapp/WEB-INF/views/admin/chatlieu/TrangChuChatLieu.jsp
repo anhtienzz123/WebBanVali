@@ -233,7 +233,7 @@
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
 	<script type="text/javascript"
-		src="${styleUrl}js/chatlieu/trangChuChatLieu.js"></script>
+		src="${styleUrl}js/chatlieu/trangChuChatLieu2.js"></script>
 
 </body>
 </html>

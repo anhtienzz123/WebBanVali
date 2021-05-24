@@ -47,55 +47,47 @@
 
 				<div class="col-8 px-4 py-2 border bg-white rounded">
 
-					<span class="font-weight-bold">ĐỔI MẬT KHẨU</span>
+					<span class="font-weight-bold">NHẬN XÉT CỦA TÔI</span>
 
 					<div class="form-thong-tin mt-3">
 
-						<form:form id="myForm" name="myForm" modelAttribute="matKhau"
-							method="post" onsubmit="return(validate());">
-							<form:hidden path="id" />
-							<div class="form-group row">
-								<label for="matKhau" class="col-sm-3 col-form-label">Mật
-									Khẩu</label>
 
-								<div class="col-sm-9">
-									<form:input path="matKhau" cssClass="form-control" id="matKhau" />
-									<form:errors path="matKhau" cssClass="error" />
-									<label id="matKhauError" class="error"></label>
-								</div>
-							</div>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Tên Sản Phẩm</th>
+									<th>Ngày Bình Luận</th>
+									<th>Đánh Giá</th>
+									<th>Nội Dung Bình Luân</th>
+									<th>Thao Tác</th>
+								</tr>
+							</thead>
+							<tbody>
 
-							<div class="form-group row">
-								<label for="matKhauMoi" class="col-sm-3 col-form-label">Mật
-									Khẩu Mới</label>
+								<c:forEach items="${binhLuans }" var="o">
+									<tr>
+										<td><a
+											href=' <c:url value="/san-pham/${o.slugVali}?kichThuoc=size-s&mauSac=mau-do" />'>${o.tenVali}</a></td>
+										<td>${o.thoiGian }</td>
+										<td>${o.soDanhGia}<img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+										</td>
+										<td>${o.noiDung }</td>
+										<td><a
+										  href='<c:url value="/user/xoa-binh-luan?valiID=${o.valiID}&nguoiDungID=${o.nguoiDungID } "/>'									  
+											class="btn btn-danger btn-sm xoa"> <i
+												class="fas fa-trash"> </i> Xóa
+										</a></td>
+										
+									</tr>
 
-								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauMoi"
-										name="matKhauMoi" />
-									<form:errors path="" cssClass="error" />
-									<label id="matKhauMoiError" class="error"></label>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="matKhauXacNhan" class="col-sm-3 col-form-label">Xác
-									Nhận Mật Khẩu</label>
-
-								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauXacNhan"
-										name="matKhauXacNhan" />
-									<form:errors path="" cssClass="error" />
-									<label id="matKhauXacNhanError" class="error"></label>
-								</div>
-							</div>
+								</c:forEach>
+							</tbody>
+						</table>
 
 
-							<div class="form-group text-center">
 
-								<button type="submit" class="btn btn-primary">Cập nhật</button>
-
-							</div>
-
-						</form:form>
 
 					</div>
 
@@ -112,7 +104,6 @@
 
 	<script type="text/javascript"
 		src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${styleUrl }js/nguoiDung/doiMatKhau.js"></script>
+	
 </body>
 </html>

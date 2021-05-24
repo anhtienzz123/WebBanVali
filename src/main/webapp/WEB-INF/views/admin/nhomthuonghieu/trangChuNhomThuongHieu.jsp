@@ -253,7 +253,7 @@
 	<script type="text/javascript" src="${styleUrl}plugins/jquery/jquery.min.js"></script>
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
-	<script type="text/javascript" src="${styleUrl}js/nhomthuonghieu/trangChuNhomThuongHieu.js" ></script>
+	<script type="text/javascript" src="${styleUrl}js/nhomthuonghieu/trangChuNhomThuongHieu2.js" ></script>
 	
 </body>
 </html>
