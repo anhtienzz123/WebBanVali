@@ -26,8 +26,8 @@ public class ChiTietValiDTO {
     private String dayKeo;
     private String khoa;
     private String thoiGianBaoHanh;
-    private double theTich;
-    private double trongLuong;
+    private String theTich;
+    private String trongLuong;
     private String moTaKichThuoc;
     private String tenAnh;
     

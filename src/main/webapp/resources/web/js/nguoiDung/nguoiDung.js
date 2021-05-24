@@ -52,13 +52,13 @@ function validate() {
 	}
 
 	// kiểm tra số điện thoại
-	let regexSoDienThoai = /\d{10}/g;
+	let regexSoDienThoai = /((09|03|07|08|05)+([0-9]{8})\b)/g;
 	if (soDienThoai.length === 0) {
 		$("#soDienThoaiError").text("Số điện thoại không được bỏ trống");
 		flag = false;
 	} else {
 
-		if (!regexSoDienThoai.test(soDienThoai)) {
+		if (!regexSoDienThoai.test(soDienThoai) ) {
 			$("#soDienThoaiError").text("Số điện thoại sai định dạng");
 			flag = false;
 		}

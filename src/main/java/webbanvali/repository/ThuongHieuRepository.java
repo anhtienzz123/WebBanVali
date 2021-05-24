@@ -6,4 +6,5 @@ import webbanvali.entity.ThuongHieu;
 
 public interface ThuongHieuRepository extends JpaRepository<ThuongHieu, Integer> {
 
+	ThuongHieu findByTenThuongHieu(String tenThuongHieu);
 }

@@ -11,9 +11,12 @@ function xemChiTiet(mauSacId) {
 
 		// data là dữ liệu nhận được
 		const { id, tenMau, code } = data;
+		
 
 		if (status === 'success') {
 			// set dữ liệu
+			
+			
 			$("#xem-modal .id").html(`<span class="font-weight-bold">${id}</span>`);
 			$("#xem-modal .tenMau").html(`<span class="font-weight-bold">${tenMau}</span>`);
 			$("#xem-modal .code").html(`<span class="font-weight-bold">${code}</span>`);
@@ -43,6 +46,7 @@ $('#btnThem').click(function() {
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify({ tenMau }),
+		
 		success: function() {
 
 			capNhatDuLieu("");
@@ -149,6 +153,7 @@ function xoa(mauSacId) {
 // khi nhập vào ô tìm kiếm
 $("#timKiemTenMauSac").on("keyup", function() {
 
+
 	capNhatDuLieu(this.value);
 
 });
@@ -169,9 +174,9 @@ function renderDuLieu(data) {
 		// tạo tr trong #tableBody
 		$("<tr>").appendTo($("#tableBody"))
 			// thêm td vào tr
-			.append($("<td>").text(id))
-			.append($("<td>").text(tenMau))
-			.append($("<td>").text(code))
+			.append(  $("<td>").text(id)  )
+			.append( $("<td>").text(tenMau) )
+			.append( $("<td>").text(code) )
 			.append(
 				$("<td>").html(`
 							<a   onClick="xemChiTiet('${id}')" 
@@ -206,12 +211,11 @@ function renderDuLieu(data) {
 function capNhatDuLieu(tenMau) {
 
 	const url = `api?tenMau=${tenMau}`;
-	$.get(url, function(data, status) {
+	$.get(url, function(data) {
 
-		if (status === 'success') {
 
-			renderDuLieu(data);
-		}
+		renderDuLieu(data);
+		
 
 	})
 }

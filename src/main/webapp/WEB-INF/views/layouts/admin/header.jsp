@@ -195,6 +195,7 @@
 				data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+<<<<<<< HEAD
 
 				<li class="nav-item menu-open"><a
 					href='<c:url value="/admin/nguoi-dung/trang-chu"  />'
@@ -333,3 +334,187 @@
 	</div>
 	<!-- /.sidebar -->
 </aside>
+=======
+              
+           
+                
+          <li class="nav-item">
+         
+            <a href='<c:url value="/admin/"  />' class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Trang chủ
+              </p>
+            </a>
+            
+          </li> 
+            
+          <li class="nav-item">
+         
+            <a href='<c:url value="/admin/nguoi-dung/trang-chu"  />' class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Quản lý người dùng
+  
+              </p>
+            </a>
+            
+          </li>
+          
+          <li class="nav-item">
+            <a href="<c:url value="/admin/vali/"  />" class="nav-link">
+              <i class="nav-icon fab fa-product-hunt"></i>
+              <p>
+                Quản lý vali
+                <!-- <span class="right badge badge-danger">Quản lý val</span> -->
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+             <ul class="nav nav-treeview">
+
+
+						<li class="nav-item">
+						
+							<a href="<c:url value="/admin/vali/"  />"
+								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+									<p>Danh sách vali</p>
+							</a>
+						
+					   </li>
+					   
+					   
+						<li class="nav-item">
+						
+							<a href="<c:url value="/admin/vali/them-vali"  />"
+								class="nav-link"> <i class="far fa-circle nav-icon"></i>
+									<p>Thêm vali</p>
+							</a>
+						
+					   </li>
+					   
+					   <li class="nav-item">
+						
+							<a href="<c:url value="/admin/vali/bien-the-valis"  />"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+									<p>Danh sách biến thể vali</p>
+							</a>
+						
+					   </li>
+					   
+					   <li class="nav-item">
+						
+							<a href="<c:url value="/admin/vali/them-bien-the-vali"  />"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+									<p>Thêm biến thể vali</p>
+							</a>
+						
+					   </li>
+			</ul>
+          </li>
+          
+           <li class="nav-item">
+            <a href="<c:url value="/admin/nhom-vali/trang-chu"  />" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Quản lý nhóm vali
+                 
+              </p>
+            </a>
+            
+            
+          </li>
+          
+          <li class="nav-item">
+
+            <a href="<c:url value="/admin/thuong-hieu/trang-chu"  />" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+
+              <p>
+                Quản lý nhóm thương hiệu
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<c:url value="/admin/chat-lieu/trang-chu"  />" class="nav-link">
+              <i class="nav-icon fas fa-palette"></i>
+              <p>
+                Quản lý chất liệu
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<c:url value="/admin/mau-sac/trang-chu"  />" class="nav-link">
+              <i class="nav-icon fas fa-tint"></i>
+              <p>
+                Quản lý màu sắc
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<c:url value="/admin/tinh-nang-dac-biet/trang-chu" />" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý tính năng đặc biệt
+                 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<c:url value="/admin/kich-thuoc/trang-chu" />" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý kích thước
+                 
+              </p>
+            </a>
+          </li>
+          
+            <li class="nav-item">
+            <a href="<c:url value="/admin/hoa-don/"  />" class="nav-link">
+              <i class="nav-icon fas fa-inbox"></i>
+              <p>
+                Quản lý hóa đơn
+              </p>
+            </a>
+          </li>
+          
+           <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon far fa-images"></i>
+              <p>
+                Quản lý banner
+                 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<c:url value="/admin/thong-ke/"  />" class="nav-link">
+              <i class="nav-icon far fa-chart-bar"></i>
+              <p>
+                Thống kê
+                 
+              </p>
+            </a>
+          </li>
+          
+           
+      
+       
+       
+        
+     
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+>>>>>>> 646c00355fe87dadcb7a284943792f8a0db65636

@@ -59,7 +59,7 @@
 									Khẩu</label>
 
 								<div class="col-sm-9">
-									<form:input path="matKhau" cssClass="form-control" id="matKhau" />
+									<form:password path="matKhau"  cssClass="form-control" id="matKhau"  />
 									<form:errors path="matKhau" cssClass="error" />
 									<label id="matKhauError" class="error"></label>
 								</div>
@@ -70,7 +70,7 @@
 									Khẩu Mới</label>
 
 								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauMoi"
+									<form:password path="" cssClass="form-control" id="matKhauMoi"
 										name="matKhauMoi" />
 									<form:errors path="" cssClass="error" />
 									<label id="matKhauMoiError" class="error"></label>
@@ -81,7 +81,7 @@
 									Nhận Mật Khẩu</label>
 
 								<div class="col-sm-9">
-									<form:input path="" cssClass="form-control" id="matKhauXacNhan"
+									<form:password path="" cssClass="form-control" id="matKhauXacNhan"
 										name="matKhauXacNhan" />
 									<form:errors path="" cssClass="error" />
 									<label id="matKhauXacNhanError" class="error"></label>

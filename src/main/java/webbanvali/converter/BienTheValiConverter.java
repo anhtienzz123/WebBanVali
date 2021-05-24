@@ -9,14 +9,22 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import webbanvali.dto.BienTheValiAddDTO;
 import webbanvali.dto.BienTheValiDTO;
+import webbanvali.dto.BienTheValiTableDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.dto.KichThuocDTO;
 import webbanvali.dto.LoaiBienTheValiDTO;
 import webbanvali.dto.MauSacDTO;
 import webbanvali.dto.ValiDTO;
 import webbanvali.entity.BienTheVali;
+import webbanvali.entity.KichThuoc;
+import webbanvali.entity.MauSac;
+import webbanvali.entity.Vali;
 import webbanvali.repository.BienTheValiRepository;
+import webbanvali.repository.KichThuocRepository;
+import webbanvali.repository.MauSacRepository;
+import webbanvali.repository.ValiRepository;
 import webbanvali.utils.XuLyTien;
 
 @Component
@@ -27,12 +35,18 @@ public class BienTheValiConverter {
 
 	@Autowired
 	private BienTheValiRepository bienTheValiRepository;
+	@Autowired
+	private ValiRepository valiRepository;
+	@Autowired
+	private KichThuocRepository kichThuocRepository;
+	@Autowired
+	private MauSacRepository mauSacRepository;
 
 	public BienTheValiDTO toDTO(BienTheVali bienTheVali) {
 
-		double trongLuong = bienTheVali.getTrongLuong();
+		String trongLuong = bienTheVali.getTrongLuong();
 		String moTaKichThuoc = bienTheVali.getMoTaKichThuoc();
-		double theTich = bienTheVali.getTheTich();
+		String theTich = bienTheVali.getTheTich();
 		double gia = bienTheVali.getGia();
 		double khuyenMai = bienTheVali.getKhuyenMai();
 		long soLuong = bienTheVali.getSoLuong();
@@ -51,7 +65,6 @@ public class BienTheValiConverter {
 
 		return null;
 	}
-
 
 	public ChiTietValiDTO toChiTietValiDTO(BienTheVali bienTheVali) {
 
@@ -73,8 +86,8 @@ public class BienTheValiConverter {
 		String dayKeo = bienTheVali.getVali().getDayKeo();
 		String khoa = bienTheVali.getVali().getKhoa();
 		String thoiGianBaoHanh = bienTheVali.getVali().getThoiGianBaoHanh();
-		double theTich = bienTheVali.getTheTich();
-		double trongLuong = bienTheVali.getTrongLuong();
+		String theTich = bienTheVali.getTheTich();
+		String trongLuong = bienTheVali.getTrongLuong();
 		String moTaKichThuoc = bienTheVali.getMoTaKichThuoc();
 		String tenAnh = bienTheVali.getTenAnh();
 		System.out.println("tenAnh: " + tenAnh);
@@ -117,7 +130,7 @@ public class BienTheValiConverter {
 				khuyenMai, moTa, tenChatLieu, banhXe, dayKeo, khoa, thoiGianBaoHanh, theTich, trongLuong, moTaKichThuoc,
 				tenAnh, kichThuocs, mauSacs);
 	}
-	
+
 	public BienTheValiDTO toBienTheValiDTO(BienTheVali bienTheVali) {
 
 		String valiSlug = bienTheVali.getVali().getSlug();
@@ -128,10 +141,75 @@ public class BienTheValiConverter {
 		double giaGoc = bienTheVali.getGia();
 		double khuyenMai = bienTheVali.getKhuyenMai();
 		String tenAnh = bienTheVali.getTenAnh();
-		
 
 		return new BienTheValiDTO(valiSlug, kichThuocCode, mauSacCode, tenVali, giaGoc, khuyenMai, tenAnh);
 
 	}
+
+	public BienTheVali toBienTheVali(BienTheValiAddDTO bienTheValiAddDTO) {
+
+		BienTheVali bienTheVali = new BienTheVali();
+
+		Vali vali = valiRepository.findByTenVali(bienTheValiAddDTO.getTenVali());
+		bienTheVali.setVali(vali);
+
+		KichThuoc kichThuoc = kichThuocRepository.findByTenKichThuoc(bienTheValiAddDTO.getTenKichThuoc());
+		bienTheVali.setKichThuoc(kichThuoc);
+
+		MauSac mauSac = mauSacRepository.findByTenMau(bienTheValiAddDTO.getTenMauSac());
+		bienTheVali.setMauSac(mauSac);
+
+		bienTheVali.setTrongLuong(bienTheValiAddDTO.getTrongLuong());
+		bienTheVali.setTheTich(bienTheValiAddDTO.getTheTich());
+		bienTheVali.setMoTaKichThuoc(bienTheValiAddDTO.getMoTaKichThuoc());
+		bienTheVali.setGia(bienTheValiAddDTO.getGia());
+		bienTheVali.setKhuyenMai(bienTheValiAddDTO.getKhuyenMai());
+		bienTheVali.setSoLuong(bienTheValiAddDTO.getSoLuong());
+		bienTheVali.setNoiBat(bienTheValiAddDTO.isNoiBat());
+		bienTheVali.setTenAnh(bienTheValiAddDTO.getTenAnh());
+
+		return bienTheVali;
+	}
+
+	public BienTheValiTableDTO toBienTheValiTableDTO(BienTheVali bienTheVali) {
+
+		
+		BienTheValiTableDTO bienTheValiTableDTO = new BienTheValiTableDTO();
+		bienTheValiTableDTO.setValiId(bienTheVali.getVali().getId());
+		bienTheValiTableDTO.setTenVali(bienTheVali.getVali().getTenVali());
+		bienTheValiTableDTO.setKichThuocId(bienTheVali.getKichThuoc().getId());
+		bienTheValiTableDTO.setTenKichThuoc(bienTheVali.getKichThuoc().getTenKichThuoc());
+		bienTheValiTableDTO.setMauSacId(bienTheVali.getMauSac().getId());
+		bienTheValiTableDTO.setTenMauSac(bienTheVali.getMauSac().getTenMau());
+		bienTheValiTableDTO.setSoLuong(bienTheVali.getSoLuong());
+		bienTheValiTableDTO.setGia(bienTheVali.getGia());
+		bienTheValiTableDTO.setKhuyenMai(bienTheVali.getKhuyenMai());
+		bienTheValiTableDTO.setNoiBat(bienTheVali.isNoiBat());
+
+		return bienTheValiTableDTO;
+
+	}
 	
+	public BienTheValiAddDTO toBienTheValiAddDTO(BienTheVali bienTheVali) {
+		
+		BienTheValiAddDTO bienTheValiAddDTO = new BienTheValiAddDTO();
+		
+		bienTheValiAddDTO.setValiId(bienTheVali.getVali().getId());
+		bienTheValiAddDTO.setKichThuocId(bienTheVali.getKichThuoc().getId());
+		bienTheValiAddDTO.setMauSacId(bienTheVali.getMauSac().getId());
+		bienTheValiAddDTO.setTenVali(bienTheVali.getVali().getTenVali());
+		bienTheValiAddDTO.setTenKichThuoc(bienTheVali.getKichThuoc().getTenKichThuoc());
+		bienTheValiAddDTO.setTenMauSac(bienTheVali.getMauSac().getTenMau());
+		bienTheValiAddDTO.setGia(bienTheVali.getGia());
+		bienTheValiAddDTO.setKhuyenMai(bienTheVali.getKhuyenMai());
+		bienTheValiAddDTO.setSoLuong(bienTheVali.getSoLuong());
+		bienTheValiAddDTO.setTheTich(bienTheVali.getTheTich());
+		bienTheValiAddDTO.setTrongLuong(bienTheVali.getTrongLuong());
+		bienTheValiAddDTO.setMoTaKichThuoc(bienTheValiAddDTO.getMoTaKichThuoc());
+		bienTheValiAddDTO.setNoiBat(bienTheVali.isNoiBat());
+		bienTheValiAddDTO.setTenAnh(bienTheVali.getTenAnh());
+		
+		return bienTheValiAddDTO;
+		
+	}
 }
