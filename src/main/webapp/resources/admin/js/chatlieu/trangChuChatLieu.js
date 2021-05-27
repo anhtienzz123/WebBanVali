@@ -27,10 +27,10 @@ function xoa(chatLieuId) {
 			url: `api/${chatLieuId}`,
 			type: 'DELETE',
 			success: function() {
-				
+
 				capNhatDuLieu("");
 				toastr.success('Xóa thành công')
-				
+
 			},
 			error: function() {
 				toastr.error('Không xóa được, vì đã có sản phẩm dùng')
@@ -60,6 +60,7 @@ $('#btnThem').click(function() {
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify({ tenChatLieu }),
+
 		success: function() {
 
 			capNhatDuLieu("");
@@ -73,10 +74,9 @@ $('#btnThem').click(function() {
 
 	});
 
-	
+
 
 });
-
 
 $("#timKiemTenChatLieu").on("keyup", function() {
 

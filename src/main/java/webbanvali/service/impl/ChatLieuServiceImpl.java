@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import webbanvali.dto.ChatLieuDTO;
 import webbanvali.dto.MauSacDTO;
+import webbanvali.dto.TinhNangDacBietDTO;
 import webbanvali.entity.ChatLieu;
 import webbanvali.entity.MauSac;
+import webbanvali.entity.TinhNangDacBiet;
 import webbanvali.repository.ChatLieuRepository;
 
 import webbanvali.service.ChatLieuService;
@@ -84,7 +86,7 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
 		String code = HamDungChung.toSlug(tenChatLieu);
 		ChatLieu chatLieuResult = chatLieuRepository.save(new ChatLieu(id, tenChatLieu, code));
-		return new ChatLieuDTO(chatLieuResult.getId(),chatLieuResult.getTenChatLieu(),chatLieuResult.getCode());
+		return new ChatLieuDTO(chatLieuResult.getId(), chatLieuResult.getTenChatLieu(), chatLieuResult.getCode());
 	}
 
 }

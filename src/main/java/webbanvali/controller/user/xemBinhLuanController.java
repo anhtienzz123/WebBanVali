@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import webbanvali.dto.BinhLuanDTO;
 import webbanvali.dto.HoaDonChungDTO;
 import webbanvali.dto.NguoiDungDTO;
-import webbanvali.dto.Vali2DTO;
+
 import webbanvali.dto.ValiDTO;
 import webbanvali.service.BinhLuanService;
 import webbanvali.service.HoaDonService;

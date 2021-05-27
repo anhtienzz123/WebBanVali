@@ -1,5 +1,6 @@
 package webbanvali.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,10 +20,13 @@ import webbanvali.dto.ValiCommentDTO;
 import webbanvali.entity.BinhLuan;
 import webbanvali.entity.BinhLuan_PK;
 import webbanvali.entity.HoaDon;
+import webbanvali.entity.MauSac;
+import webbanvali.entity.NguoiDung;
 import webbanvali.entity.Vali;
 import webbanvali.repository.BinhLuanRepository;
 import webbanvali.repository.ValiRepository;
 import webbanvali.service.BinhLuanService;
+import webbanvali.utils.HamDungChung;
 import webbanvali.utils.XuLiNgay;
 
 @Service
@@ -63,6 +67,17 @@ public class BinhLuanServiceImpl implements BinhLuanService {
 
 		binhLuanRepository.deleteById(new BinhLuan_PK(nguoiDungID, valiID));
 		return true;
+	}
+
+
+	@Override
+	public BinhLuanDTO themBinhLuan(NguoiDung nguoiDung, Vali vali, String cmt,Integer soSao) {
+
+		BinhLuan binhLuanResult = binhLuanRepository.save(new BinhLuan(nguoiDung, vali, cmt, soSao, LocalDateTime.now()));
+		return new BinhLuanDTO(binhLuanResult.getNguoiDung().getId(), binhLuanResult.getVali().getTenVali(),
+				binhLuanResult.getVali().getId(), binhLuanResult.getVali().getSlug(),
+				binhLuanResult.getNguoiDung().getHoTen(), XuLiNgay.toString(binhLuanResult.getThoiGianBinhLuan()),
+				binhLuanResult.getDanhGia(), binhLuanResult.getNoiDung());
 	}
 
 }

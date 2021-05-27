@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import webbanvali.dto.ChatLieuDTO;
 import webbanvali.dto.MauSacDTO;
 import webbanvali.dto.NhomValiDTO;
-
+import webbanvali.dto.TinhNangDacBietDTO;
 import webbanvali.service.NhomValiService;
 
 @Controller
@@ -61,7 +62,7 @@ public class NhomValiController {
 	@PostMapping(value = "/api")
 	public @ResponseBody ResponseEntity<NhomValiDTO> them(@RequestBody NhomValiDTO nhomValiDTO1) {
 
-		NhomValiDTO nhomValiDTO = nhomValiService.themNhomVali(nhomValiDTO1.getId(),nhomValiDTO1.getTenNhomVali());
+		NhomValiDTO nhomValiDTO = nhomValiService.themNhomVali(nhomValiDTO1.getTenNhomVali());
 		if (nhomValiDTO == null)
 			return new ResponseEntity<NhomValiDTO>(HttpStatus.BAD_REQUEST);
 

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import webbanvali.dto.NhomValiDTO;
 import webbanvali.dto.ThuongHieuDTO;
+import webbanvali.dto.TinhNangDacBietDTO;
 import webbanvali.entity.NhomVali;
 import webbanvali.entity.ThuongHieu;
+import webbanvali.entity.TinhNangDacBiet;
 import webbanvali.repository.NhomValiRepository;
 import webbanvali.service.NhomValiService;
 import webbanvali.utils.HamDungChung;
@@ -49,10 +51,10 @@ public class NhomValiServiceImpl implements NhomValiService {
 	}
 
 	@Override
-	public NhomValiDTO themNhomVali(Integer id,String tenNhomVali) {
+	public NhomValiDTO themNhomVali(String tenNhomVali) {
 		// TODO Auto-generated method stub
 		// nếu như đã tồn tại rồi
-		if (nhomValiRepository.existsByTenNhomValiAndIdNot(tenNhomVali,id))
+		if (nhomValiRepository.existsByTenNhomVali(tenNhomVali))
 			return null;
 
 		String code = HamDungChung.toSlug(tenNhomVali);
@@ -60,7 +62,6 @@ public class NhomValiServiceImpl implements NhomValiService {
 		return new NhomValiDTO(nhomValiResult.getId(), nhomValiResult.getTenNhomVali(), nhomValiResult.getCode());
 
 	}
-
 	@Override
 	public boolean xoaNhomValiTheoId(int id) {
 		// TODO Auto-generated method stub

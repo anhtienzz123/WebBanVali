@@ -30,5 +30,10 @@ public interface BienTheValiService {
 	List<BienTheValiTableDTO> getBienTheValiTableDTOs(String tenVali, String tenKichThuoc, String tenMauSac);
 	
 	BienTheValiAddDTO getBienTheValiAdd(Integer valiId, Integer kichThuocId, Integer mauSacId);
+
+	List<BienTheValiDTO> getBienTheValisTheoNhomVali(Integer nhomValiId);
+
+
+	List<BienTheValiDTO> getBienTheValisTheoThuongHieu(Integer thuongHieuId);
 	
 }

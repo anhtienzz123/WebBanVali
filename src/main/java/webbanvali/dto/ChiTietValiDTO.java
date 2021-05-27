@@ -17,6 +17,8 @@ public class ChiTietValiDTO {
 	private String tenVali;
     private int soDanhGia;
     private String thuongHieu;
+    private int thuongHieuId;
+    private int nhomValiId;
     private  String gia;
     private String giaGoc;
     private double khuyenMai;

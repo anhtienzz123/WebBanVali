@@ -14,12 +14,13 @@ import webbanvali.utils.XuLyTien;
 @AllArgsConstructor
 public class BienTheValiDTO {
 
-	
 	private String valiSlug;
 	private String kichThuocCode;
 	private String mauSacCode;
 	private String tenVali;
 	private double giaGoc;
+	private String gia;
+	private String giaGocString;
 	private double khuyenMai;
 	private String tenAnh;
 

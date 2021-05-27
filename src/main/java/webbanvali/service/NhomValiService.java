@@ -4,6 +4,7 @@ import java.util.List;
 
 import webbanvali.dto.NhomValiDTO;
 import webbanvali.dto.ThuongHieuDTO;
+import webbanvali.dto.TinhNangDacBietDTO;
 
 public interface NhomValiService {
 	List<NhomValiDTO> getNhomValis();
@@ -12,10 +13,10 @@ public interface NhomValiService {
 
 	NhomValiDTO getNhomValiTheoId(int id);
 
-	NhomValiDTO themNhomVali(Integer id, String tenNhomVali);
-
 	NhomValiDTO capNhatNhomVali(Integer id, String tenNhomVali);
 
 	boolean xoaNhomValiTheoId(int id);
+
+	NhomValiDTO themNhomVali(String tenNhomVali);
 
 }

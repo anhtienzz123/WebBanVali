@@ -195,8 +195,6 @@
 				data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-<<<<<<< HEAD
-
 				<li class="nav-item menu-open"><a
 					href='<c:url value="/admin/nguoi-dung/trang-chu"  />'
 					class="nav-link active"> <i class="nav-icon fas fa-users"></i>
@@ -209,7 +207,35 @@
 							Quản lý vali
 							<!-- <span class="right badge badge-danger">Quản lý val</span> -->
 						</p>
-				</a></li>
+				</a>
+					<ul class="nav nav-treeview">
+
+
+						<li class="nav-item"><a
+							href="<c:url value="/admin/vali/"  />" class="nav-link"> <i
+								class="far fa-circle nav-icon"></i>
+								<p>Danh sách vali</p>
+						</a></li>
+
+
+						<li class="nav-item"><a
+							href="<c:url value="/admin/vali/them-vali"  />" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Thêm vali</p>
+						</a></li>
+
+						<li class="nav-item"><a
+							href="<c:url value="/admin/vali/bien-the-valis"  />"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Danh sách biến thể vali</p>
+						</a></li>
+
+						<li class="nav-item"><a
+							href="<c:url value="/admin/vali/them-bien-the-vali"  />"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<p>Thêm biến thể vali</p>
+						</a></li>
+					</ul></li>
 
 				<li class="nav-item"><a
 					href="<c:url value="/admin/nhom-vali/trang-chu"  />"
@@ -219,10 +245,10 @@
 
 				<li class="nav-item"><a
 					href="<c:url value="/admin/thuong-hieu/trang-chu"  />"
-					class="nav-link"> <i class="nav-icon fas fa-th"></i> 
+					class="nav-link"> <i class="nav-icon fas fa-th"></i>
 
-							<p>Quản lý nhóm thương hiệu</p>
-					</a></li>
+						<p>Quản lý nhóm thương hiệu</p>
+				</a></li>
 
 				<li class="nav-item"><a
 					href="<c:url value="/admin/chat-lieu/trang-chu"  />"
@@ -236,11 +262,16 @@
 						<p>Quản lý màu sắc</p>
 				</a></li>
 
-				<li class="nav-item"><a href="#" class="nav-link"> <i
-						class="nav-icon fas fa-th"></i>
+				<li class="nav-item"><a
+					href="<c:url value="/admin/tinh-nang-dac-biet/trang-chu" />"
+					class="nav-link"> <i class="nav-icon fas fa-th"></i>
 						<p>Quản lý tính năng đặc biệt</p>
 				</a></li>
-
+				<li class="nav-item"><a
+					href="<c:url value="/admin/kich-thuoc/trang-chu" />"
+					class="nav-link"> <i class="nav-icon fas fa-th"></i>
+						<p>Quản lý kích thước</p>
+				</a></li>
 				<li class="nav-item"><a
 					href="<c:url value="/admin/hoa-don/"  />" class="nav-link"> <i
 						class="nav-icon fas fa-inbox"></i>
@@ -334,10 +365,9 @@
 	</div>
 	<!-- /.sidebar -->
 </aside>
-=======
-              
-           
-                
+
+
+<%--         
           <li class="nav-item">
          
             <a href='<c:url value="/admin/"  />' class="nav-link">
@@ -516,5 +546,5 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
->>>>>>> 646c00355fe87dadcb7a284943792f8a0db65636
+  </aside> --%>
+

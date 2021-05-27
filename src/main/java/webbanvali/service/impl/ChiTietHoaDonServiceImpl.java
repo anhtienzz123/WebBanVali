@@ -14,7 +14,6 @@ import webbanvali.converter.HoaDonConverter;
 import webbanvali.dto.ChiTietHoaDonDTO;
 import webbanvali.dto.HoaDonChungDTO;
 import webbanvali.dto.HoaDonDTO;
-import webbanvali.dto.Vali2DTO;
 import webbanvali.entity.ChiTietHoaDon;
 import webbanvali.entity.HoaDon;
 import webbanvali.entity.Vali;
