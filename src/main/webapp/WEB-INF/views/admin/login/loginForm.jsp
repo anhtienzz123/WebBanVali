@@ -53,15 +53,6 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center mt-2 mb-3">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Đăng nhập với Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Đăng nhập với Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
 
       <p class="mb-1">
         <a href="<c:url value='/quen-mat-khau' />">Quên mật khẩu</a>
