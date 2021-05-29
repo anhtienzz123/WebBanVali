@@ -278,7 +278,8 @@
 						<p>Quản lý hóa đơn</p>
 				</a></li>
 
-				<li class="nav-item"><a href="" class="nav-link"> <i
+				<li class="nav-item"><a 
+				href="<c:url value="/admin/banner/trang-chu"  />" class="nav-link"> <i
 						class="nav-icon far fa-images"></i>
 						<p>Quản lý banner</p>
 				</a></li>

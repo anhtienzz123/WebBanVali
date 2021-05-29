@@ -19,6 +19,10 @@
 			value="/WEB-INF/views/admin/tinhnangdacbiet/trangChuTinhNangDacBiet.jsp" />
 	</definition>
 	
+	<definition name="trangChuBanner" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/banner/trangchuBanner.jsp" />
+	</definition>
 
 
 </tiles-definitions>
