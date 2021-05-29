@@ -370,7 +370,7 @@
 <%--         
           <li class="nav-item">
          
-            <a href='<c:url value="/admin/"  />' class="nav-link">
+            <a href='<c:url value="/admin/trang-chu"  />' class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Trang chủ
