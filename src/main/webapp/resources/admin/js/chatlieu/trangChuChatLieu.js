@@ -27,10 +27,10 @@ function xoa(chatLieuId) {
 			url: `api/${chatLieuId}`,
 			type: 'DELETE',
 			success: function() {
-				
+
 				capNhatDuLieu("");
 				toastr.success('Xóa thành công')
-				
+
 			},
 			error: function() {
 				toastr.error('Không xóa được, vì đã có sản phẩm dùng')
@@ -41,57 +41,42 @@ function xoa(chatLieuId) {
 	}
 }
 
+// khi nhấn nút thêm
 $('#btnThem').click(function() {
 
-	const giaTriDaNhap = $('#them-modal #tenChatLieuThem').val();
+	// lấy giá trị đã nhập
+	const tenChatLieu = $('#them-modal #tenChatLieuThem').val();
 
-	if (giaTriDaNhap.trim().length == 0) {
+	// kiểm tra không được bỏ trống
+	if (tenChatLieu.trim().length == 0) {
 		$('#them-modal #errThem').text('Tên chất liệu không được bỏ trống');
 		return;
 	}
 
 	const url = "api";
 
-	$.post(url, { tenChatLieu: giaTriDaNhap }, function(data, status) {
+	$.ajax({
+		url: url,
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify({ tenChatLieu }),
 
-		if (status === 'success') {
+		success: function() {
 
+			capNhatDuLieu("");
 			$('#them-modal').modal('hide');
 			toastr.success('Thêm thành công')
 
-			const { id, tenChatLieu, code } = data;
-
-			$("<tr>").appendTo($("#tableBody"))
-				.append($("<td>").text(id))
-				.append($("<td>").text(tenChatLieu))
-				.append($("<td>").text(code))
-				.append(
-
-					$("<td>").html(`
-							<a   onClick="xemChiTiet('${id}')" 
-													class="btn btn-primary btn-sm xem" data-toggle="modal"
-													data-target="#xem-modal"> <i class="fas fa-folder">
-													</i> Xem
-												</a> <a 
-													class="btn btn-info btn-sm sua" data-toggle="modal"
-													data-target="#sua-modal"> <i class="fas fa-pencil-alt">
-													</i> Sửa
-												</a> <a onClick="xoa('${id}')" 
-													class="btn btn-danger btn-sm xoa"> <i
-														class="fas fa-trash"> </i> Xóa
-												</a>
-					
-			   `)
-				);
-
-		} else {
-			$('#them-modal #errThem').text('Tên chất liệu đã trùng');
-		}
+		},
+		error: function() {
+			toastr.error('Tên chất liệu đã bị trùng')
+		},
 
 	});
 
-});
 
+
+});
 
 $("#timKiemTenChatLieu").on("keyup", function() {
 
@@ -143,7 +128,7 @@ $('#btnCapNhat').click(function() {
 		url: url,
 		type: 'PUT',
 		contentType: 'application/json',
-		data: JSON.stringif-y({ id, tenChatLieu }),
+		data: JSON.stringify({ id, tenChatLieu }),
 		success: function() {
 
 			capNhatDuLieu("");

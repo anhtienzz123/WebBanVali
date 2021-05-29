@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
 <c:url value="/static/web/" var="styleUrl" />
 <c:url value="/static/admin/" var="styleUrlAdmin" />
@@ -13,16 +14,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Chi tiết Vali</title>
+<style type="text/css">
+</style>
 
- 	<link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-      crossorigin="anonymous"
-    />
-    
-    <link rel="stylesheet" href="${styleUrl}css/chiTietVali/chiTietVali.css" />
-    
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet" href="${styleUrl}css/chiTietVali/chiTietVali.css" />
+
 
 </head>
 <body class="bg-light">
@@ -36,8 +37,7 @@
 				<!--left-->
 				<div class="col-5 info__left">
 
-					<img
-						src="${valiImageUrl}/${vali.tenAnh}" width="100%" />
+					<img src="${valiImageUrl}/${vali.tenAnh}" width="100%" />
 				</div>
 				<!--end lef-->
 
@@ -74,31 +74,33 @@
 
 					<div>
 						<span style="font-weight: bold">Chọn màu sắc: </span> <br />
-						
+
 						<c:forEach items="${vali.mauSacs }" var="x">
-						
+
 							<a href='<c:url value="/san-pham/${x.code }" />'>
-								<button type="button" class="button-custom ${x.chon ? 'active' : '' }">
-									<span>${x.ten }</span> <br /> 
-									<span style="color: #e11b1e; font-weight: bold">${x.gia}</span>
+								<button type="button"
+									class="button-custom ${x.chon ? 'active' : '' }">
+									<span>${x.ten }</span> <br /> <span
+										style="color: #e11b1e; font-weight: bold">${x.gia}</span>
 								</button>
 							</a>
-							
+
 						</c:forEach>
-						
+
 					</div>
 
 					<div>
 						<p style="font-weight: bold">Chọn kích thước:</p>
 						<c:forEach items="${vali.kichThuocs }" var="x">
-						
+
 							<a href='<c:url value="/san-pham/${x.code }" />'>
-								<button type="button" class="button-custom ${x.chon ? 'active' : '' }">
-									<span>${x.ten }</span> <br /> 
-									<span style="color: #e11b1e; font-weight: bold">${x.gia}</span>
+								<button type="button"
+									class="button-custom ${x.chon ? 'active' : '' }">
+									<span>${x.ten }</span> <br /> <span
+										style="color: #e11b1e; font-weight: bold">${x.gia}</span>
 								</button>
 							</a>
-							
+
 						</c:forEach>
 					</div>
 
@@ -106,16 +108,14 @@
 
 					<div>
 						<div class="col-6">
-							
-							 
-							 <a style="text-decoration: none; " href='<c:url value="/gio-hang/them-gio-hang?valiSlug=${vali.valiSlug}&kichThuocCode=${vali.kichThuocCode}&mauSacCode=${vali.mauSacCode}" />'>
-								<button class="btn btn-outline-danger btn-block btn-lg" 
-									style="margin-top: 20px; font-weight: bold">
-								Mua ngay
-								
-								</button>
-								
-							</a> 
+
+
+							<a style="text-decoration: none;"
+								href='<c:url value="/gio-hang/them-gio-hang?valiSlug=${vali.valiSlug}&kichThuocCode=${vali.kichThuocCode}&mauSacCode=${vali.mauSacCode}" />'>
+								<button class="btn btn-outline-danger btn-block btn-lg"
+									style="margin-top: 20px; font-weight: bold">Mua ngay</button>
+
+							</a>
 						</div>
 					</div>
 
@@ -130,9 +130,7 @@
 		<!--Thong tin chi tiet-->
 		<div class="bg-white  mt-3 p-2">
 			<div class="row info-detail">
-				<div class="col-8">
-					${vali.moTa }
-				</div>
+				<div class="col-8">${vali.moTa }</div>
 
 				<div class="col-4">
 					<table class="table">
@@ -143,7 +141,7 @@
 
 						<tr>
 							<th>Trọng lượng:</th>
-							<td>${vali.trongLuong} Kg</td>
+							<td>${vali.trongLuong}Kg</td>
 						</tr>
 
 						<tr>
@@ -153,7 +151,7 @@
 
 						<tr>
 							<th>Thể tích:</th>
-							<td>${vali.theTich} L</td>
+							<td>${vali.theTich}L</td>
 						</tr>
 
 						<tr>
@@ -186,195 +184,255 @@
 		<!--San pham lien quan  -->
 		<div class="bg-white mt-3 p-2">
 			<h5>Các sản phẩm liên quan</h5>
-
+			<!-- tab -->
 			<div class="card">
-
 				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
-						<li class="nav-item"><a class="nav-link active" href="#">Sản
-								phẩm bán chạy</a></li>
-						<li class="nav-item"><a class="nav-link " href="#">Cùng
-								thương hiệu</a></li>
-						<li class="nav-item"><a class="nav-link disabled" href="#"
-							tabindex="-1" aria-disabled="true">Cùng nhóm vali</a></li>
+					<ul class=" nav nav-tabs card-header-tabs">
+						<li class="nav-item"><a href="#tab1" data-toggle="tab"
+							class="nav-link active">Sản phẩm bán chạy</a></li>
+
+						<li class="nav-item"><a href="#tab2" data-toggle="tab"
+							class="nav-link">Cùng thương hiệu</a></li>
+
+						<li class="nav-item"><a href="#tab3" data-toggle="tab"
+							class="nav-link">Cùng nhóm vali</a></li>
+
+
 					</ul>
 				</div>
-				<div class="card-body row">
-					<div class="card col-3" style="width: 100%">
-						<img
-							src="https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180436.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h6 class="card-title">Vali Pisani Rayan PP008_28</h6>
-							<p class="card-text">
+			</div>
+			<!-- Nội dung -->
+			<div class="tab-content">
+				<div class="tab-pane container active" id="tab1">
+					<div class="card-body row">
+						<c:forEach items="${valisBanChay }" var="v1">
+							<div class="card col-3" style="width: 100%">
+								<a
+									href='<c:url value="/san-pham/${v1.valiSlug}?kichThuoc=${v1.kichThuocCode }&mauSac=${v1.mauSacCode }" />'><img
+									src="${valiImageUrl}/${v1.tenAnh}" class="card-img-top"
+									alt="..."></a>
+								<div class="card-body">
+									<h6 class="card-title">${v1.tenVali}</h6>
+									<p class="card-text">
 
-								<span class="color-and-bold">20.000.000đ</span>
-								<del>20.000.000đ</del>
-							</p>
+										<span class="color-and-bold">${v1.gia}</span> <br>
+										<del>${v1.giaGocString}</del>
+									</p>
 
-						</div>
+								</div>
+							</div>
+
+						</c:forEach>
+					</div>
+				</div>
+				<div class="tab-pane container fade" id="tab2">
+					<div class="card-body row">
+						<c:forEach items="${valisTheoThuongHieu }" var="v1">
+							<div class="card col-3" style="width: 100%">
+								<a
+									href='<c:url value="/san-pham/${v1.valiSlug}?kichThuoc=${v1.kichThuocCode }&mauSac=${v1.mauSacCode }" />'><img
+									src="${valiImageUrl}/${v1.tenAnh}" class="card-img-top"
+									alt="..."></a>
+								<div class="card-body">
+									<h6 class="card-title">${v1.tenVali}</h6>
+									<p class="card-text">
+
+										<span class="color-and-bold">${v1.gia}</span><br>
+										<del>${v1.giaGocString}</del>
+									</p>
+
+								</div>
+							</div>
+
+						</c:forEach>
+					</div>
+				</div>
+
+				<div class="tab-pane container fade" id="tab3">
+					<div class="card-body row">
+						<c:forEach items="${valisTheoNhomVali }" var="v1">
+							<div class="card col-3" style="width: 100%">
+								<a
+									href='<c:url value="/san-pham/${v1.valiSlug}?kichThuoc=${v1.kichThuocCode }&mauSac=${v1.mauSacCode }" />'><img
+									src="${valiImageUrl}/${v1.tenAnh}" class="card-img-top"
+									alt="..."></a>
+								<div class="card-body">
+									<h6 class="card-title">${v1.tenVali}</h6>
+									<p class="card-text">
+
+										<span class="color-and-bold">${v1.gia}</span><br>
+										<del>${v1.giaGocString}</del>
+									</p>
+
+								</div>
+							</div>
+
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!--End cac san pham lien quan-->
+
+
+			<!--comment-->
+			<div class="comment bg-white mt-3 p-2">
+
+				<h5>${vali.soDanhGia }đánhgiávềsảnphẩm</h5>
+
+
+				<div class="row mt-3">
+					<div class="col-4 text-center">
+						<span style="font-size: 24px">${valiComment.soDanhGiaTrungBinh}
+						</span> <img
+							src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+							alt="" />
 					</div>
 
-					
+					<div class="col-4 text-center">
+						<table>
+							<tr>
+								<td style="width: 20%"><span>5 </span> <img
+									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+									alt="" /></td>
+								<td style="width: 100%">
+									<div class="progress">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${valiComment.nam}%"
+											aria-valuenow="${valiComment.nam }" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</td>
+
+								<td style="margin-left: 10px">${valiComment.nam }%</td>
+							</tr>
+
+							<tr>
+								<td style="width: 20%"><span>4 </span> <img
+									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+									alt="" /></td>
+								<td style="width: 100%">
+									<div class="progress">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width:${valiComment.bon}%"
+											aria-valuenow="${valiComment.bon}" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</td>
+
+								<td style="margin-left: 10px">${valiComment.bon}%</td>
+							</tr>
+
+							<tr>
+								<td style="width: 20%"><span>3 </span> <img
+									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+									alt="" /></td>
+								<td style="width: 100%">
+									<div class="progress">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${valiComment.ba}%"
+											aria-valuenow="${valiComment.ba }" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</td>
+
+								<td style="margin-left: 10px">${valiComment.ba }%</td>
+							</tr>
+
+							<tr>
+								<td style="width: 20%"><span>2 </span> <img
+									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+									alt="" /></td>
+								<td style="width: 100%">
+									<div class="progress">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${valiComment.hai}%"
+											aria-valuenow="${valiComment.hai }" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</td>
+
+								<td style="margin-left: 10px">${valiComment.hai }%</td>
+							</tr>
+
+							<tr>
+								<td style="width: 20%"><span>1 </span> <img
+									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+									alt="" /></td>
+								<td style="width: 100%">
+									<div class="progress">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${valiComment.mot}%"
+											aria-valuenow="${valiComment.mot}" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</td>
+
+								<td style="margin-left: 10px">${valiComment.mot}%</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="col-4 text-center">
+						<sec:authorize access="!isAuthenticated()">
+
+							<span style="font-size: 16px" class="badge badge-danger">Cần
+								phải <a class="text-white" href="<c:url value="/login" />">Đăng
+									nhập</a> để bình luận
+							</span>
+
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<button class="btn btn-danger" data-toggle="modal"
+								data-target="#them-modal">Gởi đánh giá của bạn</button>
+
+						</sec:authorize>
+
+					</div>
 				</div>
+				<!--người dùng comment-->
+				<div>
+					<ul class="list-group list-group-flush">
+
+						<c:forEach items="${valiComment.binhLuanDTOs}" var="x">
+							<li class="list-group-item">
+								<div>
+									<span> <span style="font-weight: bold">${x.tenNguoiDung }
+
+									</span> || ${x.thoiGian} || <c:forEach var="i" begin="1"
+											end="${x.soDanhGia }">
+
+											<img
+												src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+												alt="" />
+
+										</c:forEach>
+
+
+
+									</span> <br> <span>${x.noiDung }</span>
+								</div>
+							</li>
+						</c:forEach>
+
+
+					</ul>
+				</div>
+
 
 			</div>
-		</div>
-		<!--End cac san pham lien quan-->
 
-
-		<!--comment-->
-		<div class="comment bg-white mt-3 p-2">
-
-			<h5>${vali.soDanhGia } đánh giá về sản phẩm</h5>
-
-
-			<div class="row mt-3">
-				<div class="col-4 text-center">
-					<span style="font-size: 24px">${valiComment.soDanhGiaTrungBinh} </span> <img
-						src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-						alt="" />
-				</div>
-
-				<div class="col-4 text-center">
-					<table>
-						<tr>
-							<td style="width: 20%"><span>5 </span> <img
-								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-								alt="" /></td>
-							<td style="width: 100%">
-								<div class="progress">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: ${valiComment.nam}%" aria-valuenow="${valiComment.nam }" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-							</td>
-
-							<td style="margin-left: 10px">${valiComment.nam }%</td>
-						</tr>
-
-						<tr>
-							<td style="width: 20%"><span>4 </span> <img
-								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-								alt="" /></td>
-							<td style="width: 100%">
-								<div class="progress">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width:${valiComment.bon}%" aria-valuenow="${valiComment.bon}" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-							</td>
-
-							<td style="margin-left: 10px">${valiComment.bon}%</td>
-						</tr>
-
-						<tr>
-							<td style="width: 20%"><span>3 </span> <img
-								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-								alt="" /></td>
-							<td style="width: 100%">
-								<div class="progress">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: ${valiComment.ba}%" aria-valuenow="${valiComment.ba }" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-							</td>
-
-							<td style="margin-left: 10px">${valiComment.ba }%</td>
-						</tr>
-
-						<tr>
-							<td style="width: 20%"><span>2 </span> <img
-								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-								alt="" /></td>
-							<td style="width: 100%">
-								<div class="progress">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: ${valiComment.hai}%" aria-valuenow="${valiComment.hai }" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-							</td>
-
-							<td style="margin-left: 10px">${valiComment.hai }%</td>
-						</tr>
-
-						<tr>
-							<td style="width: 20%"><span>1 </span> <img
-								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-								alt="" /></td>
-							<td style="width: 100%">
-								<div class="progress">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: ${valiComment.mot}%" aria-valuenow="${valiComment.mot}" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-							</td>
-
-							<td style="margin-left: 10px">${valiComment.mot}%</td>
-						</tr>
-					</table>
-				</div>
-
-				<div class="col-4 text-center">
-					<sec:authorize access="!isAuthenticated()">
-  						
-  						<span style="font-size: 16px" class="badge badge-danger">Cần phải <a class="text-white" href="<c:url value="/login" />">Đăng nhập</a> để bình luận   </span>
-  						
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
- 						 <button class="btn btn-danger">Gởi đánh giá của bạn</button>
-					</sec:authorize>
-					
-				</div>
-			</div>
-
-			<!--người dùng comment-->
-			<div>
-				<ul class="list-group list-group-flush">
-				
-					<c:forEach items="${valiComment.binhLuanDTOs}" var="x">
-						<li class="list-group-item">
-							<div>
-								<span>
-								
-									<span
-										style="font-weight: bold">${x.tenNguoiDung }
-								
-									</span>
-									|| ${x.thoiGian} ||
-									<c:forEach var = "i" begin = "1" end = "${x.soDanhGia }">
-				
-										<img
-											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-											alt="" />   
-											
-									</c:forEach>
-						
-									
-								
-								</span>
-								<br>
-								 <span>${x.noiDung }</span>
-							</div>
-						</li>
-					</c:forEach>
-					
-				
-				</ul>
-			</div>
+			<!--  end comment -->
 
 
 		</div>
 
-        <!--  end comment -->
-	</div>
 
-	
 
-	
 
-	<script type="text/javascript" src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
-	
-	
+
+		<script type="text/javascript"
+			src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
+		<!-- Toastr -->
+		<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
 </body>
 </html>

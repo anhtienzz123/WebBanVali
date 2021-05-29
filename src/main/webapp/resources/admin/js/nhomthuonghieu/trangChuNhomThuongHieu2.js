@@ -27,10 +27,10 @@ function xoa(nhomThuongHieuId) {
 			url: `api/${nhomThuongHieuId}`,
 			type: 'DELETE',
 			success: function() {
-				
+
 				capNhatDuLieu("");
 				toastr.success('Xóa thành công')
-				
+
 			},
 			error: function() {
 				toastr.error('Không xóa được, vì đã có sản phẩm dùng')
@@ -39,14 +39,15 @@ function xoa(nhomThuongHieuId) {
 		});
 
 	}
-}
+} 
+
 
 $('#btnThem').click(function() {
 
 	const giaTriDaNhap = $('#them-modal #tenThuongHieuThem').val();
 
 	if (giaTriDaNhap.trim().length == 0) {
-		$('#them-modal #errThem').text('Tên Thương hiệu không được bỏ trống');
+		$('#them-modal #errThem').text('Tên thương hiệu không được bỏ trống');
 		return;
 	}
 
@@ -54,8 +55,11 @@ $('#btnThem').click(function() {
 
 	$.post(url, { tenThuongHieu: giaTriDaNhap }, function(data, status) {
 
-		if (status === 'success') {
+		if (status === 'error') {
+			toastr.error('Tên thương hiêu đã bị trùng');
+			$('#them-modal #errThem').text('Tên thương hiệu đã trùng');
 
+		} else {
 			$('#them-modal').modal('hide');
 			toastr.success('Thêm thành công')
 
@@ -84,22 +88,11 @@ $('#btnThem').click(function() {
 			   `)
 				);
 
-		} else {
-			$('#them-modal #errThem').text('Tên thương hiệu đã trùng');
 		}
 
 	});
 
 });
-
-
-$("#timKiemTenThuongHieu").on("keyup", function() {
-
-	capNhatDuLieu(this.value);
-
-});
-
-
 
 // lấy dữ liệu và đưa lên form sửa
 function sua(nhomThuongHieuId) {

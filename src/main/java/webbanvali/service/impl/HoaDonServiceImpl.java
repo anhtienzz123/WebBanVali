@@ -36,6 +36,22 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 
 	@Override
+	public List<HoaDonChungDTO> getHoaDonChungs1(String id, String soDienThoai) {
+
+		List<HoaDon> result = hoaDonRepository.findAllByIdAndSoDienThoaiGiaoHang(id, soDienThoai);
+
+		return result.stream().map(hd -> hoaDonConverter.toHoaDonChungDTO(hd)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<HoaDonChungDTO> getHoaDonChungs2(String soDienThoai) {
+
+		List<HoaDon> result = hoaDonRepository.findAllBySoDienThoaiGiaoHang(soDienThoai);
+
+		return result.stream().map(hd -> hoaDonConverter.toHoaDonChungDTO(hd)).collect(Collectors.toList());
+	}
+
+	@Override
 	public boolean capNhatTrangThai(String id, String trangThai) {
 
 		if (!hoaDonRepository.existsById(id)) {
@@ -54,20 +70,17 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	@Override
 	public HoaDonDTO getTheoId(String id) {
-		
-		return hoaDonRepository.findById(id).map(s-> hoaDonConverter.toHoaDonDTO(s)).orElse(null);
+
+		return hoaDonRepository.findById(id).map(s -> hoaDonConverter.toHoaDonDTO(s)).orElse(null);
 	}
-	
+
 	@Override
 	public boolean xoaHoaDon(String id) {
 
 		if (!hoaDonRepository.existsById(id)) {
-
 			return false;
 		}
-
 		hoaDonRepository.deleteById(id);
-
 		return true;
 	}
 

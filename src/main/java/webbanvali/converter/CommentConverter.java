@@ -20,10 +20,10 @@ public class CommentConverter {
 			return null;
 
 		int tongSoBinhLuan = vali.getBinhLuans().size();
-		
-		if(tongSoBinhLuan == 0)
+
+		if (tongSoBinhLuan == 0)
 			return new ValiCommentDTO(0, 0, 0, 0, 0, 0, new ArrayList<>());
-		
+
 		double soDanhGiaTrungBinh = 0;
 		int nam = 0;
 		int bon = 0;
@@ -37,9 +37,11 @@ public class CommentConverter {
 		for (BinhLuan binhLuan : vali.getBinhLuans()) {
 
 			if (commentNumber < 10) {
-				BinhLuanDTO binhLuanDTO = new BinhLuanDTO(binhLuan.getNguoiDung().getHoTen(),
-						XuLiNgay.toString(binhLuan.getThoiGianBinhLuan()), binhLuan.getDanhGia(),
-						binhLuan.getNoiDung());
+
+				BinhLuanDTO binhLuanDTO = new BinhLuanDTO(binhLuan.getNguoiDung().getId(),
+						binhLuan.getVali().getTenVali(), binhLuan.getVali().getId(), binhLuan.getVali().getSlug(),
+						binhLuan.getNguoiDung().getHoTen(), XuLiNgay.toString(binhLuan.getThoiGianBinhLuan()),
+						binhLuan.getDanhGia(), binhLuan.getNoiDung());
 
 				binhLuanDTOs.add(binhLuanDTO);
 				commentNumber++;
@@ -77,11 +79,11 @@ public class CommentConverter {
 		}
 
 		soDanhGiaTrungBinh /= tongSoBinhLuan;
-		nam = (int) Math.round((nam * 1.00 / tongSoBinhLuan)*100);
-		bon = (int) Math.round((bon * 1.00 / tongSoBinhLuan)*100);
-		ba = (int) Math.round((ba * 1.00 / tongSoBinhLuan)*100);
-		hai = (int) Math.round((hai * 1.00 / tongSoBinhLuan)*100);
-		mot = (int) Math.round((mot * 1.00 / tongSoBinhLuan)*100);
+		nam = (int) Math.round((nam * 1.00 / tongSoBinhLuan) * 100);
+		bon = (int) Math.round((bon * 1.00 / tongSoBinhLuan) * 100);
+		ba = (int) Math.round((ba * 1.00 / tongSoBinhLuan) * 100);
+		hai = (int) Math.round((hai * 1.00 / tongSoBinhLuan) * 100);
+		mot = (int) Math.round((mot * 1.00 / tongSoBinhLuan) * 100);
 
 		return new ValiCommentDTO(soDanhGiaTrungBinh, nam, bon, ba, hai, mot, binhLuanDTOs);
 	}

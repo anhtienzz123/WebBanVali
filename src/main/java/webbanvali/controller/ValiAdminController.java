@@ -32,6 +32,8 @@ public class ValiAdminController {
 	@Autowired
 	private ValiService valiService;
 
+	private static final int SIZE1 = 12;
+
 	@GetMapping("/{slug}")
 	public String chiTietVali(Model model, @PathVariable("slug") String slug,
 			@RequestParam("kichThuoc") String kichThuoc, @RequestParam("mauSac") String mauSac) {
@@ -39,9 +41,12 @@ public class ValiAdminController {
 		ChiTietValiDTO result = bienTheValiService.getChiTietValiDTO(slug, kichThuoc, mauSac);
 		ValiCommentDTO valiCommentDTO = binhLuanService.getValiCommentTheoValiSlug(slug);
 
+		model.addAttribute("valisTheoNhomVali", bienTheValiService.getBienTheValisTheoNhomVali(result.getNhomValiId()));
+		model.addAttribute("valisTheoThuongHieu",
+				bienTheValiService.getBienTheValisTheoThuongHieu(result.getThuongHieuId()));
+		model.addAttribute("valisBanChay", bienTheValiService.getValisBanChay(SIZE1));
 		model.addAttribute("valiComment", valiCommentDTO);
 		model.addAttribute("vali", result);
-
 		return "chiTietVali";
 	}
 
@@ -57,18 +62,15 @@ public class ValiAdminController {
 		model.addAttribute("kichThuocs", tieuChis.get("kichThuocs"));
 		model.addAttribute("mauSacs", tieuChis.get("mauSacs"));
 		model.addAttribute("tinhNangDacBiets", tieuChis.get("tinhNangDacBiets"));
-		
-		model.addAttribute("valis",bienTheValiService.getBienTheValisTheoNhieuDieuKien(null, null, null,
-				null, null, null, null, null, 0, 12));
+
+		model.addAttribute("valis", bienTheValiService.getBienTheValisTheoNhieuDieuKien(null, null, null, null, null,
+				null, null, null, 0, 12));
 
 		return "danhSachVali";
 	}
 
-
-	
 	@GetMapping("/api")
-	public String danhSachValiApi(
-			Model model,
+	public String danhSachValiApi(Model model,
 			@RequestParam(value = "nhomValis", required = false) List<String> nhomValis,
 			@RequestParam(value = "gias", required = false) List<String> gias,
 			@RequestParam(value = "thuongHieus", required = false) List<String> thuongHieus,
@@ -82,10 +84,9 @@ public class ValiAdminController {
 
 	) {
 
-		
 		List<BienTheValiDTO> ketQua = bienTheValiService.getBienTheValisTheoNhieuDieuKien(nhomValis, gias, thuongHieus,
 				chatLieus, kichThuocs, mauSacs, tinhNangs, loaiSapXep, page, size);
-		
+
 		model.addAttribute("valis", ketQua);
 
 		return "ketQuaDanhSach";

@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
+import webbanvali.dto.BienTheValiDTO;
+
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
 
@@ -38,5 +40,15 @@ public interface BienTheValiRepository
 
 	List<BienTheVali> findByValiTenValiContainingAndKichThuocTenKichThuocAndMauSacTenMau(String tenVali,
 			String tenKichThuoc, String tenMau);
+
+	@Query(value = "select   btv.*  from bien_the_vali as btv\r\n"
+			+ "			inner join vali as vl on btv.vali_id = vl.id\r\n"
+			+ "			where  thuong_hieu_id = ?1  group by btv.vali_id", nativeQuery = true)
+	List<BienTheVali> findAllByTenThuongHieu(Integer thuongHieuId);
+
+	@Query(value = "select   btv.*  from bien_the_vali as btv\r\n"
+			+ "			inner join vali as vl on btv.vali_id = vl.id\r\n"
+			+ "			where  nhom_vali_id = ?1  group by btv.vali_id", nativeQuery = true)
+	List<BienTheVali> findAllByNhomVali(Integer nhomValiId);
 
 }

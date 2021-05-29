@@ -188,27 +188,28 @@
 			<div class="col-9 bg-light pl-3">
 				<div class="san-pham">
 					<div class="san-pham__header">
-						<span>Sắp xếp theo: </span> <select class="form-control" id="loaiSapXep" 
-							style="width: 200px; display: inline-block">
+						<span>Sắp xếp theo: </span> <select class="form-control"
+							id="loaiSapXep" style="width: 200px; display: inline-block">
 							<option value="">Mặc định</option>
-							<option value="gia-tang-dan" >Giá tăng dần</option>
+							<option value="gia-tang-dan">Giá tăng dần</option>
 							<option value="gia-giam-dan">Giá giảm dần</option>
-							<option value="khuyen-mai" >Khuyến mãi</option>
+							<option value="khuyen-mai">Khuyến mãi</option>
 						</select>
 					</div>
 
-					
-					
+
+
 					<div class="san-pham__list bg-white" id="san-pham__list">
 
 						<c:forEach items="${valis }" var="x">
 							<!--Moi san pham-->
 							<div>
 								<div class="san-pham__list__item">
-									<div class="card card-san-pham" style="width: 100%; ">
-										<img
-											src="${valiImageUrl}/${x.tenAnh}"
-											class="card-img-top" />
+									<div class="card card-san-pham" style="width: 100%;">
+										<a
+											href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
+											<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
+										</a>
 										<div class="card-body">
 											<h6 class="card-title">${x.tenVali }</h6>
 											<p class="card-text">
@@ -223,7 +224,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<!--End moi san pham-->
 
 						</c:forEach>

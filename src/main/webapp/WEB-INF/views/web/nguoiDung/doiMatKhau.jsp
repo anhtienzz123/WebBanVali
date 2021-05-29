@@ -34,9 +34,11 @@
 								href=' <c:url value="/user/thong-tin" />'>Thông tin tài
 									khoản</a></li>
 							<li class="list-group-item"><a
-								href=' <c:url value="/user/doi-mk" />'> Đổi mật khẩu</a>
-							<li class="list-group-item">Đơn hàng của tôi</li>
-							<li class="list-group-item">Nhận xét của tôi</li>
+								href=' <c:url value="/user/doi-mk" />'> Đổi mật khẩu</a></li>
+							<li class="list-group-item"><a
+								href=' <c:url value="/user/don-hang" />'>Đơn hàng của tôi</a></li>
+							<li class="list-group-item"><a
+								href=' <c:url value="/user/binh-luan" />'>Nhận xét của tôi</a></li>
 						</ul>
 					</div>
 
@@ -45,7 +47,7 @@
 
 				<div class="col-8 px-4 py-2 border bg-white rounded">
 
-					<span class="font-weight-bold">THÔNG TIN TÀI KHOẢN</span>
+					<span class="font-weight-bold">ĐỔI MẬT KHẨU</span>
 
 					<div class="form-thong-tin mt-3">
 
