@@ -76,6 +76,8 @@ public class BienTheValiConverter {
 				+ bienTheVali.getMauSac().getTenMau();
 		int soDanhGia = bienTheVali.getVali().getBinhLuans().size();
 		String thuongHieu = bienTheVali.getVali().getThuongHieu().getTenThuongHieu();
+		int thuongHieuId = bienTheVali.getVali().getThuongHieu().getId();
+		int nhomValiId = bienTheVali.getVali().getNhomVali().getId();
 		String giaGoc = XuLyTien.dinhDangTien(bienTheVali.getGia());
 		double khuyenMai = bienTheVali.getKhuyenMai();
 		String gia = XuLyTien.dinhDangTien(bienTheVali.getGia() - ((bienTheVali.getGia() * 1.0 / 100) * khuyenMai));
@@ -126,9 +128,9 @@ public class BienTheValiConverter {
 			mauSacs.add(new LoaiBienTheValiDTO(ten, code, giaStringTempt, chon));
 		}
 
-		return new ChiTietValiDTO(valiSlug, kichThuocCode, mauSacCode, tenVali, soDanhGia, thuongHieu, gia, giaGoc,
-				khuyenMai, moTa, tenChatLieu, banhXe, dayKeo, khoa, thoiGianBaoHanh, theTich, trongLuong, moTaKichThuoc,
-				tenAnh, kichThuocs, mauSacs);
+		return new ChiTietValiDTO(valiSlug, kichThuocCode, mauSacCode, tenVali, soDanhGia, thuongHieu, thuongHieuId,
+				nhomValiId, gia, giaGoc, khuyenMai, moTa, tenChatLieu, banhXe, dayKeo, khoa, thoiGianBaoHanh, theTich,
+				trongLuong, moTaKichThuoc, tenAnh, kichThuocs, mauSacs);
 	}
 
 	public BienTheValiDTO toBienTheValiDTO(BienTheVali bienTheVali) {
@@ -138,11 +140,13 @@ public class BienTheValiConverter {
 		String mauSacCode = bienTheVali.getMauSac().getCode();
 		String tenVali = bienTheVali.getVali().getTenVali() + " " + bienTheVali.getKichThuoc().getTenKichThuoc() + " "
 				+ bienTheVali.getMauSac().getTenMau();
-		double giaGoc = bienTheVali.getGia();
 		double khuyenMai = bienTheVali.getKhuyenMai();
+		String gia = XuLyTien.dinhDangTien(bienTheVali.getGia() - ((bienTheVali.getGia() * 1.0 / 100) * khuyenMai));
+		double giaGoc = bienTheVali.getGia();
+		String giaGocString = XuLyTien.dinhDangTien(bienTheVali.getGia());
 		String tenAnh = bienTheVali.getTenAnh();
 
-		return new BienTheValiDTO(valiSlug, kichThuocCode, mauSacCode, tenVali, giaGoc, khuyenMai, tenAnh);
+		return new BienTheValiDTO(valiSlug, kichThuocCode, mauSacCode, tenVali, giaGoc, gia,giaGocString, khuyenMai, tenAnh);
 
 	}
 
@@ -173,7 +177,6 @@ public class BienTheValiConverter {
 
 	public BienTheValiTableDTO toBienTheValiTableDTO(BienTheVali bienTheVali) {
 
-		
 		BienTheValiTableDTO bienTheValiTableDTO = new BienTheValiTableDTO();
 		bienTheValiTableDTO.setValiId(bienTheVali.getVali().getId());
 		bienTheValiTableDTO.setTenVali(bienTheVali.getVali().getTenVali());
@@ -189,11 +192,11 @@ public class BienTheValiConverter {
 		return bienTheValiTableDTO;
 
 	}
-	
+
 	public BienTheValiAddDTO toBienTheValiAddDTO(BienTheVali bienTheVali) {
-		
+
 		BienTheValiAddDTO bienTheValiAddDTO = new BienTheValiAddDTO();
-		
+
 		bienTheValiAddDTO.setValiId(bienTheVali.getVali().getId());
 		bienTheValiAddDTO.setKichThuocId(bienTheVali.getKichThuoc().getId());
 		bienTheValiAddDTO.setMauSacId(bienTheVali.getMauSac().getId());
@@ -208,8 +211,8 @@ public class BienTheValiConverter {
 		bienTheValiAddDTO.setMoTaKichThuoc(bienTheValiAddDTO.getMoTaKichThuoc());
 		bienTheValiAddDTO.setNoiBat(bienTheVali.isNoiBat());
 		bienTheValiAddDTO.setTenAnh(bienTheVali.getTenAnh());
-		
+
 		return bienTheValiAddDTO;
-		
+
 	}
 }

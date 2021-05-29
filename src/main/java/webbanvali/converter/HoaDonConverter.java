@@ -21,6 +21,7 @@ public class HoaDonConverter {
 		hoaDonChungDTO.setId(hoaDon.getId());
 		hoaDonChungDTO.setHoTenKhachHang(hoaDon.getHoTenKhachHang());
 		hoaDonChungDTO.setSoDienThoaiGiaoHang(hoaDon.getSoDienThoaiGiaoHang());
+		hoaDonChungDTO.setTenVali(hoaDon.getChiTietHoaDons().get(0).getBienTheVali().getVali().getTenVali());
 		hoaDonChungDTO.setDiaChiGiaoHang(hoaDon.getDiaChiGiaoHang());
 		hoaDonChungDTO.setThoiGianDat(XuLiNgay.toString(hoaDon.getThoiGianDat()));
 		hoaDonChungDTO.setTongTien(XuLyTien.dinhDangTien(hoaDon.tinhThanhTien()));

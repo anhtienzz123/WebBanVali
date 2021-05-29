@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import webbanvali.converter.NguoiDungConverter;
 import webbanvali.dto.NguoiDungDTO;
 import webbanvali.entity.NguoiDung;
+import webbanvali.entity.Vali;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.service.NguoiDungService;
 import webbanvali.utils.EmailSender;
@@ -45,7 +46,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 			// lưu xuống
 			int maNguoiDung = save(nguoiDungDTO).getId();
-			
+
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();
 			nguoiDungDaLuu.setMaXacNhan(maXacNhan);
@@ -100,6 +101,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDungDTOResult;
 	}
+
 	@Override
 	public NguoiDungDTO save1(NguoiDungDTO nguoiDungDTO) {
 
@@ -115,6 +117,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDungDTOResult;
 	}
+
 	@Override
 	public boolean goiEmailQuenMatKhau(String email, String host) {
 
@@ -199,4 +202,14 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDungConverter.toNguoiDungDTO(nguoiDung);
 	}
+	@Override
+	public NguoiDung getBuoiDungTheoEmail(String mail) {
+		NguoiDung nguoiDung = nguoiDungRepository.findByEmail(mail);
+		if (nguoiDung == null)
+			return null;
+
+		return nguoiDung;
+
+	}
+
 }

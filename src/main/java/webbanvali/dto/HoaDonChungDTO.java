@@ -11,6 +11,7 @@ public class HoaDonChungDTO {
 
 	private String id;
 	private String hoTenKhachHang;
+	private String tenVali;
 	private String soDienThoaiGiaoHang;
 	private String diaChiGiaoHang;
 	private String thoiGianDat;

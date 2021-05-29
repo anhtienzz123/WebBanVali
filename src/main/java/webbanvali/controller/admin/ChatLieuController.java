@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import webbanvali.dto.ChatLieuDTO;
 import webbanvali.dto.MauSacDTO;
+import webbanvali.dto.TinhNangDacBietDTO;
 import webbanvali.service.ChatLieuService;
 
 @Controller
@@ -56,8 +57,9 @@ public class ChatLieuController {
 
 	}
 
+	// thêm
 	@PostMapping(value = "/api")
-	public @ResponseBody ResponseEntity<ChatLieuDTO> them(ChatLieuDTO chatLieuDTO1) {
+	public @ResponseBody ResponseEntity<ChatLieuDTO> them(@RequestBody ChatLieuDTO chatLieuDTO1) {
 
 		ChatLieuDTO chatLieuDTO = chatLieuService.themChatLieu(chatLieuDTO1.getTenChatLieu());
 		if (chatLieuDTO == null)

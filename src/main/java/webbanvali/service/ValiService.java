@@ -7,6 +7,7 @@ import webbanvali.dto.KeyValueDTO;
 import webbanvali.dto.ValiChungDTO;
 import webbanvali.dto.ValiChungResponseDTO;
 import webbanvali.dto.ValiDTO;
+import webbanvali.entity.Vali;
 
 public interface ValiService {
 
@@ -19,7 +20,7 @@ public interface ValiService {
 
 	Map<String, List<String>> getTenOfTinhNangVaChatLieuVaThuongVaNhomVali();
 	Map<String, List<String>> getTenOfValiVaKichThuocVaMauSac();
-	
-	
 	boolean themVali(ValiChungDTO valiChungDTO);
+
+	Vali getValiTheoID(Integer maVali);
 }

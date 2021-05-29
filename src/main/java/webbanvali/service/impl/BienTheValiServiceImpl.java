@@ -28,6 +28,7 @@ import webbanvali.dto.BienTheValiTableDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
+import webbanvali.entity.BinhLuan_PK;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.service.BienTheValiService;
 import webbanvali.utils.ChuoiConstant;
@@ -123,6 +124,21 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 	}
 
 	@Override
+
+	public List<BienTheValiDTO> getBienTheValisTheoThuongHieu(Integer thuongHieuId) {
+
+		return bienTheValiRepository.findAllByTenThuongHieu(thuongHieuId).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
+
+	}
+
+	@Override
+	public List<BienTheValiDTO> getBienTheValisTheoNhomVali(Integer nhomValiId) {
+		return bienTheValiRepository.findAllByNhomVali(nhomValiId).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
+	}
+
+	@Override
 	public boolean themBienTheVali(BienTheValiAddDTO bienTheValiAddDTO, MultipartFile file) {
 
 		try {
@@ -175,16 +191,18 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 				bienTheValiAddDTO.setTenAnh(fileName);
 				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
 
-			}else {
+			} else {
 				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
 			}
 
 			return true;
 		} catch (Exception e) {
 
-		};
+		}
+		;
 
 		return false;
 
 	}
+
 }

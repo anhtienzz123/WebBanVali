@@ -61,6 +61,16 @@ public class ValiServiceImpl implements ValiService {
 
 		return sachDTO;
 	}
+	@Override
+	public Vali getValiTheoID(Integer maVali) {
+		Vali vali = valiRepository.findById(maVali).get();
+
+		if (vali == null)
+			return null;
+
+		return vali;
+
+	}
 
 	@Override
 	public Map<String, List<KeyValueDTO>> getTieuChiTimKiem() {
@@ -133,23 +143,19 @@ public class ValiServiceImpl implements ValiService {
 
 		return false;
 	}
-	
+
 	@Override
 	public Map<String, List<String>> getTenOfValiVaKichThuocVaMauSac() {
-		
-		
+
 		Map<String, List<String>> result = new HashMap<>();
 
-		List<String> tenValis = valiRepository.findAll().stream().map(s -> s.getTenVali())
-				.collect(Collectors.toList());
-		
+		List<String> tenValis = valiRepository.findAll().stream().map(s -> s.getTenVali()).collect(Collectors.toList());
+
 		result.put("tenValis", tenValis);
 
 		List<String> tenKichThuocs = kichThuocRepository.findAll().stream().map(s -> s.getTenKichThuoc())
 				.collect(Collectors.toList());
 		result.put("tenKichThuocs", tenKichThuocs);
-
-		
 
 		List<String> tenMauSacs = mauSacRepository.findAll().stream().map(s -> s.getTenMau())
 				.collect(Collectors.toList());

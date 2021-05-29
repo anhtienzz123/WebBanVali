@@ -47,4 +47,9 @@ public class NhomVali implements Serializable {
 		this.code = code;
 	}
 
+	public NhomVali(String tenNhomVali) {
+		super();
+		this.tenNhomVali = tenNhomVali;
+	}
+
 }
