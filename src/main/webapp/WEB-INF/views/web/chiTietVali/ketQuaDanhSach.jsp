@@ -6,29 +6,29 @@
 <c:url value="/static/image/vali" var="valiImageUrl" />
 
 
-<div>
 
-	<c:forEach items="${valis }" var="x">
-		<!--Moi san pham-->
-		<div>
-			<div class="san-pham__list__item">
-				<div class="card card-san-pham" style="width: 100%; border: 1px solid white;">
-					<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
-					<div class="card-body">
-						<h6 class="card-title">${x.tenVali }</h6>
-						<p class="card-text">
-							<span style="font-weight: bold; color: #f7941e; font-size: 18px;">
-								${x.getGiaString() } </span> <br />
-							<del style="font-weight: 500; color: #888888">
-								${x.getGiaGocString()}</del>
-						</p>
-						<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
-					</div>
-				</div>
+<c:forEach items="${valis }" var="x">
+
+
+	<div class="col-3 san-pham__list__item">
+		<div class="card card-san-pham" style="width: 100%;">
+			<a
+				href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
+				<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
+			</a>
+			<div class="card-body">
+				<h6 class="card-title">${x.tenVali }</h6>
+				<p class="card-text">
+					<span style="font-weight: bold; color: #f7941e; font-size: 18px;">
+						${x.getGiaString() } </span> <br />
+					<del style="font-weight: 500; color: #888888">
+						${x.getGiaGocString()}</del>
+				</p>
+				<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
 			</div>
 		</div>
 
-		<!--End moi san pham-->
+	</div>
 
-	</c:forEach>
-</div>
+
+</c:forEach>

@@ -85,6 +85,6 @@ public class CommentConverter {
 		hai = (int) Math.round((hai * 1.00 / tongSoBinhLuan) * 100);
 		mot = (int) Math.round((mot * 1.00 / tongSoBinhLuan) * 100);
 
-		return new ValiCommentDTO(soDanhGiaTrungBinh, nam, bon, ba, hai, mot, binhLuanDTOs);
+		return new ValiCommentDTO(Math.round(soDanhGiaTrungBinh*100)*1.0/100, nam, bon, ba, hai, mot, binhLuanDTOs);
 	}
 }

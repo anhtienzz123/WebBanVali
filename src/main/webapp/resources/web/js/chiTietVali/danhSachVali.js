@@ -41,6 +41,7 @@ $(".gia").click(() => {
 
 
 $(".thuongHieu").click(() => {
+
 	thuongHieus = [];
 	const mang = document.getElementsByClassName("thuongHieu");
 

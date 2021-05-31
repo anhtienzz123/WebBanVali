@@ -197,40 +197,43 @@
 						</select>
 					</div>
 
-
-
-					<div class="san-pham__list bg-white" id="san-pham__list">
+					<div class="row" id="san-pham__list">
 
 						<c:forEach items="${valis }" var="x">
-							<!--Moi san pham-->
-							<div>
-								<div class="san-pham__list__item">
-									<div class="card card-san-pham" style="width: 100%;">
-										<a
-											href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
-											<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
-										</a>
-										<div class="card-body">
-											<h6 class="card-title">${x.tenVali }</h6>
-											<p class="card-text">
-												<span
-													style="font-weight: bold; color: #f7941e; font-size: 18px;">
-													${x.getGiaString() } </span> <br />
-												<del style="font-weight: 500; color: #888888">
-													${x.getGiaGocString()}</del>
-											</p>
-											<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
-										</div>
+
+
+							<div class="col-3 san-pham__list__item">
+								<div class="card card-san-pham" style="width: 100%;">
+									<a
+										href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
+										<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
+									</a>
+									<div class="card-body">
+										<h6 class="card-title">${x.tenVali }</h6>
+										<p class="card-text">
+											<span
+												style="font-weight: bold; color: #f7941e; font-size: 18px;">
+												${x.getGiaString() } </span> <br />
+											<del style="font-weight: 500; color: #888888">
+												${x.getGiaGocString()}</del>
+										</p>
+										<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
 									</div>
 								</div>
+
 							</div>
 
-							<!--End moi san pham-->
 
 						</c:forEach>
 
-						<br style="clear: both" />
+
+
+
 					</div>
+
+
+
+
 				</div>
 			</div>
 		</div>

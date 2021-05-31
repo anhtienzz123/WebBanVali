@@ -3,10 +3,7 @@ package webbanvali.service;
 import java.util.List;
 
 import webbanvali.dto.BinhLuanDTO;
-
 import webbanvali.dto.ValiCommentDTO;
-import webbanvali.entity.NguoiDung;
-import webbanvali.entity.Vali;
 
 public interface BinhLuanService {
 
@@ -17,5 +14,7 @@ public interface BinhLuanService {
 
 	boolean xoaBinhLuanTheoValiIdVaNguoiDungId(Integer valiId,  Integer nguoiDungId);
 
-	BinhLuanDTO themBinhLuan(NguoiDung nguoiDung, Vali vali, String cmt, Integer soSao);
+	boolean themBinhLuan(String valiSlug, String noiDung, Integer soSao);
+	
+	
 }
