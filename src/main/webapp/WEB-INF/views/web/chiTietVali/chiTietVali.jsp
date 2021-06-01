@@ -29,7 +29,6 @@
 <body class="bg-light">
 
 	<div class="main">
-
 		<!-- Head-->
 		<div class="bg-white">
 			<div class="row info ">
@@ -183,6 +182,7 @@
 
 		<!--San pham lien quan  -->
 		<div class="bg-white mt-3 p-2">
+
 			<h5>Các sản phẩm liên quan</h5>
 			<!-- tab -->
 			<div class="card">
@@ -203,6 +203,7 @@
 			</div>
 			<!-- Nội dung -->
 			<div class="tab-content">
+
 				<div class="tab-pane container active" id="tab1">
 					<div class="card-body row">
 						<c:forEach items="${valisBanChay }" var="v1">
@@ -272,167 +273,236 @@
 				</div>
 			</div>
 			<!--End cac san pham lien quan-->
+		</div>
+
+		<!--comment-->
+		<div class="comment bg-white mt-3 p-2">
+
+			<h5>${vali.soDanhGia }đánh giá về sản phẩm</h5>
 
 
-			<!--comment-->
-			<div class="comment bg-white mt-3 p-2">
+			<div class="row mt-3">
 
-				<h5>${vali.soDanhGia }đánhgiávềsảnphẩm</h5>
-
-
-				<div class="row mt-3">
-					<div class="col-4 text-center">
-						<span style="font-size: 24px">${valiComment.soDanhGiaTrungBinh}
-						</span> <img
-							src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-							alt="" />
-					</div>
-
-					<div class="col-4 text-center">
-						<table>
-							<tr>
-								<td style="width: 20%"><span>5 </span> <img
-									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-									alt="" /></td>
-								<td style="width: 100%">
-									<div class="progress">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${valiComment.nam}%"
-											aria-valuenow="${valiComment.nam }" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</td>
-
-								<td style="margin-left: 10px">${valiComment.nam }%</td>
-							</tr>
-
-							<tr>
-								<td style="width: 20%"><span>4 </span> <img
-									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-									alt="" /></td>
-								<td style="width: 100%">
-									<div class="progress">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width:${valiComment.bon}%"
-											aria-valuenow="${valiComment.bon}" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</td>
-
-								<td style="margin-left: 10px">${valiComment.bon}%</td>
-							</tr>
-
-							<tr>
-								<td style="width: 20%"><span>3 </span> <img
-									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-									alt="" /></td>
-								<td style="width: 100%">
-									<div class="progress">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${valiComment.ba}%"
-											aria-valuenow="${valiComment.ba }" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</td>
-
-								<td style="margin-left: 10px">${valiComment.ba }%</td>
-							</tr>
-
-							<tr>
-								<td style="width: 20%"><span>2 </span> <img
-									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-									alt="" /></td>
-								<td style="width: 100%">
-									<div class="progress">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${valiComment.hai}%"
-											aria-valuenow="${valiComment.hai }" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</td>
-
-								<td style="margin-left: 10px">${valiComment.hai }%</td>
-							</tr>
-
-							<tr>
-								<td style="width: 20%"><span>1 </span> <img
-									src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-									alt="" /></td>
-								<td style="width: 100%">
-									<div class="progress">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${valiComment.mot}%"
-											aria-valuenow="${valiComment.mot}" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</td>
-
-								<td style="margin-left: 10px">${valiComment.mot}%</td>
-							</tr>
-						</table>
-					</div>
-
-					<div class="col-4 text-center">
-						<sec:authorize access="!isAuthenticated()">
-
-							<span style="font-size: 16px" class="badge badge-danger">Cần
-								phải <a class="text-white" href="<c:url value="/login" />">Đăng
-									nhập</a> để bình luận
-							</span>
-
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-							<button class="btn btn-danger" data-toggle="modal"
-								data-target="#them-modal">Gởi đánh giá của bạn</button>
-
-						</sec:authorize>
-
-					</div>
+				<div class="col-3 text-center">
+					<span style="font-size: 24px">${valiComment.soDanhGiaTrungBinh}
+					</span> <img
+						src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+						alt="" />
 				</div>
-				<!--người dùng comment-->
-				<div>
-					<ul class="list-group list-group-flush">
-
-						<c:forEach items="${valiComment.binhLuanDTOs}" var="x">
-							<li class="list-group-item">
-								<div>
-									<span> <span style="font-weight: bold">${x.tenNguoiDung }
-
-									</span> || ${x.thoiGian} || <c:forEach var="i" begin="1"
-											end="${x.soDanhGia }">
-
-											<img
-												src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
-												alt="" />
-
-										</c:forEach>
 
 
-
-									</span> <br> <span>${x.noiDung }</span>
+				<div class="col-4 t text-center">
+					<table>
+						<tr>
+							<td style="width: 20%"><span>5 </span> <img
+								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+								alt="" /></td>
+							<td style="width: 100%">
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width: ${valiComment.nam}%"
+										aria-valuenow="${valiComment.nam }" aria-valuemin="0"
+										aria-valuemax="100"></div>
 								</div>
-							</li>
-						</c:forEach>
+							</td>
 
+							<td style="margin-left: 10px">${valiComment.nam }%</td>
+						</tr>
 
-					</ul>
+						<tr>
+							<td style="width: 20%"><span>4 </span> <img
+								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+								alt="" /></td>
+							<td style="width: 100%">
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width:${valiComment.bon}%"
+										aria-valuenow="${valiComment.bon}" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+							</td>
+
+							<td style="margin-left: 10px">${valiComment.bon}%</td>
+						</tr>
+
+						<tr>
+							<td style="width: 20%"><span>3 </span> <img
+								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+								alt="" /></td>
+							<td style="width: 100%">
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width: ${valiComment.ba}%"
+										aria-valuenow="${valiComment.ba }" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+							</td>
+
+							<td style="margin-left: 10px">${valiComment.ba }%</td>
+						</tr>
+
+						<tr>
+							<td style="width: 20%"><span>2 </span> <img
+								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+								alt="" /></td>
+							<td style="width: 100%">
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width: ${valiComment.hai}%"
+										aria-valuenow="${valiComment.hai }" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+							</td>
+
+							<td style="margin-left: 10px">${valiComment.hai }%</td>
+						</tr>
+
+						<tr>
+							<td style="width: 20%"><span>1 </span> <img
+								src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+								alt="" /></td>
+							<td style="width: 100%">
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width: ${valiComment.mot}%"
+										aria-valuenow="${valiComment.mot}" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+							</td>
+
+							<td style="margin-left: 10px">${valiComment.mot}%</td>
+						</tr>
+					</table>
 				</div>
 
+				<div class="col-5">
+					<sec:authorize access="!isAuthenticated()">
 
+						<span style="font-size: 16px" class="badge badge-danger">Cần
+							phải <a class="text-white" href="<c:url value="/login" />">Đăng
+								nhập</a> để bình luận
+						</span>
+
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+
+						<form method="get"
+								action='<c:url value="/user/binh-luan-bai-viet"  />' >
+								
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">Nội dung</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="noiDung">
+								</div>
+							</div>
+							
+							<input type="hidden" name="valiSlug" value="${vali.valiSlug}" />
+							<input type="hidden" name="mauSac" value="${vali.mauSacCode}" />
+							<input type="hidden" name="kichThuoc" value="${vali.kichThuocCode}" />
+
+							<fieldset class="form-group row">
+								<legend class="col-form-label col-sm-3 float-sm-left pt-0">Đánh
+									giá</legend>
+
+								<div class="col-sm-9">
+
+									<div class="form-check-inline">
+										<input class="form-check-input" type="radio" name="rate"
+											value="1"> <label class="form-check-label">
+											1 </label> <img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+									</div>
+
+									<div class="form-check-inline">
+										<input class="form-check-input" type="radio" name="rate"
+											value="2"> <label class="form-check-label">
+											2 </label> <img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+									</div>
+
+
+									<div class="form-check-inline">
+										<input class="form-check-input" type="radio" name="rate"
+											value="3"> <label class="form-check-label">
+											3 </label> <img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+									</div>
+
+									<div class="form-check-inline">
+										<input class="form-check-input" type="radio" name="rate"
+											value="4"> <label class="form-check-label">
+											4 </label> <img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+									</div>
+
+									<div class="form-check-inline">
+										<input class="form-check-input" type="radio" name="rate"
+											value="5" checked="checked"> <label
+											class="form-check-label"> 5 </label> <img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+									</div>
+								</div>
+							</fieldset>
+
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<button class="btn btn-danger" type="submit"  >Gởi đánh giá của bạn</button>
+								</div>
+							</div>
+						</form>
+
+
+
+					</sec:authorize>
+
+				</div>
 			</div>
+			<!--người dùng comment-->
+			<div>
+				<ul class="list-group list-group-flush">
 
-			<!--  end comment -->
+					<c:forEach items="${valiComment.binhLuanDTOs}" var="x">
+						<li class="list-group-item">
+							<div>
+								<span> <span style="font-weight: bold">${x.tenNguoiDung }
+
+								</span> || ${x.thoiGian} || <c:forEach var="i" begin="1"
+										end="${x.soDanhGia }">
+
+										<img
+											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
+											alt="" />
+
+									</c:forEach>
+
+
+
+								</span> <br> <span>${x.noiDung }</span>
+							</div>
+						</li>
+					</c:forEach>
+
+
+				</ul>
+			</div>
 
 
 		</div>
 
+		<!--  end comment -->
 
 
+	</div>
 
 
-		<script type="text/javascript"
-			src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
-		<!-- Toastr -->
-		<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
+	<script type="text/javascript"
+		src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
+	<!-- Toastr -->
+	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
 </body>
 </html>

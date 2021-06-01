@@ -187,6 +187,7 @@
 
 			<div class="col-9 bg-light pl-3">
 				<div class="san-pham">
+
 					<div class="san-pham__header">
 						<span>Sắp xếp theo: </span> <select class="form-control"
 							id="loaiSapXep" style="width: 200px; display: inline-block">
@@ -197,14 +198,13 @@
 						</select>
 					</div>
 
+					<div id="result-valis">
+						<div class="row ">
+
+							<c:forEach items="${valis }" var="x">
 
 
-					<div class="san-pham__list bg-white" id="san-pham__list">
-
-						<c:forEach items="${valis }" var="x">
-							<!--Moi san pham-->
-							<div>
-								<div class="san-pham__list__item">
+								<div class="col-3 san-pham__list__item">
 									<div class="card card-san-pham" style="width: 100%;">
 										<a
 											href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
@@ -222,15 +222,19 @@
 											<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
 										</div>
 									</div>
+
 								</div>
-							</div>
 
-							<!--End moi san pham-->
 
-						</c:forEach>
+							</c:forEach>
 
-						<br style="clear: both" />
+
+						</div>
 					</div>
+
+
+
+
 				</div>
 			</div>
 		</div>

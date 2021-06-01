@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import webbanvali.dto.BienTheValiAddDTO;
+import webbanvali.dto.KeyValueDTO;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.ValiService;
 import webbanvali.validator.BienTheValiValidator;
@@ -32,13 +36,48 @@ public class BienTheValiController {
 	private BienTheValiValidator bienTheValiValidator;
 
 	@GetMapping("/bien-the-valis")
-	public String getAll(Model model
+	public String getAll(Model model,
+			@RequestParam(name = "tenVali", required = false, defaultValue = "") String tenVali,
+			@RequestParam(name = "tenKichThuoc", required = false, defaultValue = "") String tenKichThuoc,
+			@RequestParam(name = "tenMauSac", required = false, defaultValue = "") String tenMauSac) {
 
-	) {
+		model.addAttribute("bienTheValis",
+				bienTheValiService.getBienTheValiTableDTOs(tenVali, tenKichThuoc, tenMauSac));
 
-		model.addAttribute("bienTheValis", bienTheValiService.getBienTheValiTableDTOs());
+		Map<String, List<KeyValueDTO>> tieuChis = valiService.getTieuChiTimKiem();
+		model.addAttribute("kichThuocs", tieuChis.get("kichThuocs"));
+		model.addAttribute("mauSacs", tieuChis.get("mauSacs"));
 
 		return "bienTheValiAdmin";
+
+	}
+
+	@GetMapping("/api-bien-the-valis")
+	public String getAllApi(Model model,
+			@RequestParam(name = "tenVali", required = false, defaultValue = "") String tenVali,
+			@RequestParam(name = "tenKichThuoc", required = false, defaultValue = "") String tenKichThuoc,
+			@RequestParam(name = "tenMauSac", required = false, defaultValue = "") String tenMauSac) {
+
+		model.addAttribute("bienTheValis",
+				bienTheValiService.getBienTheValiTableDTOs(tenVali, tenKichThuoc, tenMauSac));
+
+		return "ketQuaBienTheValisAdmin";
+
+	}
+	
+	@DeleteMapping("/api-bien-the-valis/xoa")
+	public ResponseEntity<?> delete(Model model,
+			@RequestParam("valiId") Integer valiId,
+			@RequestParam("kichThuocId") Integer kichThuocId,
+			@RequestParam("mauSacId") Integer mauSacId) {
+
+		
+		if(bienTheValiService.xoa(valiId, kichThuocId, mauSacId)) {
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 	}
 
@@ -89,6 +128,8 @@ public class BienTheValiController {
 
 			return "themBienTheVali";
 		}
+		
+		System.out.println("Ten file: "+ file.getOriginalFilename());
 
 		bienTheValiService.capNhatBienTheVali(bienTheValiAddDTO, file);
 

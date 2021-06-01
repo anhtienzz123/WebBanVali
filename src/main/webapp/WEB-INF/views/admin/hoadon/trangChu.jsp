@@ -180,9 +180,7 @@
 											data-target="#xem-modal"> <i class="fas fa-folder"></i>
 												Xem
 										</a> 
-										 <a onClick="xoa(${x.id})" class="btn btn-danger btn-sm xoa">
-												<i class="fas fa-trash"> </i> Xóa
-										</a></td>
+										
 
 
 

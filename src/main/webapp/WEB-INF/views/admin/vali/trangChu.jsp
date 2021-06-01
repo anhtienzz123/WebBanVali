@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:url value="/static/admin/" var="styleUrl" />
 
 
@@ -25,7 +25,7 @@
 
 				<div class="row">
 
-					
+
 					<div class="col-12">
 						<div class="card">
 
@@ -35,26 +35,59 @@
 
 								<div class="form-group row">
 
-									<label for="tenMauSac" class="col-sm-1 col-form-label">Tên
-										vali</label>
-									<div class="col-sm-3">
 
+									<div class="col-3">
+										<label  class="col-form-label">Tên vali</label>
 										<!-- Tìm kiếm -->
-										<input type="text" class="form-control" id="timKiemTenMauSac"
-											placeholder="Nhập tên màu sắc">
+										<input type="text" class="form-control" id="tenVali"
+											placeholder="Nhập tên vali"   >
 									</div>
 
-									<div class="col-sm-3">
-										<button class="btn btn-info" data-toggle="modal"
-											data-target="#them-modal">Thêm màu sắc</button>
+
+									<div class="col-3">
+										<label class="col-form-label">Nhóm Vali</label>
+										
+										<select
+											class="form-control" id="nhomValis"
+											>
+											
+											<option value="">Tất cả</option>
+											
+											<c:forEach items="${nhomValis }" var="x">
+												
+												<option value="${x.key }">${x.value }</option>
+												
+											</c:forEach>
+											
+
+
+										</select>
 									</div>
+
+
+									<div class="col-3">
+
+										<label class="col-form-label">Thương hiệu</label>
+										
+										<select
+											class="form-control" id="thuongHieus">
+											<option value="">Tất cả</option>
+											<c:forEach items="${thuongHieus }" var="x">
+												
+												<option value="${x.key }">${x.value }</option>
+												
+											</c:forEach>
+
+										</select>
+									</div>
+
 
 								</div>
 
 
 							</div>
 							<!-- End thêm + tìm kiếm -->
-			
+
 							<!-- Table hiển thị dữ liệu -->
 							<div id="tableData" class="card-body">
 								<table class="table table-bordered table-hover">
@@ -62,7 +95,7 @@
 										<tr>
 											<th>STT</th>
 											<th>Tên vali</th>
-											
+
 											<th>Nhóm vali</th>
 											<th>Thương hiệu</th>
 											<th>Số biến thể</th>
@@ -75,15 +108,13 @@
 									</thead>
 									<tbody id="tableBody">
 
-										<c:forEach items="${valis}" var="x">
+										<c:forEach items="${valis}" var="x" varStatus="loop">
 
 											<tr>
 
-												<td>${x.id }</td>
+												<td>${loop.index + 1}</td>
 
 												<td>${x.tenVali }</td>
-
-												
 												<td>${x.nhomVali }</td>
 												<td>${x.thuongHieu }</td>
 												<td>${x.soBienThe }</td>
@@ -96,8 +127,8 @@
 													class="btn btn-primary btn-sm xem" data-toggle="modal"
 													data-target="#xem-modal"> <i class="fas fa-folder"></i>
 														Xem
-												</a> <a onClick="sua(${x.id})" class="btn btn-info btn-sm sua"
-													data-toggle="modal" data-target="#sua-modal"> <i
+												</a> <a class="btn btn-info btn-sm sua" href='<c:url value="/admin/vali/sua-vali/${x.id }" />'
+													 > <i
 														class="fas fa-pencil-alt"></i> Sửa
 												</a> <a onClick="xoa(${x.id})" class="btn btn-danger btn-sm xoa">
 														<i class="fas fa-trash"> </i> Xóa
@@ -116,7 +147,7 @@
 
 						</div>
 					</div>
-					
+
 
 				</div>
 
@@ -130,5 +161,7 @@
 		src="${styleUrl}plugins/jquery/jquery.min.js"></script>
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
+	<script src="${styleUrl }js/vali/trangChu.js"></script>
+	
 </body>
 </html>

@@ -27,7 +27,7 @@ public class XuLiNgay {
 	public static String toString(LocalDateTime time) {
 
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); mm:HH dd-MM-yyyy
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm:HH dd-MM-yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
 		
 		return time.format(formatter);
 
