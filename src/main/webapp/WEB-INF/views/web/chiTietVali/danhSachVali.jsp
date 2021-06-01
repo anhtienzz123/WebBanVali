@@ -187,6 +187,7 @@
 
 			<div class="col-9 bg-light pl-3">
 				<div class="san-pham">
+
 					<div class="san-pham__header">
 						<span>Sắp xếp theo: </span> <select class="form-control"
 							id="loaiSapXep" style="width: 200px; display: inline-block">
@@ -197,38 +198,38 @@
 						</select>
 					</div>
 
-					<div class="row" id="san-pham__list">
+					<div id="result-valis">
+						<div class="row ">
 
-						<c:forEach items="${valis }" var="x">
+							<c:forEach items="${valis }" var="x">
 
 
-							<div class="col-3 san-pham__list__item">
-								<div class="card card-san-pham" style="width: 100%;">
-									<a
-										href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
-										<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
-									</a>
-									<div class="card-body">
-										<h6 class="card-title">${x.tenVali }</h6>
-										<p class="card-text">
-											<span
-												style="font-weight: bold; color: #f7941e; font-size: 18px;">
-												${x.getGiaString() } </span> <br />
-											<del style="font-weight: 500; color: #888888">
-												${x.getGiaGocString()}</del>
-										</p>
-										<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
+								<div class="col-3 san-pham__list__item">
+									<div class="card card-san-pham" style="width: 100%;">
+										<a
+											href='<c:url value="/san-pham/${x.valiSlug}?kichThuoc=${x.kichThuocCode }&mauSac=${x.mauSacCode }" />'>
+											<img src="${valiImageUrl}/${x.tenAnh}" class="card-img-top" />
+										</a>
+										<div class="card-body">
+											<h6 class="card-title">${x.tenVali }</h6>
+											<p class="card-text">
+												<span
+													style="font-weight: bold; color: #f7941e; font-size: 18px;">
+													${x.getGiaString() } </span> <br />
+												<del style="font-weight: 500; color: #888888">
+													${x.getGiaGocString()}</del>
+											</p>
+											<span class="card-san-pham__khuyen-mai">${x.khuyenMai }%</span>
+										</div>
 									</div>
+
 								</div>
 
-							</div>
+
+							</c:forEach>
 
 
-						</c:forEach>
-
-
-
-
+						</div>
 					</div>
 
 

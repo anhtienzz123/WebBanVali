@@ -39,7 +39,7 @@
 							Danh mục sản phẩm </a>
 
 						<c:forEach items="${nhomValis}" var="nv">
-							<a href='<c:url value="/san-pham/danh-sach/${nv.code }" />'
+							<a href='<c:url value="/san-pham/" />'
 								class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 								aria-current="true"> ${nv.tenNhomVali } <i
 								class="fas fa-chevron-right"></i>
@@ -106,46 +106,7 @@
 		</div>
 		<!--End thương hiệu-->
 
-		<!--Flash sales-->
-		<div class="flash-sale">
-			<div class="flash-sale__header">
-				<img
-					src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/ico_flashsale@3x.png"
-					alt="" width="30px" /> <span
-					style="font-size: 20px; font-weight: bold">FLASH SALES</span> | <span>Kết
-					thúc trong</span> <span class="font-weight-bold"> <span
-					class="flash-sale__header__time">00</span> : <span
-					class="flash-sale__header__time">50</span> : <span
-					class="flash-sale__header__time">28 </span>
-				</span>
-			</div>
-
-			<!--sản phẩm-->
-			<div class="flash-sale__san-pham">
-				<!--mỗi sản phẩm-->
-				<div class="flash-sale__san-pham__item">
-					<div class="card card-san-pham" style="width: 100%">
-						<img
-							src="https://media.mia.vn/uploads/vali-valinice-caseta-id2035-20-s-blue-12068-71618025491_270.jpg"
-							class="card-img-top" />
-						<div class="card-body">
-							<h6 class="card-title">Valinice Casete ID2035_20 S Blue</h6>
-							<p class="card-text">
-								<span style="font-weight: bold; color: #f7941e; font-size: 18px">
-									1,790,000 đ </span> <br />
-								<del style="font-weight: 500; color: #888888"> 1,890,000 đ</del>
-							</p>
-							<span class="card-san-pham__khuyen-mai">10%</span>
-						</div>
-					</div>
-				</div>
-				<!--en mỗi sản phẩm-->
-			</div>
-
-			<br style="clear: both" />
-			<!--end sản phẩm-->
-		</div>
-		<!--end flash sales-->
+		
 
 		<!-- Top sản phẩm bán chạy-->
 		<div class="flash-sale">

@@ -36,4 +36,6 @@ public interface BienTheValiService {
 
 	List<BienTheValiDTO> getBienTheValisTheoThuongHieu(Integer thuongHieuId);
 	
+	boolean xoa(Integer valiId, Integer kichThuocId, Integer mauSacId );
+	
 }

@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-import webbanvali.dto.BienTheValiDTO;
-
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
 
@@ -16,6 +14,8 @@ public interface BienTheValiRepository
 		extends JpaRepository<BienTheVali, BienTheVali_PK>, JpaSpecificationExecutor<BienTheVali> {
 
 	BienTheVali findByValiSlugAndKichThuocCodeAndMauSacCode(String valiSlug, String kichThuocCode, String mauSacCode);
+	
+	List<BienTheVali> findByValiTenValiAndKichThuocTenKichThuocAndMauSacTenMau(String tenVali, String tenKichThuoc, String tenMauSac);
 
 	@Query(value = "select  kich_thuoc.ten_kich_thuoc, kich_thuoc.code as kichThuocCode, mau_sac.code as mauSacCode ,bien_the_vali.gia, bien_the_vali.khuyen_mai  from \r\n"
 			+ "bien_the_vali inner join kich_thuoc on bien_the_vali.kich_thuoc_id = kich_thuoc.id\r\n"
@@ -38,7 +38,7 @@ public interface BienTheValiRepository
 
 	List<BienTheVali> findAllByOrderByKhuyenMaiDesc(Pageable page);
 
-	List<BienTheVali> findByValiTenValiContainingAndKichThuocTenKichThuocAndMauSacTenMau(String tenVali,
+	List<BienTheVali> findByValiTenValiContainingAndKichThuocCodeContainingAndMauSacCodeContaining(String tenVali,
 			String tenKichThuoc, String tenMau);
 
 	@Query(value = "select   btv.*  from bien_the_vali as btv\r\n"

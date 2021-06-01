@@ -94,6 +94,7 @@
 			value="/WEB-INF/views/admin/vali/trangChu.jsp" />
 	</definition>
 	
+	
 	<definition name="themVali" extends="adminLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/vali/themVali.jsp" />

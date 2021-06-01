@@ -21,6 +21,9 @@ public interface ValiService {
 	Map<String, List<String>> getTenOfTinhNangVaChatLieuVaThuongVaNhomVali();
 	Map<String, List<String>> getTenOfValiVaKichThuocVaMauSac();
 	boolean themVali(ValiChungDTO valiChungDTO);
+	boolean capNhatVali(Integer id ,ValiChungDTO valiChungDTO);
 
 	Vali getValiTheoID(Integer maVali);
+	
+	ValiChungDTO getValiChungById(Integer id);
 }

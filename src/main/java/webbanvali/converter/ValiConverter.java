@@ -25,6 +25,7 @@ import webbanvali.repository.ChatLieuRepository;
 import webbanvali.repository.NhomValiRepository;
 import webbanvali.repository.ThuongHieuRepository;
 import webbanvali.repository.TinhNangDacBietRepository;
+import webbanvali.repository.ValiRepository;
 import webbanvali.utils.HamDungChung;
 
 @Component
@@ -38,6 +39,8 @@ public class ValiConverter {
 	private ThuongHieuRepository thuongHieuRepository;
 	@Autowired
 	private NhomValiRepository nhomValiRepository;
+	@Autowired
+	private ValiRepository valiRepository;
 
 	public ValiDTO toDTO(Vali vali) {
 
@@ -95,7 +98,20 @@ public class ValiConverter {
 
 	public Vali toVali(ValiChungDTO valiChungDTO) {
 
+		if(valiChungDTO == null)
+			return null;
+		
+		Integer id = valiChungDTO.getId();
+		
 		Vali vali = new Vali();
+		
+		if(id != 0) {
+			vali = valiRepository.findById(id).get();
+		}else {
+			vali.setId(0);
+		}
+		
+		
 		vali.setTenVali(valiChungDTO.getTenVali());
 		vali.setSlug(HamDungChung.toSlug(valiChungDTO.getTenVali()));
 		vali.setBanhXe(valiChungDTO.getBanhXe());

@@ -22,7 +22,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import webbanvali.utils.XuLyTien;
 
 @Data
 @NoArgsConstructor
