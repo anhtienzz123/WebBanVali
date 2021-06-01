@@ -8,26 +8,21 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import webbanvali.converter.BinhLuanConverter;
 import webbanvali.converter.CommentConverter;
 import webbanvali.dto.BinhLuanDTO;
-import webbanvali.dto.HoaDonDTO;
-import webbanvali.dto.MauSacDTO;
 import webbanvali.dto.ValiCommentDTO;
 import webbanvali.entity.BinhLuan;
 import webbanvali.entity.BinhLuan_PK;
-import webbanvali.entity.HoaDon;
-import webbanvali.entity.MauSac;
 import webbanvali.entity.NguoiDung;
 import webbanvali.entity.Vali;
 import webbanvali.repository.BinhLuanRepository;
+import webbanvali.repository.NguoidungRepository;
 import webbanvali.repository.ValiRepository;
 import webbanvali.service.BinhLuanService;
-import webbanvali.utils.HamDungChung;
-import webbanvali.utils.XuLiNgay;
+import webbanvali.utils.ThongTinNguoiDung;
 
 @Service
 @Transactional
@@ -38,6 +33,8 @@ public class BinhLuanServiceImpl implements BinhLuanService {
 
 	@Autowired
 	private BinhLuanRepository binhLuanRepository;
+	@Autowired
+	private NguoidungRepository nguoidungRepository;
 
 	@Autowired
 	private CommentConverter commonConverter;
@@ -69,15 +66,36 @@ public class BinhLuanServiceImpl implements BinhLuanService {
 		return true;
 	}
 
-
 	@Override
-	public BinhLuanDTO themBinhLuan(NguoiDung nguoiDung, Vali vali, String cmt,Integer soSao) {
+	public boolean themBinhLuan(String valiSlug, String noiDung, Integer soSao) {
 
-		BinhLuan binhLuanResult = binhLuanRepository.save(new BinhLuan(nguoiDung, vali, cmt, soSao, LocalDateTime.now()));
-		return new BinhLuanDTO(binhLuanResult.getNguoiDung().getId(), binhLuanResult.getVali().getTenVali(),
-				binhLuanResult.getVali().getId(), binhLuanResult.getVali().getSlug(),
-				binhLuanResult.getNguoiDung().getHoTen(), XuLiNgay.toString(binhLuanResult.getThoiGianBinhLuan()),
-				binhLuanResult.getDanhGia(), binhLuanResult.getNoiDung());
+		BinhLuan binhLuan = new BinhLuan();
+
+		String email = ThongTinNguoiDung.getUsername();
+		NguoiDung nguoiDung = nguoidungRepository.findByEmail(email);
+		binhLuan.setNguoiDung(nguoiDung);
+
+		Vali vali = valiRepository.findBySlug(valiSlug).get();
+		binhLuan.setVali(vali);
+
+		binhLuan.setNoiDung(noiDung);
+		binhLuan.setDanhGia(soSao);
+
+		binhLuan.setThoiGianBinhLuan(LocalDateTime.now());
+
+		try {
+
+			binhLuanRepository.save(binhLuan);
+
+			return true;
+
+		} catch (Exception e) {
+
+		}
+		;
+
+		return false;
+
 	}
 
 }

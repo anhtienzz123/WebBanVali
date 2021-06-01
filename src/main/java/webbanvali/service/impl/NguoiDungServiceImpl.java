@@ -131,7 +131,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		nguoiDungRepository.save(nguoiDung);
 
-		String content = host + "/WebBanSach/quen-mat-khau/nhap-mat-khau?email=" + email + "&token=" + randomMaXacNhan;
+		String content = "http://" + host + "/WebBanVali/quen-mat-khau/nhap-mat-khau?email=" + email + "&token=" + randomMaXacNhan;
 		emailSender.sendEmail(email, "Quên mật khẩu", content);
 
 		return true;

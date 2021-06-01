@@ -61,6 +61,7 @@ public class ValiServiceImpl implements ValiService {
 
 		return sachDTO;
 	}
+
 	@Override
 	public Vali getValiTheoID(Integer maVali) {
 		Vali vali = valiRepository.findById(maVali).get();
@@ -136,6 +137,7 @@ public class ValiServiceImpl implements ValiService {
 	@Override
 	public boolean themVali(ValiChungDTO valiChungDTO) {
 
+		valiChungDTO.setId(0);
 		Vali result = valiRepository.save(valiConverter.toVali(valiChungDTO));
 
 		if (result != null)
@@ -162,5 +164,48 @@ public class ValiServiceImpl implements ValiService {
 		result.put("tenMauSacs", tenMauSacs);
 
 		return result;
+	}
+
+	@Override
+	public ValiChungDTO getValiChungById(Integer id) {
+
+		if (!valiRepository.existsById(id))
+			return null;
+
+		ValiChungDTO valiChungDTO = new ValiChungDTO();
+
+		Vali vali = valiRepository.findById(id).get();
+
+		valiChungDTO.setId(vali.getId());
+		valiChungDTO.setTenVali(vali.getTenVali());
+		valiChungDTO.setBanhXe(vali.getBanhXe());
+		valiChungDTO.setDayKeo(vali.getDayKeo());
+		valiChungDTO.setKhoa(vali.getKhoa());
+		valiChungDTO.setThoiGianBaoHanh(vali.getThoiGianBaoHanh());
+		valiChungDTO.setTinhNangs(
+				vali.getTinhNangDacBiets().stream().map(s -> s.getTenTinhNang()).collect(Collectors.toList()));
+
+		valiChungDTO.setTenChatLieu(vali.getChatLieu().getTenChatLieu());
+		valiChungDTO.setTenThuongHieu(vali.getThuongHieu().getTenThuongHieu());
+		valiChungDTO.setTenNhomVali(vali.getNhomVali().getTenNhomVali());
+		valiChungDTO.setMoTa(vali.getMoTa());
+
+		return valiChungDTO;
+	}
+	
+	@Override
+	public boolean capNhatVali(Integer id,ValiChungDTO valiChungDTO) {
+		
+		valiChungDTO.setId(id);
+		
+		Vali result = valiRepository.save(valiConverter.toVali(valiChungDTO));
+
+		if (result != null)
+			return true;
+
+		return false;
+		
+		
+		
 	}
 }

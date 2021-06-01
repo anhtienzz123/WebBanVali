@@ -28,7 +28,6 @@ import webbanvali.dto.BienTheValiTableDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
-import webbanvali.entity.BinhLuan_PK;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.service.BienTheValiService;
 import webbanvali.utils.ChuoiConstant;
@@ -166,7 +165,8 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 	public List<BienTheValiTableDTO> getBienTheValiTableDTOs(String tenVali, String tenKichThuoc, String tenMauSac) {
 
 		return bienTheValiRepository
-				.findByValiTenValiContainingAndKichThuocTenKichThuocAndMauSacTenMau(tenVali, tenKichThuoc, tenMauSac)
+				.findByValiTenValiContainingAndKichThuocCodeContainingAndMauSacCodeContaining(tenVali, tenKichThuoc,
+						tenMauSac)
 				.stream().map(s -> bienTheValiConverter.toBienTheValiTableDTO(s)).collect(Collectors.toList());
 	}
 
@@ -184,14 +184,14 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 
 		try {
 
-			if (file != null) {
+			if (file.getOriginalFilename().trim().equals("")) {
 
-				fileUploadProcessor.deleteFile(bienTheValiAddDTO.getTenAnh());
-				String fileName = fileUploadProcessor.saveFile(file);
-				bienTheValiAddDTO.setTenAnh(fileName);
 				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
 
 			} else {
+				fileUploadProcessor.deleteFile(bienTheValiAddDTO.getTenAnh());
+				String fileName = fileUploadProcessor.saveFile(file);
+				bienTheValiAddDTO.setTenAnh(fileName);
 				bienTheValiRepository.save(bienTheValiConverter.toBienTheVali(bienTheValiAddDTO));
 			}
 
@@ -202,6 +202,21 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 		;
 
 		return false;
+
+	}
+
+	@Override
+	public boolean xoa(Integer id, Integer kichThuocId, Integer mauSacId) {
+
+		try {
+
+			bienTheValiRepository.deleteById(new BienTheVali_PK(id, kichThuocId, mauSacId));
+
+			return true;
+
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 

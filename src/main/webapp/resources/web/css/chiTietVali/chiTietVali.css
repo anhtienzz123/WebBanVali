@@ -17,9 +17,6 @@
 	font-weight: bold;
 }
 
-.info {
-	
-}
 
 .info__middle__price {
 	font-size: 22px;
@@ -27,9 +24,6 @@
 	font-weight: bold;
 }
 
-.info-detail {
-	
-}
 
 .button-custom {
 	background-color: white;
@@ -42,9 +36,6 @@
 	border: 1px solid #d70018;
 }
 
-.active {
-	border: 1px solid #d70018;
-}
 
 .comment__info {
 	border: 1px solid black;

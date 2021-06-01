@@ -17,5 +17,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/hoadon/ketQua.jsp" />
 		
 	</definition>
+	
+	
+	<definition name="ketQuaValiAdmin" extends="emptyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/ketQuaTrangChu.jsp" />
+	</definition>
+	
+	<definition name="ketQuaBienTheValisAdmin" extends="emptyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/ketQuaBienTheValis.jsp" />
+	</definition>
+	
+	
 
 </tiles-definitions>

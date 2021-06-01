@@ -32,7 +32,7 @@ public class ValiAdminController {
 	@Autowired
 	private ValiService valiService;
 
-	private static final int SIZE1 = 12;
+	private static final int SIZE1 = 4;
 
 	@GetMapping("/{slug}")
 	public String chiTietVali(Model model, @PathVariable("slug") String slug,

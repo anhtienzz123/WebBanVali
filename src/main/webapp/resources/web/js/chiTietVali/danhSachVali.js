@@ -41,6 +41,7 @@ $(".gia").click(() => {
 
 
 $(".thuongHieu").click(() => {
+
 	thuongHieus = [];
 	const mang = document.getElementsByClassName("thuongHieu");
 
@@ -128,9 +129,8 @@ function timKiem() {
 
 
 	$.get(url, function(data) {
-		
-		  
-        $("#san-pham__list").html(data);
+	
+        $("#result-valis").html(data);
 
 	});
 

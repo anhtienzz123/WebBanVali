@@ -23,4 +23,6 @@ public class ValiChungDTO {
 	private String tenNhomVali;
 	private String moTa;
 	
+	
+	
 }

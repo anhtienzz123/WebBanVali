@@ -44,11 +44,10 @@ ul {
 }
 
 .san-pham__list__item {
-	width: 25%;
-	display: inline;
-	float: left;
+	
 	box-sizing: border-box;
 }
+
 
 .san-pham__list__item:hover {
 	border: 1px solid lightgray;
