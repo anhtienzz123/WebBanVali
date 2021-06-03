@@ -58,10 +58,13 @@ public class NguoiDung implements Serializable {
 	private List<BinhLuan> binhLuans;
 	
 
-	public NguoiDung(int id, String email, String matKhau, ROLE vaiTro) {
+	
+	
+	public NguoiDung(int id, String hoTen,String email, String matKhau, ROLE vaiTro) {
 		super();
 		
 		this.id = id;
+		this.hoTen = hoTen;
 		this.email = email;
 		this.matKhau = matKhau;
 		this.vaiTro = vaiTro;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webbanvali.dto.NguoiDungDTO;
+import webbanvali.repository.NguoidungRepository;
 import webbanvali.service.NguoiDungService;
 import webbanvali.validator.NguoiDungValidator;
 
@@ -24,6 +25,9 @@ public class LoginController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	
+	@Autowired
+	private NguoidungRepository nguoidungRepository;
 
 	@GetMapping(value = "/login")
 	public String login() {
@@ -47,7 +51,12 @@ public class LoginController {
 	public String dangKi(HttpServletRequest request, @ModelAttribute("nguoiDung") NguoiDungDTO nguoiDungDTO,
 			BindingResult bindingResult) {
 
-		nguoiDungValidator.validate(nguoiDungDTO, bindingResult);
+		String email = nguoiDungDTO.getEmail();
+		
+		if(nguoidungRepository.existsByEmail(email)) {
+			bindingResult.rejectValue("email", null, "Email đã trùng");
+		}
+		
 
 		// nếu có lỗi
 		if (bindingResult.hasErrors()) {
@@ -68,7 +77,7 @@ public class LoginController {
 		boolean ketQuaXacThuc = nguoiDungService.xacThucEmail(email, token);
 
 		if (ketQuaXacThuc)
-			return "redirect:/TrangChu";
+			return "redirect:/";
 
 		return "redirect:/error";
 	}

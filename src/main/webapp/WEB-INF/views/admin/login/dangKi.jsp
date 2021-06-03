@@ -10,6 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Đăng kí</title>
+
+<style type="text/css">
+	.error{
+		color: red;
+	}
+</style>
 </head>
 <body>
 
@@ -38,7 +44,8 @@
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="email" name="email" type="email" class="form-control" placeholder="Email" />
-						<form:errors path="email"  />
+						<br /> 
+						<form:errors path="email"  cssStyle="error" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>

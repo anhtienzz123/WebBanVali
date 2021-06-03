@@ -49,6 +49,8 @@ public class TrangChuController {
 	@GetMapping(value = "/")
 	public String trangChu(Model model) {
 		
+		
+		
 		model.addAttribute("nhomValis", nhomValiService.getNhomValis());
 		model.addAttribute("valisBanChay", bienTheValiService.getValisBanChay(SIZE));
 		model.addAttribute("valisNoiBat", bienTheValiService.getValisNoiBat(SIZE));

@@ -17,6 +17,12 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	href="${styleUrl }plugins/summernote/summernote-bs4.min.css">
+	
+	<style type="text/css">
+		.error{
+			color: red;
+		}
+	</style>
 </head>
 <body>
 
@@ -51,6 +57,7 @@
 
 											<form:input path="tenVali" cssClass="form-control" />
 											<label id="tenValiErr" class="error"></label>
+											<form:errors  cssClass="error" path="tenVali" />
 
 										</div>
 
@@ -60,6 +67,7 @@
 
 											<form:input path="banhXe" cssClass="form-control" />
 											<label id="banhXeErr" class="error"></label>
+											<form:errors  cssClass="error" path="banhXe" />
 
 
 										</div>
@@ -69,6 +77,7 @@
 
 											<form:input path="dayKeo" cssClass="form-control" />
 											<label id="dayKeoErr" class="error"></label>
+											<form:errors  cssClass="error" path="dayKeo" />
 
 										</div>
 
@@ -78,6 +87,7 @@
 
 											<form:input path="khoa" cssClass="form-control" />
 											<label id="khoaErr" class="error"></label>
+											<form:errors  cssClass="error" path="khoa" />
 										</div>
 
 										<div class="form-group col-6">
@@ -85,6 +95,7 @@
 
 											<form:input path="thoiGianBaoHanh" cssClass="form-control" />
 											<label id="thoiGianBaoHanhErr" class="error"></label>
+											<form:errors  cssClass="error" path="thoiGianBaoHanh" />
 										</div>
 
 										<div class="col-6">
@@ -135,7 +146,7 @@
 															<option value="${x}">${x }</option>
 														</c:if>
 
-														<form:option value="${x}">${x }</form:option>
+														
 
 													</c:forEach>
 

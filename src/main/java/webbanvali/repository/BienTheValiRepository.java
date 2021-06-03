@@ -81,6 +81,8 @@ public interface BienTheValiRepository
 			+ "group by btv.vali_id, btv.kich_thuoc_id, btv.mau_sac_id\r\n"
 			+ "order by so_luong desc, doanh_thu desc", nativeQuery = true)
 	List<Object[]> getSoLuongValiTrongNam( int nam);
-
 	
+	List<BienTheVali> findByValiTenValiContaining(String tenVali, Pageable pageable);
+
+	boolean existsByValiTenValiContainingAndKichThuocTenKichThuocContainingAndMauSacTenMauContaining(String tenVali, String tenKichThuoc, String tenMau);
 }

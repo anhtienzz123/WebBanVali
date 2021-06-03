@@ -208,7 +208,7 @@ public class BienTheValiConverter {
 		bienTheValiAddDTO.setSoLuong(bienTheVali.getSoLuong());
 		bienTheValiAddDTO.setTheTich(bienTheVali.getTheTich());
 		bienTheValiAddDTO.setTrongLuong(bienTheVali.getTrongLuong());
-		bienTheValiAddDTO.setMoTaKichThuoc(bienTheValiAddDTO.getMoTaKichThuoc());
+		bienTheValiAddDTO.setMoTaKichThuoc(bienTheVali.getMoTaKichThuoc());
 		bienTheValiAddDTO.setNoiBat(bienTheVali.isNoiBat());
 		bienTheValiAddDTO.setTenAnh(bienTheVali.getTenAnh());
 

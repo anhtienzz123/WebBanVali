@@ -53,7 +53,9 @@ public class ValiAdminController {
 	}
 
 	@GetMapping("/")
-	public String danhSachVali(Model model) {
+	public String danhSachVali(Model model,
+			@RequestParam(value = "tenVali",required = false ,defaultValue = "") String tenVali
+			) {
 
 		Map<String, List<KeyValueDTO>> tieuChis = valiService.getTieuChiTimKiem();
 
@@ -65,8 +67,7 @@ public class ValiAdminController {
 		model.addAttribute("mauSacs", tieuChis.get("mauSacs"));
 		model.addAttribute("tinhNangDacBiets", tieuChis.get("tinhNangDacBiets"));
 
-		model.addAttribute("valis", bienTheValiService.getBienTheValisTheoNhieuDieuKien(null, null, null, null, null,
-				null, null, null, 0, 12));
+		model.addAttribute("valis", bienTheValiService.getBienTheValisTheoTen(tenVali));
 
 		return "danhSachVali";
 	}
@@ -87,7 +88,7 @@ public class ValiAdminController {
 	) {
 
 		List<BienTheValiDTO> ketQua = bienTheValiService.getBienTheValisTheoNhieuDieuKien(nhomValis, gias, thuongHieus,
-				chatLieus, kichThuocs, mauSacs, tinhNangs, loaiSapXep, page, size);
+				chatLieus, kichThuocs, mauSacs, tinhNangs, loaiSapXep, page, 1000);
 
 		model.addAttribute("valis", ketQua);
 

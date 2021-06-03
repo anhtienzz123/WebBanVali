@@ -13,6 +13,8 @@ public interface ValiRepository extends JpaRepository<Vali, Integer>, JpaSpecifi
 	Optional<Vali> findBySlug(String valiSlug);
 	Vali findByTenVali(String tenVali);
 	
+	boolean existsByIdNotAndTenVali(Integer id, String tenVali);
+	
 	List<Vali> findByTenValiContainingAndChatLieuTenChatLieuContainingAndThuongHieuTenThuongHieuContainingAndNhomValiTenNhomValiContaining(
 			String tenVali, String chatLieu, String thuongHieu, String nhomVali);
 

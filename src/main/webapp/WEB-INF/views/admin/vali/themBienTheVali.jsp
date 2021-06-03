@@ -14,6 +14,11 @@
 <title>Thêm biến thể vali</title>
 <link rel="stylesheet" href="${styleUrl }plugins/toastr/toastr.min.css">
 
+<style type="text/css">
+	.error{
+		color: red;
+	}
+</style>
 </head>
 <body>
 
@@ -47,7 +52,7 @@
 
 												<label>Tên Vali</label>
 
-												<form:select path="tenVali" cssClass="form-control">
+												<form:select path="tenVali" cssClass="form-control"      >
 
 													<c:forEach items="${tenValis }" var="x">
 
@@ -64,6 +69,8 @@
 													</c:forEach>
 
 												</form:select>
+												
+												<form:errors path="valiId" cssClass="error" />
 
 
 											</div>
@@ -75,7 +82,7 @@
 
 												<label>Kích thước</label>
 
-												<form:select path="tenKichThuoc" cssClass="form-control">
+												<form:select path="tenKichThuoc" cssClass="form-control"   >
 
 													<c:forEach items="${tenKichThuocs }" var="x">
 
@@ -102,7 +109,7 @@
 
 												<label>Màu sắc</label>
 
-												<form:select path="tenMauSac" cssClass="form-control" >
+												<form:select path="tenMauSac" cssClass="form-control"   >
 
 													<c:forEach items="${tenMauSacs }" var="x">
 
@@ -127,10 +134,10 @@
 
 										<div class="form-group col-6">
 											<label>Giá</label>
-
-
+											
 											<form:input path="gia" cssClass="form-control" />
 											<label id="giaErr" class="error"></label>
+											<form:errors path="gia"  cssClass="error" />
 
 										</div>
 
@@ -140,6 +147,7 @@
 
 											<form:input path="khuyenMai" cssClass="form-control" />
 											<label id="khuyenMaiErr" class="error"></label>
+											<form:errors path="khuyenMai" cssClass="error" />
 
 
 										</div>
@@ -149,6 +157,7 @@
 
 											<form:input path="soLuong" cssClass="form-control" />
 											<label id="soLuongErr" class="error"></label>
+											<form:errors path="soLuong" cssClass="error" />
 
 										</div>
 
@@ -165,7 +174,7 @@
 											</div>
 											<div class="form-check-inline">
 												<label class="form-check-label">
-												<form:radiobutton path="noiBat" value="false"   cssClass="form-check-input"  /> Nổi bật Không nổi bật
+												<form:radiobutton path="noiBat" value="false"   cssClass="form-check-input"  />Không nổi bật
 												</label>
 											</div>
 											
@@ -182,6 +191,7 @@
 
 											<form:input path="theTich" cssClass="form-control" />
 											<label id="theTichErr" class="error"></label>
+											<form:errors path="theTich" cssClass="error" />
 										</div>
 
 										<div class="form-group col-4">
@@ -190,6 +200,7 @@
 
 											<form:input path="trongLuong" cssClass="form-control" />
 											<label id="trongLuongErr" class="error"></label>
+											<form:errors path="trongLuong" cssClass="error" />
 										</div>
 
 										<div class="form-group col-4">
@@ -198,6 +209,7 @@
 
 											<form:input path="moTaKichThuoc" cssClass="form-control" />
 											<label id="moTaKichThuocErr" class="error"></label>
+											<form:errors path="moTaKichThuoc"  cssClass="error"/>
 										</div>
 
 										<div class="col-12">

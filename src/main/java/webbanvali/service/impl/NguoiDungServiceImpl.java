@@ -44,7 +44,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 			nguoiDungDTO.setVaiTro(ROLE.ROLE_USER);
 
 			// lưu xuống
-			int maNguoiDung = save(nguoiDungDTO).getId();
+			int maNguoiDung = nguoiDungRepository.save(new NguoiDung(nguoiDungDTO.getId(), nguoiDungDTO.getHoTen(),nguoiDungDTO.getEmail(), passwordEncoder.encode(nguoiDungDTO.getMatKhau()),ROLE.ROLE_USER  )).getId();
 
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();
@@ -53,7 +53,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 			nguoiDungRepository.save(nguoiDungDaLuu);
 
 			// gởi email
-			String linkXacThuc = host + "/WebBanSach/xac-thuc-email?email=" + nguoiDungDTO.getEmail() + "&token="
+			String linkXacThuc = host + "/WebBanVali/xac-thuc-email?email=" + nguoiDungDTO.getEmail() + "&token="
 					+ maXacNhan;
 			emailSender.sendEmail(nguoiDungDTO.getEmail(), "Xác thực email", linkXacThuc);
 

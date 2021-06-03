@@ -94,6 +94,13 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 		return bienTheValiRepository.findAll(dieuKien, PageRequest.of(page, size, sort)).stream()
 				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<BienTheValiDTO> getBienTheValisTheoTen(String tenVali) {
+		
+		return bienTheValiRepository.findByValiTenValiContaining(tenVali, PageRequest.of(0,1000)).stream()
+				.map(s -> bienTheValiConverter.toBienTheValiDTO(s)).collect(Collectors.toList());
+	}
 
 	@Override
 	public ChiTietValiDTO getChiTietValiDTO(String valiSlug, String kichThuocCode, String mauSacCode) {
@@ -254,4 +261,6 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 		return result;
 	}
 
+	
+	
 }

@@ -14,6 +14,7 @@ public interface NguoidungRepository extends JpaRepository<NguoiDung, Integer> {
 
 	NguoiDung findByEmailAndTrangThai(String email, boolean trangThai);
 
+	boolean existsByEmail(String email);
 	NguoiDung findByEmail(String email);
 
 	List<NguoiDung> findAllByEmailContainingAndSoDienThoaiContainingAllIgnoreCase(String email, String soDienThoai,

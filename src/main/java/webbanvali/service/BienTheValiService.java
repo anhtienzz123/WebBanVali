@@ -18,6 +18,8 @@ public interface BienTheValiService {
 			List<String> codeThuongHieus, List<String> codeChatLieus, List<String> codeKichThuocs,
 			List<String> codeMauSacs, List<String> codeTinhNangDacBiets, String loaiSapXep, int page, int size);
 	
+	List<BienTheValiDTO> getBienTheValisTheoTen(String tenVali);
+	
 	ChiTietValiDTO getChiTietValiDTO(String valiSlug, String kichThuocCode, String mauSacCode );
 	
 	List<BienTheValiDTO> getValisBanChay(int limit);

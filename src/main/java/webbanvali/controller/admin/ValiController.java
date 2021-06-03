@@ -86,15 +86,17 @@ public class ValiController {
 	}
 
 	@PostMapping("/them-vali")
-	public String themVali(@ModelAttribute("valiChung") ValiChungDTO valiChungDTO, BindingResult bindingResult) {
+	public String themVali(Model model, @ModelAttribute("valiChung") ValiChungDTO valiChungDTO, BindingResult bindingResult) {
 
+		valiChungDTO.setId(0);
 		valiChungDTOValidator.validate(valiChungDTO, bindingResult);
 
-		if (!bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
-			valiService.themVali(valiChungDTO);
+			setLuaChons(model);
+			return "themVali";
 		}
-
+		valiService.themVali(valiChungDTO);
 		return "redirect:/admin/vali/";
 	}
 	

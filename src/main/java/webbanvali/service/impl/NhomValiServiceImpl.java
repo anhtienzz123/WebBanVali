@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import webbanvali.dto.NhomValiDTO;
@@ -24,7 +25,8 @@ public class NhomValiServiceImpl implements NhomValiService {
 
 	@Override
 	public List<NhomValiDTO> getNhomValis() {
-		List<NhomVali> nhomValis = nhomValiRepository.findAll();
+		List<NhomVali> nhomValis = nhomValiRepository.findAll(PageRequest.of(0, 5)).getContent();
+		
 
 		return nhomValis.stream().map(s -> new NhomValiDTO(s.getId(), s.getTenNhomVali(), s.getCode()))
 				.collect(Collectors.toList());

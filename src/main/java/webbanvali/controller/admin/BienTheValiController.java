@@ -105,13 +105,17 @@ public class BienTheValiController {
 	}
 
 	@PostMapping("/them-bien-the-vali")
-	public String themBienTheVali(@ModelAttribute("bienTheValiAdd") BienTheValiAddDTO bienTheValiAddDTO,
+	public String themBienTheVali(Model model,@ModelAttribute("bienTheValiAdd") BienTheValiAddDTO bienTheValiAddDTO,
 			@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
 
+		bienTheValiAddDTO.setValiId(0);
+		bienTheValiAddDTO.setKichThuocId(0);
+		bienTheValiAddDTO.setMauSacId(0);
 		bienTheValiValidator.validate(bienTheValiAddDTO, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
+			setLuaChons(model);
 			return "themBienTheVali";
 		}
 
@@ -128,6 +132,7 @@ public class BienTheValiController {
 
 		BienTheValiAddDTO bienTheVali = bienTheValiService.getBienTheValiAdd(valiId, kichThuocId, mauSacId);
 		model.addAttribute("bienTheValiAdd", bienTheVali);
+		model.addAttribute("flag", true);
 
 		return "themBienTheVali";
 
@@ -135,7 +140,7 @@ public class BienTheValiController {
 
 	@PostMapping("/sua-bien-the-vali")
 	public String suaBienTheVali(Model model, @ModelAttribute("bienTheValiAdd") BienTheValiAddDTO bienTheValiAddDTO,
-			MultipartFile file, BindingResult bindingResult) {
+		@RequestParam(value = "file", required = false)MultipartFile file, BindingResult bindingResult) {
 
 		bienTheValiValidator.validate(bienTheValiAddDTO, bindingResult);
 
@@ -144,8 +149,7 @@ public class BienTheValiController {
 			return "themBienTheVali";
 		}
 		
-		System.out.println("Ten file: "+ file.getOriginalFilename());
-
+		
 		bienTheValiService.capNhatBienTheVali(bienTheValiAddDTO, file);
 
 		return "redirect:/admin/vali/bien-the-valis";
