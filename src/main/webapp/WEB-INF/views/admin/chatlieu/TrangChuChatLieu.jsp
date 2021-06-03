@@ -65,11 +65,11 @@
 									</thead>
 									<tbody id="tableBody">
 
-										<c:forEach items="${chatLieus}" var="x">
+										<c:forEach items="${chatLieus}" var="x" varStatus="loop">
 
 											<tr>
 
-												<td>${x.id }</td>
+												<td>${loop.index + 1 }</td>
 
 												<td>${x.tenChatLieu }</td>
 

@@ -175,9 +175,9 @@
 
 										</td>
 
-										<td><a onClick="xemChiTiet(${x.id})"
-											class="btn btn-primary btn-sm xem" data-toggle="modal"
-											data-target="#xem-modal"> <i class="fas fa-folder"></i>
+										<td><a href='<c:url value="/admin/hoa-don/${x.id}"  />'
+											class="btn btn-primary btn-sm xem" 
+											> <i class="fas fa-folder"></i>
 												Xem
 										</a> 
 										

@@ -7,6 +7,7 @@
 <c:url value="/static/web/" var="styleUrl" />
 <c:url value="/static/admin/" var="styleUrlAdmin" />
 <c:url value="/static/image/vali" var="valiImageUrl" />
+<c:url value="/static/image/banner" var="bannerImageUrl" />
 
 <!DOCTYPE html>
 <html>
@@ -59,21 +60,17 @@
 							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 						</ol>
 						<div class="carousel-inner">
-							<div class="carousel-item active">
+							
+							
+							<c:forEach items="${banners }" var="x" varStatus="loop">
+									<div class="carousel-item ${loop.index == 0 ? 'active' : '' }">
 								<img
-									src="https://cdn0.fahasa.com/media/magentothem/banner7/airpay_920_x_420_2.jpg"
+									src="${bannerImageUrl }/${x.tenAnh}"
 									class="d-block w-100" alt="..." />
-							</div>
-							<div class="carousel-item">
-								<img
-									src="https://cdn0.fahasa.com/media/magentothem/banner7/920x420_phienchodocu.png"
-									class="d-block w-100" alt="..." />
-							</div>
-							<div class="carousel-item">
-								<img
-									src="https://cdn0.fahasa.com/media/magentothem/banner7/TrangManga920x420.png"
-									class="d-block w-100" alt="..." />
-							</div>
+								</div>
+							
+							</c:forEach>
+							
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleIndicators"
 							role="button" data-slide="prev"> <span

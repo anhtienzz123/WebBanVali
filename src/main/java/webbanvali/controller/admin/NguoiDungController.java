@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,6 @@ import webbanvali.service.NguoiDungService;
 public class NguoiDungController {
 
 	@Autowired
-
 	private NguoiDungService nguoiDungService;
 
 	@GetMapping(value = "/trang-chu")
@@ -37,6 +37,29 @@ public class NguoiDungController {
 		model.addAttribute("nguoiDungs", nguoiDungDTOs);
 
 		return "trangChuNguoiDungAdmin";
+	}
+
+	@GetMapping(value = "/cap-nhat/{id}")
+	public String capNhatNguoiDung(Model model, @PathVariable("id") Integer id) {
+
+		NguoiDungDTO nguoiDungDTO = nguoiDungService.getTheoMaNguoiDung(id).get();
+
+		model.addAttribute("id", nguoiDungDTO.getId());
+		model.addAttribute("hoTen", nguoiDungDTO.getHoTen());
+		model.addAttribute("email", nguoiDungDTO.getEmail());
+		model.addAttribute("trangThai", nguoiDungDTO.isTrangThai());
+		model.addAttribute("vaiTro", nguoiDungDTO.getVaiTro());
+
+		return "capNhatNguoiDungAdmin";
+	}
+
+	@PostMapping(value = "/cap-nhat/{id}")
+	public String capNhatNguoiDung(@RequestParam("id") Integer id, @RequestParam("trangThai") boolean trangThai,
+			@RequestParam("role") String role) {
+
+		nguoiDungService.capNhatTrangThaiVaRole(id, trangThai, role);
+
+		return "redirect:/admin/nguoi-dung/trang-chu";
 	}
 
 //	@GetMapping(value = "/danhSach")
@@ -81,18 +104,17 @@ public class NguoiDungController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 	}
-	
+
 	@DeleteMapping(value = "/trang-chu/v1/nguoi-dungs/{nguoiDungId}")
-	public ResponseEntity<?> xoaNguoiDungTheoMaNguoiDung(@PathVariable(name = "nguoiDungId", required = true) int nguoiDungId){
-		
+	public ResponseEntity<?> xoaNguoiDungTheoMaNguoiDung(
+			@PathVariable(name = "nguoiDungId", required = true) int nguoiDungId) {
+
 		boolean ketQuaXoa = nguoiDungService.xoaNguoiDungTheoMaNguoiDung(nguoiDungId);
-		
-		if(ketQuaXoa)
-			return new ResponseEntity<>(true,HttpStatus.OK);
+
+		if (ketQuaXoa)
+			return new ResponseEntity<>(HttpStatus.OK);
 		else
-			return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
-	
 
 }

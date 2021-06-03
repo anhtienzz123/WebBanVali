@@ -50,12 +50,18 @@ public class GioHangServiceImpl implements GioHangService {
 
 		for (CartItemDTO cartItemDTO : cartDTO.getCartItemDTOs()) {
 
+			BienTheVali bienTheVali = bienTheValiRepository.findByValiSlugAndKichThuocCodeAndMauSacCode(cartItemDTO.getSlug(),
+					cartItemDTO.getKichThuocCode(), cartItemDTO.getMauSacCode());
+			
 			BienTheValiDTO bienTheValiDTO = bienTheValiConverter.toBienTheValiDTO(
-					bienTheValiRepository.findByValiSlugAndKichThuocCodeAndMauSacCode(cartItemDTO.getSlug(),
-							cartItemDTO.getKichThuocCode(), cartItemDTO.getMauSacCode()));
+					bienTheVali);
 
+			int soLuong = cartItemDTO.getSoLuong();
+			
+			boolean trangThai = bienTheVali.getSoLuong() <= soLuong ? true : false;
+			
 			CartBienTheValiItemDTO cartBienTheValiItemDTO = new CartBienTheValiItemDTO(bienTheValiDTO,
-					cartItemDTO.getSoLuong());
+					cartItemDTO.getSoLuong(), trangThai);
 
 			cartBienTheValiItemDTOs.add(cartBienTheValiItemDTO);
 		}

@@ -208,4 +208,19 @@ public class ValiServiceImpl implements ValiService {
 		
 		
 	}
+	
+	@Override
+	public boolean xoa(Integer id) {
+		
+		try {
+			valiRepository.deleteById(id);
+			
+			return true;
+		} catch (Exception e) {
+			
+			return false;
+		}
+		
+		
+	}
 }

@@ -45,29 +45,27 @@ function timKiem() {
 
 
 // hàm xóa sản phẩm
-function xoa(valiId, kichThuocId, mauSacId) {
+function xoa(id) {
 
 	if (confirm("Bạn có chắc chắn xóa không ?")) {
 
-		const query = jQuery.param({ valiId, kichThuocId, mauSacId });
-		const url = `api-bien-the-valis/xoa?${query}`; 
-
 		$.ajax({
-			url: url,
+			url: `api/xoa/${id}`,
 			type: 'DELETE',
 			success: function() {
 
-				toastr.success('Xóa thành công');
 				timKiem();
-				
-				
+				toastr.success('Xóa thành công');
 
 			},
 			error: function() {
-				toastr.error('Xóa thất bại vì đã có hóa đơn');
+				toastr.error('Xóa thất bại');
 			},
 
 		});
 
 	}
 }
+
+
+

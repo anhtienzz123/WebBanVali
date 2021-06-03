@@ -11,6 +11,7 @@ import webbanvali.repository.BienTheValiRepository;
 import webbanvali.repository.HoaDonRepository;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.repository.ValiRepository;
+import webbanvali.service.BannerService;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.NhomValiService;
 import webbanvali.utils.ROLE;
@@ -40,6 +41,8 @@ public class TrangChuController {
 	
 	@Autowired
 	private BienTheValiService bienTheValiService;
+	@Autowired
+	private BannerService bannerService;
 	
 	private static final int SIZE = 4;
 	
@@ -50,6 +53,7 @@ public class TrangChuController {
 		model.addAttribute("valisBanChay", bienTheValiService.getValisBanChay(SIZE));
 		model.addAttribute("valisNoiBat", bienTheValiService.getValisNoiBat(SIZE));
 		model.addAttribute("valisKhuyenMai", bienTheValiService.getValisKhuyenMai(SIZE*2));
+		model.addAttribute("banners", bannerService.getBanners());
 		
 		return "trangChu";
 	}

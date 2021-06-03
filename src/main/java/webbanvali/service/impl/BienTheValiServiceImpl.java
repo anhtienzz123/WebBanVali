@@ -25,13 +25,16 @@ import webbanvali.converter.BienTheValiConverter;
 import webbanvali.dto.BienTheValiAddDTO;
 import webbanvali.dto.BienTheValiDTO;
 import webbanvali.dto.BienTheValiTableDTO;
+import webbanvali.dto.ChiTietBienTheValiDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.entity.BienTheVali;
 import webbanvali.entity.BienTheVali_PK;
+import webbanvali.entity.Vali;
 import webbanvali.repository.BienTheValiRepository;
 import webbanvali.service.BienTheValiService;
 import webbanvali.utils.ChuoiConstant;
 import webbanvali.utils.FileUploadProcessor;
+import webbanvali.utils.XuLyTien;
 
 @Service
 @Transactional
@@ -218,6 +221,37 @@ public class BienTheValiServiceImpl implements BienTheValiService {
 			return false;
 		}
 
+	}
+
+	@Override
+	public ChiTietBienTheValiDTO getChiTietBienTheValiDTO(Integer valiId, Integer kichThuocId, Integer mauSacId) {
+		BienTheVali bienTheVali = bienTheValiRepository.findById(new BienTheVali_PK(valiId, kichThuocId, mauSacId))
+				.get();
+		Vali vali = bienTheVali.getVali();
+
+		ChiTietBienTheValiDTO result = new ChiTietBienTheValiDTO();
+
+		result.setTenVali(vali.getTenVali());
+		result.setTenKichThuoc(bienTheVali.getKichThuoc().getTenKichThuoc());
+		result.setTenMau(bienTheVali.getMauSac().getTenMau());
+		result.setBanhXe(vali.getBanhXe());
+		result.setDayKeo(vali.getDayKeo());
+		result.setKhoa(vali.getKhoa());
+		result.setThoiGianBaoHanh(vali.getThoiGianBaoHanh());
+		result.setTheTich(bienTheVali.getTheTich());
+		result.setTrongLuong(bienTheVali.getTrongLuong());
+		result.setMoTaKichThuoc(bienTheVali.getMoTaKichThuoc());
+		result.setNoiBat(bienTheVali.isNoiBat());
+		result.setTenChatLieu(vali.getChatLieu().getTenChatLieu());
+		result.setTenNhomVali(vali.getNhomVali().getTenNhomVali());
+		result.setTenThuongHieu(vali.getThuongHieu().getTenThuongHieu());
+		result.setGia(XuLyTien.dinhDangTien(bienTheVali.getGia()));
+		result.setKhuyenMai(bienTheVali.getKhuyenMai());
+		result.setSoLuong(bienTheVali.getSoLuong());
+		result.setAnh(bienTheVali.getTenAnh());
+		result.setMoTa(vali.getMoTa());
+
+		return result;
 	}
 
 }

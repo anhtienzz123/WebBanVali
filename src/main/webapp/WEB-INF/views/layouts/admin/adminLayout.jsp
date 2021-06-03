@@ -52,7 +52,7 @@
 <link rel="stylesheet"
 	href="${styleUrl }plugins/summernote/summernote-bs4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class=" layout-fixed layout-navbar-fixed">
 
 	<div class="wrapper">
 		<tiles:insertAttribute name="header" />

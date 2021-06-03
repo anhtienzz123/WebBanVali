@@ -51,6 +51,12 @@
 							<del style="color: lightgray; font-weight: bold">${ x.bienTheValiDTO.getGiaGocString()}</del>
 							<span class="badge badge-danger">-${x.bienTheValiDTO.khuyenMai}%</span>
 							<br />
+
+							<c:if test="${x.trangThai }">
+								<span class="badge badge-danger">Không đủ số lượng</span>
+							</c:if>
+
+
 						</div>
 
 						<div class="col-3">
@@ -123,12 +129,31 @@
 								</div>
 
 
-								<a href='<c:url value="/gio-hang/dat-hang" />'>
-									<button
-										class="btn btn-outline-danger btn-block mt-2 btn-dat-hang">
-										<span> Đặt hàng</span>
-									</button>
-								</a>
+								<c:if test="${!cart.getTrangThai() }">
+									<a href='<c:url value="/gio-hang/dat-hang" />'>
+										<button
+											class="btn btn-outline-danger btn-block mt-2 btn-dat-hang">
+
+
+											<span> Đặt hàng</span>
+										</button>
+									</a>
+								</c:if>
+								
+								<c:if test="${cart.getTrangThai() }">
+									<a href=''>
+										<button
+											class="btn btn-outline-danger btn-block mt-2 btn-dat-hang"
+												disabled="disabled"
+											>
+											
+
+											<span>Không thể đặt hàng</span>
+										</button>
+									</a>
+								</c:if>
+								
+								
 
 
 								<!-- 

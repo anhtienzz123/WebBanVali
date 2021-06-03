@@ -2,20 +2,14 @@ package webbanvali.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import webbanvali.dto.BannerDTO;
 
 public interface BannerService {
 
 	List<BannerDTO> getBanners();
-
-	List<BannerDTO> getBannersTheoTenAnh(String tenAnh);
-
-	BannerDTO getBannerTheoId(int id);
-
-	BannerDTO themBanner(String tenAnh);
-
-	BannerDTO capNhatBanner(Integer id, String tenAnh);
-
+	BannerDTO themBanner(String tieuDe, MultipartFile file);
 	boolean xoaBannerTheoId(int id);
 	
 }

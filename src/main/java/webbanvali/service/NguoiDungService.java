@@ -20,5 +20,7 @@ public interface NguoiDungService {
 	NguoiDungDTO getTheoEmail(String email);
 	NguoiDung getBuoiDungTheoEmail(String mail);
 	
+	boolean capNhatTrangThaiVaRole(Integer id, boolean trangThai, String role);
+	
 	
 }

@@ -29,6 +29,16 @@
 			value="/WEB-INF/views/admin/vali/ketQuaBienTheValis.jsp" />
 	</definition>
 	
+	<definition name="ketQuaThongKeThangAdmin" extends="emptyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/thongke/ketQuaThongKeThangAdmin.jsp" />
+	</definition>
+	
+	<definition name="ketQuaThongKeNamAdmin" extends="emptyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/thongke/ketQuaThongKeNamAdmin.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>

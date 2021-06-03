@@ -12,6 +12,7 @@ public class CartBienTheValiItemDTO {
 
 	private BienTheValiDTO bienTheValiDTO;
 	private int soLuong;
+	private boolean trangThai;
 
 	public double tinhThanhTien() {
 

@@ -67,11 +67,11 @@
 									</thead>
 									<tbody id="tableBody">
 
-										<c:forEach items="${thuongHieus}" var="x">
+										<c:forEach items="${thuongHieus}" var="x"  varStatus="loop">
 				
 											<tr>
 
-												<td>${x.id }</td>
+												<td>${loop.index + 1 }</td>
 
 												<td>${x.tenThuongHieu }</td>
 

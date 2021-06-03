@@ -26,4 +26,6 @@ public interface ValiService {
 	Vali getValiTheoID(Integer maVali);
 	
 	ValiChungDTO getValiChungById(Integer id);
+	
+	boolean xoa(Integer id);
 }

@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 import webbanvali.converter.HoaDonConverter;
 import webbanvali.dto.HoaDonChungDTO;
 import webbanvali.dto.HoaDonDTO;
+import webbanvali.entity.BienTheVali;
+import webbanvali.entity.ChiTietHoaDon;
 import webbanvali.entity.HoaDon;
+import webbanvali.repository.BienTheValiRepository;
 import webbanvali.repository.HoaDonRepository;
 import webbanvali.service.HoaDonService;
+import webbanvali.utils.TrangThaiDonHangConstant;
 
 @Service
 @Transactional
@@ -25,6 +29,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	@Autowired
 	private HoaDonConverter hoaDonConverter;
+	
+	@Autowired
+	private BienTheValiRepository bienTheValiRepository;
 
 	@Override
 	public List<HoaDonChungDTO> getHoaDonChungs(String id, String soDienThoai, String trangThai, int page, int size) {
@@ -60,6 +67,25 @@ public class HoaDonServiceImpl implements HoaDonService {
 		}
 
 		int result = hoaDonRepository.capNhatTrangThai(id, trangThai);
+		
+		if(trangThai.equals(TrangThaiDonHangConstant.HUY_DON_HANG)){
+			
+			HoaDon hoaDon = hoaDonRepository.findById(id).get();
+			
+			for (ChiTietHoaDon chiTietHoaDon : hoaDon.getChiTietHoaDons()) {
+				
+				BienTheVali bienTheVali = chiTietHoaDon.getBienTheVali();
+				
+				bienTheVali.setSoLuong(bienTheVali.getSoLuong() + chiTietHoaDon.getSoLuong());
+				
+				bienTheValiRepository.save(bienTheVali);
+				
+				
+			}
+			
+			
+		}
+		
 
 		if (result > 0)
 			return true;

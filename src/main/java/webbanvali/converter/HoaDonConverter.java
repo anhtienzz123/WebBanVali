@@ -1,9 +1,15 @@
 package webbanvali.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import webbanvali.dto.ChiTietHoaDonDTO;
 import webbanvali.dto.HoaDonChungDTO;
 import webbanvali.dto.HoaDonDTO;
+import webbanvali.entity.BienTheVali;
+import webbanvali.entity.ChiTietHoaDon;
 import webbanvali.entity.HoaDon;
 import webbanvali.utils.XuLiNgay;
 import webbanvali.utils.XuLyTien;
@@ -35,6 +41,36 @@ public class HoaDonConverter {
 		if (hoaDon == null)
 			return null;
 		
-		return null;
+		HoaDonDTO result = new HoaDonDTO();
+		
+		result.setId(hoaDon.getId());
+		result.setTenKhachHang(hoaDon.getHoTenKhachHang());
+		result.setDiaChi(hoaDon.getDiaChiGiaoHang());
+		result.setEmail(hoaDon.getEmail());
+		result.setThoiGianDat(XuLiNgay.toString(hoaDon.getThoiGianDat()));
+		result.setTrangThai(hoaDon.getTrangThaiDonHang());
+		
+		List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<>();
+		
+		for (ChiTietHoaDon chiTietHoaDon : hoaDon.getChiTietHoaDons()) {
+			
+			ChiTietHoaDonDTO tempt = new ChiTietHoaDonDTO();
+			
+			BienTheVali bienTheVali = chiTietHoaDon.getBienTheVali();
+			tempt.setTenVali(bienTheVali.getVali().getTenVali() + " " + bienTheVali.getKichThuoc().getTenKichThuoc() + " " +bienTheVali.getMauSac().getTenMau());
+			
+			tempt.setGia(chiTietHoaDon.getGia());
+			tempt.setKhuyenMai(chiTietHoaDon.getKhuyenMai());
+			tempt.setSoLuong(chiTietHoaDon.getSoLuong());
+			
+			
+			chiTietHoaDonDTOs.add(tempt);
+			
+		}
+		
+		result.setChiTietHoaDons(chiTietHoaDonDTOs);
+		
+		
+		return result;
 	}
 }

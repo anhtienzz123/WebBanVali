@@ -127,7 +127,7 @@
 
 
 													<td><a class="btn btn-primary btn-sm xem"
-														data-toggle="modal" data-target="#xem-modal"> <i
+														      href='<c:url value="/admin/vali/chi-tiet?valiId=${x.valiId}&kichThuocId=${x.kichThuocId }&mauSacId=${x.mauSacId }" />'     > <i
 															class="fas fa-folder"></i> Xem
 													</a> <a class="btn btn-info btn-sm sua"
 														href='<c:url value="/admin/vali/sua-bien-the-vali?valiId=${x.valiId}&kichThuocId=${x.kichThuocId }&mauSacId=${x.mauSacId }" />'>

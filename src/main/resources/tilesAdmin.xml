@@ -63,6 +63,11 @@
 			value="/WEB-INF/views/admin/nguoidung/trangChuNguoiDung.jsp" />
 	</definition>
 	
+	<definition name="capNhatNguoiDungAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/nguoidung/capNhatNguoiDung.jsp" />
+	</definition>
+	
 	
 	<!-- Quản lý màu sắc -->
 	<definition name="trangChuMauSacAdmin" extends="adminLayout">
@@ -88,10 +93,20 @@
 			value="/WEB-INF/views/admin/hoadon/trangChu.jsp" />
 	</definition>
 	
+	<definition name="chiTietHoaDonAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/hoadon/chiTiet.jsp" />
+	</definition>
+	
 	<!-- Quản lý vali -->
 	<definition name="valiAdmin" extends="adminLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/vali/trangChu.jsp" />
+	</definition>
+	
+	<definition name="chiTietBienTheValiAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/chiTietBienTheVali.jsp" />
 	</definition>
 	
 	
@@ -115,6 +130,18 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/thongke/trangChu.jsp" />
 	</definition>
+	
+	<definition name="thongKeThangAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/thongke/thongKeThang.jsp" />
+	</definition>
+	
+	<definition name="thongKeNamAdmin" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/thongke/thongKeNam.jsp" />
+	</definition>
+	
+	
 	
 	
 

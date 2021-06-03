@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import webbanvali.converter.NguoiDungConverter;
 import webbanvali.dto.NguoiDungDTO;
 import webbanvali.entity.NguoiDung;
-import webbanvali.entity.Vali;
 import webbanvali.repository.NguoidungRepository;
 import webbanvali.service.NguoiDungService;
 import webbanvali.utils.EmailSender;
@@ -131,7 +130,8 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		nguoiDungRepository.save(nguoiDung);
 
-		String content = "http://" + host + "/WebBanVali/quen-mat-khau/nhap-mat-khau?email=" + email + "&token=" + randomMaXacNhan;
+		String content = "http://" + host + "/WebBanVali/quen-mat-khau/nhap-mat-khau?email=" + email + "&token="
+				+ randomMaXacNhan;
 		emailSender.sendEmail(email, "Quên mật khẩu", content);
 
 		return true;
@@ -186,13 +186,18 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	@Override
 	public boolean xoaNguoiDungTheoMaNguoiDung(int maNguoiDung) {
 
-		if (nguoiDungRepository.existsById(maNguoiDung)) {
+		if (!nguoiDungRepository.existsById(maNguoiDung))
+			return false;
+
+		try {
+
 			nguoiDungRepository.delete(nguoiDungRepository.findById(maNguoiDung).get());
 
 			return true;
+		} catch (Exception e) {
+			return false;
 		}
 
-		return false;
 	}
 
 	@Override
@@ -202,6 +207,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDungConverter.toNguoiDungDTO(nguoiDung);
 	}
+
 	@Override
 	public NguoiDung getBuoiDungTheoEmail(String mail) {
 		NguoiDung nguoiDung = nguoiDungRepository.findByEmail(mail);
@@ -210,6 +216,24 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 		return nguoiDung;
 
+	}
+
+	@Override
+	public boolean capNhatTrangThaiVaRole(Integer id, boolean trangThai, String role) {
+
+		if (!nguoiDungRepository.existsById(id)) {
+			return false;
+		}
+
+		NguoiDung nguoiDung = nguoiDungRepository.findById(id).get();
+
+		nguoiDung.setTrangThai(trangThai);
+
+		nguoiDung.setVaiTro(ROLE.valueOf(role));
+		
+		nguoiDungRepository.save(nguoiDung);
+
+		return true;
 	}
 
 }

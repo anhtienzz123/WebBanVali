@@ -1,5 +1,7 @@
 package webbanvali.controller.admin;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,14 @@ public class TrangChuAdmin {
 	@GetMapping(value = "/trang-chu")
 	public String index(Model model) {
 		
+		LocalDate now = LocalDate.now();
+		int day = now.getDayOfMonth();
+		int month = now.getMonthValue();
+		int year = now.getYear();
+		
 		model.addAttribute("thongKe", thongKeService.getThongKeMoiNhat());
+		model.addAttribute("hoaDons", thongKeService.getHoaDonsTheoNgay(day, month, year));
+		model.addAttribute("nguoiDungs", thongKeService.getNguoiDungsTheoNgay(day, month, year));
 		
 		return "trangChuAdmin";
 	}

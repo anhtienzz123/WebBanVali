@@ -34,5 +34,16 @@ public class CartBienTheValiDTO {
 		return XuLyTien.dinhDangTien(tinhThanhTien());
 
 	}
+	
+	public boolean getTrangThai() {
+		
+		for (CartBienTheValiItemDTO tempt : cartBienTheValiItemDTOs) {
+			
+			if(tempt.isTrangThai())
+				return true;
+		}
+		
+		return false;
+	}
 
 }

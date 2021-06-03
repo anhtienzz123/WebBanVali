@@ -37,28 +37,25 @@
 
 
 									<div class="col-3">
-										<label  class="col-form-label">Tên vali</label>
+										<label class="col-form-label">Tên vali</label>
 										<!-- Tìm kiếm -->
 										<input type="text" class="form-control" id="tenVali"
-											placeholder="Nhập tên vali"   >
+											placeholder="Nhập tên vali">
 									</div>
 
 
 									<div class="col-3">
-										<label class="col-form-label">Nhóm Vali</label>
-										
-										<select
-											class="form-control" id="nhomValis"
-											>
-											
+										<label class="col-form-label">Nhóm Vali</label> <select
+											class="form-control" id="nhomValis">
+
 											<option value="">Tất cả</option>
-											
+
 											<c:forEach items="${nhomValis }" var="x">
-												
+
 												<option value="${x.key }">${x.value }</option>
-												
+
 											</c:forEach>
-											
+
 
 
 										</select>
@@ -67,15 +64,13 @@
 
 									<div class="col-3">
 
-										<label class="col-form-label">Thương hiệu</label>
-										
-										<select
+										<label class="col-form-label">Thương hiệu</label> <select
 											class="form-control" id="thuongHieus">
 											<option value="">Tất cả</option>
 											<c:forEach items="${thuongHieus }" var="x">
-												
+
 												<option value="${x.key }">${x.value }</option>
-												
+
 											</c:forEach>
 
 										</select>
@@ -123,13 +118,9 @@
 												<td>${x.soBinhLuan }</td>
 
 
-												<td><a onClick="xemChiTiet(${x.id})"
-													class="btn btn-primary btn-sm xem" data-toggle="modal"
-													data-target="#xem-modal"> <i class="fas fa-folder"></i>
-														Xem
-												</a> <a class="btn btn-info btn-sm sua" href='<c:url value="/admin/vali/sua-vali/${x.id }" />'
-													 > <i
-														class="fas fa-pencil-alt"></i> Sửa
+												<td> <a class="btn btn-info btn-sm sua"
+													href='<c:url value="/admin/vali/sua-vali/${x.id }" />'>
+														<i class="fas fa-pencil-alt"></i> Sửa
 												</a> <a onClick="xoa(${x.id})" class="btn btn-danger btn-sm xoa">
 														<i class="fas fa-trash"> </i> Xóa
 												</a></td>
@@ -162,6 +153,8 @@
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
 	<script src="${styleUrl }js/vali/trangChu.js"></script>
+
 	
+
 </body>
 </html>

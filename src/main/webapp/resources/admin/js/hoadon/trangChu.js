@@ -73,13 +73,6 @@ function capNhatTrangThai(id, trangThai) {
 
 }
 
-function xemChiTiet(id){
-	
-	
-	
-}
-
-
 
 //Xóa
 function xoa(id) {
@@ -87,7 +80,7 @@ function xoa(id) {
 	if (confirm("Bạn có chắc chắn xóa không ?")) {
 
 		$.ajax({
-			url: `api/${id}`,
+			url: `api/xoa/${id}`,
 			type: 'DELETE',
 			success: function() {
 

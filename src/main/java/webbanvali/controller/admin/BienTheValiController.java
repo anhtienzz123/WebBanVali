@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import webbanvali.dto.BienTheValiAddDTO;
+import webbanvali.dto.ChiTietBienTheValiDTO;
 import webbanvali.dto.KeyValueDTO;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.ValiService;
@@ -64,6 +65,20 @@ public class BienTheValiController {
 		return "ketQuaBienTheValisAdmin";
 
 	}
+	
+	@GetMapping("/chi-tiet")
+	public String chiTietBienTheVali(Model model,
+			@RequestParam("valiId") Integer valiId,
+			@RequestParam("kichThuocId") Integer kichThuocId,
+			@RequestParam("mauSacId") Integer mauSacId) {
+
+		ChiTietBienTheValiDTO result = bienTheValiService.getChiTietBienTheValiDTO(valiId, kichThuocId, mauSacId);
+		model.addAttribute("data", result);
+		
+		return "chiTietBienTheValiAdmin";
+
+	}
+	
 	
 	@DeleteMapping("/api-bien-the-valis/xoa")
 	public ResponseEntity<?> delete(Model model,

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import webbanvali.dto.BienTheValiAddDTO;
 import webbanvali.dto.BienTheValiDTO;
 import webbanvali.dto.BienTheValiTableDTO;
+import webbanvali.dto.ChiTietBienTheValiDTO;
 import webbanvali.dto.ChiTietValiDTO;
 
 public interface BienTheValiService {
@@ -37,5 +38,7 @@ public interface BienTheValiService {
 	List<BienTheValiDTO> getBienTheValisTheoThuongHieu(Integer thuongHieuId);
 	
 	boolean xoa(Integer valiId, Integer kichThuocId, Integer mauSacId );
+	
+	ChiTietBienTheValiDTO getChiTietBienTheValiDTO(Integer valiId,Integer kichThuocId,Integer mauSacId);
 	
 }

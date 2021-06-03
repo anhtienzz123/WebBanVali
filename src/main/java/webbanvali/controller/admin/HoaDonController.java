@@ -36,6 +36,16 @@ public class HoaDonController {
 
 		return "hoaDonAdmin";
 	}
+	
+	@GetMapping("/{id}")
+	public String chiTiet(@PathVariable("id") String id, Model model) {
+		
+		HoaDonDTO hoaDonDTO = hoaDonService.getTheoId(id);
+		model.addAttribute("hoaDon", hoaDonDTO);
+		System.out.println("size: " + hoaDonDTO.getTongTienString());
+		
+		return "chiTietHoaDonAdmin";
+	}
 
 	@GetMapping("/api")
 	public String timKiemHoaDon(Model model, @RequestParam(value = "id", defaultValue = "") String id,

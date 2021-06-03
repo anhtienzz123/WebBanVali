@@ -15,6 +15,7 @@ import webbanvali.dto.BienTheValiDTO;
 import webbanvali.dto.ChiTietValiDTO;
 import webbanvali.dto.KeyValueDTO;
 import webbanvali.dto.ValiCommentDTO;
+import webbanvali.service.BannerService;
 import webbanvali.service.BienTheValiService;
 import webbanvali.service.BinhLuanService;
 import webbanvali.service.ValiService;
@@ -31,6 +32,7 @@ public class ValiAdminController {
 	private BinhLuanService binhLuanService;
 	@Autowired
 	private ValiService valiService;
+
 
 	private static final int SIZE1 = 4;
 

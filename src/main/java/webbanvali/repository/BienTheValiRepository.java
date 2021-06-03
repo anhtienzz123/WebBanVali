@@ -50,5 +50,37 @@ public interface BienTheValiRepository
 			+ "			inner join vali as vl on btv.vali_id = vl.id\r\n"
 			+ "			where  nhom_vali_id = ?1  group by btv.vali_id", nativeQuery = true)
 	List<BienTheVali> findAllByNhomVali(Integer nhomValiId);
+	
+	
+	@Query(value = "select concat(vali.ten_vali, ' ' ,kich_thuoc.ten_kich_thuoc, ' ', mau_sac.ten_mau) as ten_vali,\r\n"
+			+ "	sum(cthd.so_luong) as so_luong, sum( ( cthd.gia - ( (cthd.gia/100) * cthd.khuyen_mai  ) ) * cthd.so_luong ) as doanh_thu\r\n"
+			+ "from bien_the_vali as btv\r\n"
+			+ "inner join vali on btv.vali_id = vali.id\r\n"
+			+ "inner join kich_thuoc on btv.kich_thuoc_id = kich_thuoc.id\r\n"
+			+ "inner join mau_sac on btv.mau_sac_id = mau_sac.id\r\n"
+			+ "inner join chi_tiet_hoa_don as cthd\r\n"
+			+ "on  btv.vali_id = cthd.vali_id and   btv.kich_thuoc_id = cthd.kich_thuoc_id and btv.mau_sac_id = cthd.mau_sac_id\r\n"
+			+ "inner join hoa_don as hd\r\n"
+			+ "on cthd.hoa_don_id = hd.id\r\n"
+			+ "where month(hd.thoi_gian_dat) = ?1 and year(hd.thoi_gian_dat) = ?2  and hd.trang_thai_don_hang = 'Giao hàng thành công'\r\n"
+			+ "group by btv.vali_id, btv.kich_thuoc_id, btv.mau_sac_id\r\n"
+			+ "order by so_luong desc, doanh_thu desc", nativeQuery = true)
+	List<Object[]> getSoLuongValiTrongThang(int thang, int nam);
+	
+	@Query(value = "select concat(vali.ten_vali, ' ' ,kich_thuoc.ten_kich_thuoc, ' ', mau_sac.ten_mau) as ten_vali,\r\n"
+			+ "	sum(cthd.so_luong) as so_luong, sum( ( cthd.gia - ( (cthd.gia/100) * cthd.khuyen_mai  ) ) * cthd.so_luong ) as doanh_thu\r\n"
+			+ "from bien_the_vali as btv\r\n"
+			+ "inner join vali on btv.vali_id = vali.id\r\n"
+			+ "inner join kich_thuoc on btv.kich_thuoc_id = kich_thuoc.id\r\n"
+			+ "inner join mau_sac on btv.mau_sac_id = mau_sac.id\r\n"
+			+ "inner join chi_tiet_hoa_don as cthd\r\n"
+			+ "on  btv.vali_id = cthd.vali_id and   btv.kich_thuoc_id = cthd.kich_thuoc_id and btv.mau_sac_id = cthd.mau_sac_id\r\n"
+			+ "inner join hoa_don as hd\r\n"
+			+ "on cthd.hoa_don_id = hd.id\r\n"
+			+ "where  year(hd.thoi_gian_dat) = ?1  and hd.trang_thai_don_hang = 'Giao hàng thành công'\r\n"
+			+ "group by btv.vali_id, btv.kich_thuoc_id, btv.mau_sac_id\r\n"
+			+ "order by so_luong desc, doanh_thu desc", nativeQuery = true)
+	List<Object[]> getSoLuongValiTrongNam( int nam);
 
+	
 }
