@@ -28,10 +28,10 @@ public class NguoiDungController {
 
 	@GetMapping(value = "/trang-chu")
 	public String danhSachNguoiDung(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size) {
+			@RequestParam(name = "size", defaultValue = "20") int size) {
 
 		List<NguoiDungDTO> nguoiDungDTOs = nguoiDungService.getDanhSachNguoiDungTheoEmailVaSoDienThoai("", "", page,
-				size);
+				100);
 
 		model.addAttribute("pageHienTai", page);
 		model.addAttribute("nguoiDungs", nguoiDungDTOs);
@@ -84,7 +84,7 @@ public class NguoiDungController {
 			@RequestParam(name = "soDienThoai", defaultValue = "") String soDienThoai) {
 
 		List<NguoiDungDTO> nguoiDungDTOs = nguoiDungService.getDanhSachNguoiDungTheoEmailVaSoDienThoai(email,
-				soDienThoai, page, size);
+				soDienThoai, page, 100);
 		System.out.println("email: " + email);
 		System.out.println("size: " + nguoiDungDTOs.size());
 		nguoiDungDTOs.forEach(s -> System.out.println(s));

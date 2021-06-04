@@ -67,7 +67,7 @@
 								<c:forEach items="${binhLuans }" var="o">
 									<tr>
 										<td><a
-											href=' <c:url value="/san-pham/${o.slugVali}?kichThuoc=size-s&mauSac=mau-do" />'>${o.tenVali}</a></td>
+											href="#">${o.tenVali}</a></td>
 										<td>${o.thoiGian }</td>
 										<td>${o.soDanhGia}<img
 											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
