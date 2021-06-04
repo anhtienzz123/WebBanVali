@@ -37,8 +37,8 @@
 							</div>
 
 
-							<form:form method="post" modelAttribute="bienTheValiAdd"
-								enctype="multipart/form-data">
+							<form:form method="post" modelAttribute="bienTheValiAdd" id="myForm" name="myForm"
+								enctype="multipart/form-data"  onsubmit="return(validate());"  >
 								<div class="card-body">
 
 									
@@ -270,11 +270,13 @@
 
 
 
-
+<script src="${styleUrl }js/vali/themBienTheVali.js"></script>
 	<script>
 		$(function() {
 			bsCustomFileInput.init();
 		});
+		
+		
 	</script>
 </body>
 </html>

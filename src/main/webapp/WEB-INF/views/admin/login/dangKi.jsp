@@ -140,6 +140,10 @@
 			let email = document.myForm.email.value.trim();
 			let matKhau = document.myForm.matKhau.value;
 			let nhapLaiMatKhau = document.myForm.nhapLaiMatKhau.value;
+			$("#hoTenError").text("");
+			$("#emailError").text("");
+			$("#matKhauError").text("");
+			$("#nhapLaiMatKhauError").text("");
 
 			let flag = true;
 
@@ -148,6 +152,12 @@
 				$("#hoTenError").text("Họ tên không được bỏ trống");
 				flag = false;
 			}
+			
+			if (email.length === 0) {
+				$("#emailError").text("Email không được bỏ trống");
+				flag = false;
+			}
+
 
 			if (matKhau.length < 6) {
 				$("#matKhauError").text("Mật khẩu phải từ 6 kí tự");

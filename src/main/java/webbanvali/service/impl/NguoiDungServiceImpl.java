@@ -45,10 +45,9 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 			nguoiDungDTO.setVaiTro(ROLE.ROLE_USER);
 
 			// lưu xuống
-			int maNguoiDung = nguoiDungRepository
-					.save(new NguoiDung(nguoiDungDTO.getId(), nguoiDungDTO.getHoTen(), nguoiDungDTO.getEmail(),
-							passwordEncoder.encode(nguoiDungDTO.getMatKhau()), ROLE.ROLE_USER, LocalDate.now()))
-					.getId();
+			int maNguoiDung = nguoiDungRepository.save(new NguoiDung(nguoiDungDTO.getId(), nguoiDungDTO.getHoTen(),
+					nguoiDungDTO.getEmail(), passwordEncoder.encode(nguoiDungDTO.getMatKhau()), ROLE.ROLE_USER,
+					LocalDate.now(), "38 Đường số 1,Phường 04,Quận Gò Vấp,Thành phố Hồ Chí Minh")).getId();
 
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();

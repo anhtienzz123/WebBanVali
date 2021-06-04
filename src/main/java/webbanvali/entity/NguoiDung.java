@@ -60,7 +60,7 @@ public class NguoiDung implements Serializable {
 
 	
 	
-	public NguoiDung(int id, String hoTen,String email, String matKhau, ROLE vaiTro, LocalDate ngayTao) {
+	public NguoiDung(int id, String hoTen,String email, String matKhau, ROLE vaiTro, LocalDate ngayTao, String diaChi) {
 		super();
 		
 		this.id = id;
@@ -69,6 +69,7 @@ public class NguoiDung implements Serializable {
 		this.matKhau = matKhau;
 		this.vaiTro = vaiTro;
 		this.ngayTao = ngayTao;
+		this.diaChi = diaChi;
 	}
 
 	public NguoiDung(int id, String email, String hoTen, boolean gioiTinh,

@@ -17,12 +17,12 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	href="${styleUrl }plugins/summernote/summernote-bs4.min.css">
-	
-	<style type="text/css">
-		.error{
-			color: red;
-		}
-	</style>
+
+<style type="text/css">
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 
@@ -43,8 +43,9 @@
 
 							<!-- Form add -->
 
-							<form:form modelAttribute="valiChung" method="post"
-								enctype="multipart/form-data">
+							<form:form modelAttribute="valiChung" method="post" id="myForm"
+								name="myForm" enctype="multipart/form-data"
+								onsubmit="return(validate());" >
 
 								<div class="card-body">
 
@@ -57,7 +58,7 @@
 
 											<form:input path="tenVali" cssClass="form-control" />
 											<label id="tenValiErr" class="error"></label>
-											<form:errors  cssClass="error" path="tenVali" />
+											<form:errors cssClass="error" path="tenVali" />
 
 										</div>
 
@@ -67,7 +68,7 @@
 
 											<form:input path="banhXe" cssClass="form-control" />
 											<label id="banhXeErr" class="error"></label>
-											<form:errors  cssClass="error" path="banhXe" />
+											<form:errors cssClass="error" path="banhXe" />
 
 
 										</div>
@@ -77,7 +78,7 @@
 
 											<form:input path="dayKeo" cssClass="form-control" />
 											<label id="dayKeoErr" class="error"></label>
-											<form:errors  cssClass="error" path="dayKeo" />
+											<form:errors cssClass="error" path="dayKeo" />
 
 										</div>
 
@@ -87,7 +88,7 @@
 
 											<form:input path="khoa" cssClass="form-control" />
 											<label id="khoaErr" class="error"></label>
-											<form:errors  cssClass="error" path="khoa" />
+											<form:errors cssClass="error" path="khoa" />
 										</div>
 
 										<div class="form-group col-6">
@@ -95,7 +96,7 @@
 
 											<form:input path="thoiGianBaoHanh" cssClass="form-control" />
 											<label id="thoiGianBaoHanhErr" class="error"></label>
-											<form:errors  cssClass="error" path="thoiGianBaoHanh" />
+											<form:errors cssClass="error" path="thoiGianBaoHanh" />
 										</div>
 
 										<div class="col-6">
@@ -112,12 +113,13 @@
 														<c:if test="${fn:contains(valiChung.getTinhNangs(), x)}">
 															<option value="${x}" selected="selected">${x }</option>
 														</c:if>
-														
-														<c:if test="${not fn:contains(valiChung.getTinhNangs(), x)}">
+
+														<c:if
+															test="${not fn:contains(valiChung.getTinhNangs(), x)}">
 															<option value="${x}">${x }</option>
 														</c:if>
 
-												
+
 
 													</c:forEach>
 
@@ -146,7 +148,7 @@
 															<option value="${x}">${x }</option>
 														</c:if>
 
-														
+
 
 													</c:forEach>
 
@@ -264,6 +266,7 @@
 
 
 
+	<script src="${styleUrl }js/vali/themVali.js"></script>
 
 	<script>
 		$(function() {
