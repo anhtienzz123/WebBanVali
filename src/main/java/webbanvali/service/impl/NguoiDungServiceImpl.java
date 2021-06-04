@@ -1,5 +1,6 @@
 package webbanvali.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +45,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 			nguoiDungDTO.setVaiTro(ROLE.ROLE_USER);
 
 			// lưu xuống
-			int maNguoiDung = nguoiDungRepository.save(new NguoiDung(nguoiDungDTO.getId(), nguoiDungDTO.getHoTen(),nguoiDungDTO.getEmail(), passwordEncoder.encode(nguoiDungDTO.getMatKhau()),ROLE.ROLE_USER  )).getId();
+			int maNguoiDung = nguoiDungRepository
+					.save(new NguoiDung(nguoiDungDTO.getId(), nguoiDungDTO.getHoTen(), nguoiDungDTO.getEmail(),
+							passwordEncoder.encode(nguoiDungDTO.getMatKhau()), ROLE.ROLE_USER, LocalDate.now()))
+					.getId();
 
 			// tạo ra mã xác thực
 			NguoiDung nguoiDungDaLuu = nguoiDungRepository.findById(maNguoiDung).get();
@@ -230,7 +234,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		nguoiDung.setTrangThai(trangThai);
 
 		nguoiDung.setVaiTro(ROLE.valueOf(role));
-		
+
 		nguoiDungRepository.save(nguoiDung);
 
 		return true;
