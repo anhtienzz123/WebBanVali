@@ -125,6 +125,11 @@
 			value="/WEB-INF/views/admin/vali/themBienTheVali.jsp" />
 	</definition>
 	
+	<definition name="capNhatBienTheVali" extends="adminLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/vali/capNhatBienTheVali.jsp" />
+	</definition>
+	
 	<!-- Thống kê -->
 	<definition name="thongKeAdmin" extends="adminLayout">
 		<put-attribute name="body"

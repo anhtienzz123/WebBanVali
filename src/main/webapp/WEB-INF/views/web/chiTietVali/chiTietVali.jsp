@@ -278,7 +278,7 @@
 		<!--comment-->
 		<div class="comment bg-white mt-3 p-2">
 
-			<h5>${vali.soDanhGia }đánh giá về sản phẩm</h5>
+			<h5>${vali.soDanhGia } đánh giá về sản phẩm</h5>
 
 
 			<div class="row mt-3">
@@ -387,18 +387,19 @@
 					<sec:authorize access="isAuthenticated()">
 
 						<form method="get"
-								action='<c:url value="/user/binh-luan-bai-viet"  />' >
-								
+							action='<c:url value="/user/binh-luan-bai-viet"  />'>
+
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">Nội dung</label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="noiDung">
 								</div>
 							</div>
-							
+
 							<input type="hidden" name="valiSlug" value="${vali.valiSlug}" />
 							<input type="hidden" name="mauSac" value="${vali.mauSacCode}" />
-							<input type="hidden" name="kichThuoc" value="${vali.kichThuocCode}" />
+							<input type="hidden" name="kichThuoc"
+								value="${vali.kichThuocCode}" />
 
 							<fieldset class="form-group row">
 								<legend class="col-form-label col-sm-3 float-sm-left pt-0">Đánh
@@ -408,16 +409,16 @@
 
 									<div class="form-check-inline">
 										<input class="form-check-input" type="radio" name="rate"
-											value="1"> <label class="form-check-label">
-											1 </label> <img
+											value="1"> <label class="form-check-label"> 1
+										</label> <img
 											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
 											alt="" />
 									</div>
 
 									<div class="form-check-inline">
 										<input class="form-check-input" type="radio" name="rate"
-											value="2"> <label class="form-check-label">
-											2 </label> <img
+											value="2"> <label class="form-check-label"> 2
+										</label> <img
 											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
 											alt="" />
 									</div>
@@ -425,16 +426,16 @@
 
 									<div class="form-check-inline">
 										<input class="form-check-input" type="radio" name="rate"
-											value="3"> <label class="form-check-label">
-											3 </label> <img
+											value="3"> <label class="form-check-label"> 3
+										</label> <img
 											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
 											alt="" />
 									</div>
 
 									<div class="form-check-inline">
 										<input class="form-check-input" type="radio" name="rate"
-											value="4"> <label class="form-check-label">
-											4 </label> <img
+											value="4"> <label class="form-check-label"> 4
+										</label> <img
 											src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_star_yellow.svg"
 											alt="" />
 									</div>
@@ -451,7 +452,8 @@
 
 							<div class="form-group row">
 								<div class="col-sm-10">
-									<button class="btn btn-danger" type="submit"  >Gởi đánh giá của bạn</button>
+									<button class="btn btn-danger" type="submit">Gởi đánh
+										giá của bạn</button>
 								</div>
 							</div>
 						</form>
@@ -483,6 +485,17 @@
 
 
 								</span> <br> <span>${x.noiDung }</span>
+
+								<sec:authorize access="hasRole('ADMIN')">
+
+									<a
+	href='<c:url value="/admin/binh-luan/xoa?nguoiDungId=${x.nguoiDungID }&valiId=${x.valiID}&valiSlug=${vali.valiSlug}&kichThuocCode=${vali.kichThuocCode}&mauSacCode=${vali.mauSacCode}"
+											
+										 />'   >Xóa</a>
+
+								</sec:authorize>
+
+
 							</div>
 						</li>
 					</c:forEach>
@@ -504,5 +517,9 @@
 		src="${styleUrlAdmin }plugins/jquery/jquery.min.js"></script>
 	<!-- Toastr -->
 	<script src="${styleUrl }plugins/toastr/toastr.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	</script>
 </body>
 </html>

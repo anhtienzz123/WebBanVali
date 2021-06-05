@@ -128,13 +128,12 @@ public class BienTheValiController {
 	public String suaBienTheVali(Model model, @RequestParam("valiId") Integer valiId,
 			@RequestParam("kichThuocId") Integer kichThuocId, @RequestParam("mauSacId") Integer mauSacId) {
 
-		setLuaChons(model);
 
 		BienTheValiAddDTO bienTheVali = bienTheValiService.getBienTheValiAdd(valiId, kichThuocId, mauSacId);
 		model.addAttribute("bienTheValiAdd", bienTheVali);
-		model.addAttribute("flag", true);
+	
 
-		return "themBienTheVali";
+		return "capNhatBienTheVali";
 
 	}
 

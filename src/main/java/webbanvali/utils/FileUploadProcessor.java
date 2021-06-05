@@ -51,7 +51,7 @@ public class FileUploadProcessor {
 	
 	public String saveBannerFile(MultipartFile multipartFile) {
 
-		String fileName = RandomStringUtils.randomAlphanumeric(6) + HamDungChung.toSlug(multipartFile.getOriginalFilename());
+		String fileName = RandomStringUtils.randomAlphanumeric(6) + HamDungChung.toSlug(multipartFile.getOriginalFilename()) + ".jpg";
 
 		File pathFile = new File(URL_IMAGE_BANNER);
 

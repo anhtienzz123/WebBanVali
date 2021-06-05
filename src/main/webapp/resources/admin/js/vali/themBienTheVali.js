@@ -2,8 +2,8 @@ function validate() {
 
 	let gia = document.myForm.gia.value.trim();
 	let khuyenMai = document.myForm.khuyenMai.value.trim();
-	let soLuong = document.myForm.soLuong.value;
-	let theTich = document.myForm.theTich.value;
+	let soLuong = document.myForm.soLuong.value.trim();
+	let theTich = document.myForm.theTich.value.trim();
 	let trongLuong = document.myForm.trongLuong.value.trim();
 	let moTaKichThuoc = document.myForm.moTaKichThuoc.value.trim();
 
@@ -51,7 +51,12 @@ function validate() {
 
 
 			if (khuyenMai < 0) {
-				$("#khuyenMaiErr").text("Khuyến mãi không được nhỏ hơn 0");
+				$("#khuyenMaiErr").text("Khuyến mãi phải >= 0");
+				flag = false;
+			}
+			
+			if (khuyenMai >= 100) {
+				$("#khuyenMaiErr").text("Khuyến mãi phải < 100");
 				flag = false;
 			}
 		}
